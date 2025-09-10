@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19B7D7E4-E7F6-4BB7-896F-93104F3EDD0C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>top.Isteyft.MCS.IsRouge</RootNamespace>
+    <AssemblyName>IsRouge</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony20">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\0Harmony20.dll</HintPath>
+    </Reference>
+    <Reference Include="Accessibility" />
+    <Reference Include="Antlr4.Runtime.Standard">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Antlr4.Runtime.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="ArabicSupport">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\ArabicSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="BehaviorDesignerRuntime">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\BehaviorDesignerRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\BepInEx.Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\BepInEx.Preloader.dll</HintPath>
+    </Reference>
+    <Reference Include="BetterSeidOptimization">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\BetterSeidOptimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Boo.Lang">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Boo.Lang.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomDungeonsMore">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\CustomDungeonsMore.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Febucci.TextAnimator.Runtime">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Febucci.TextAnimator.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.19.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="HarmonyXInterop">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\HarmonyXInterop.dll</HintPath>
+    </Reference>
+    <Reference Include="IFacebook">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\IFacebook.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniExcel">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\MiniExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\MonoMod.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Next">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\Next.dll</HintPath>
+    </Reference>
+    <Reference Include="NextMoreCommand">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\NextMoreCommand.dll</HintPath>
+    </Reference>
+    <Reference Include="spine-csharp">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\spine-csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnsubscribeNextMoreCommandOld">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\UnsubscribeNextMoreCommandOld.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

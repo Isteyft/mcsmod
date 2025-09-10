@@ -1,0 +1,8 @@
+F:\ProjectAll\C#\IsMoDaoKuoZhan\obj\Debug\IsMoDaoKuoZhan.csproj.AssemblyReference.cache
+F:\ProjectAll\C#\IsMoDaoKuoZhan\obj\Debug\IsMoDaoKuoZhan.csproj.CoreCompileInputs.cache
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽的魔道扩展\IsMoDaoKuoZhan.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽的魔道扩展\IsMoDaoKuoZhan.pdb
+F:\ProjectAll\C#\IsMoDaoKuoZhan\obj\Debug\IsMoDaoKuoZhan.dll
+F:\ProjectAll\C#\IsMoDaoKuoZhan\obj\Debug\IsMoDaoKuoZhan.pdb
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽的魔道扩展\plugins\IsMoDaoKuoZhan.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽的魔道扩展\plugins\IsMoDaoKuoZhan.pdb

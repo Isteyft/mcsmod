@@ -1,0 +1,6 @@
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\魔心相眷\plugins\IsMoXinXiangJuan.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\魔心相眷\plugins\IsMoXinXiangJuan.pdb
+F:\ProjectAll\C#\IsMoXinXiangJuan\obj\Debug\IsMoXinXiangJuan.csproj.AssemblyReference.cache
+F:\ProjectAll\C#\IsMoXinXiangJuan\obj\Debug\IsMoXinXiangJuan.csproj.CoreCompileInputs.cache
+F:\ProjectAll\C#\IsMoXinXiangJuan\obj\Debug\IsMoXinXiangJuan.dll
+F:\ProjectAll\C#\IsMoXinXiangJuan\obj\Debug\IsMoXinXiangJuan.pdb

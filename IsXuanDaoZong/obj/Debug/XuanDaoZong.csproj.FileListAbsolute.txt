@@ -1,0 +1,6 @@
+F:\ProjectAll\C#\IsXuanDaoZong\obj\Debug\XuanDaoZong.csproj.AssemblyReference.cache
+F:\ProjectAll\C#\IsXuanDaoZong\obj\Debug\XuanDaoZong.csproj.CoreCompileInputs.cache
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\玄道宗\plugins\XuanDaoZong.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\玄道宗\plugins\XuanDaoZong.pdb
+F:\ProjectAll\C#\IsXuanDaoZong\obj\Debug\XuanDaoZong.dll
+F:\ProjectAll\C#\IsXuanDaoZong\obj\Debug\XuanDaoZong.pdb

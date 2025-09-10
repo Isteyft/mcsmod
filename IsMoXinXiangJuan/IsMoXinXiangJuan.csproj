@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0518CAA8-8BDD-41F7-8D15-AA330AC154B6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>top.Isteyft.MCS.IsMoXinXiangJuan</RootNamespace>
+    <AssemblyName>IsMoXinXiangJuan</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\魔心相眷\plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accessibility">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Antlr4.Runtime.Standard">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Antlr4.Runtime.Standard.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ArabicSupport">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\ArabicSupport.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BehaviorDesignerRuntime">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\BehaviorDesignerRuntime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\BepInEx.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\BepInEx.Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\BepInEx.Preloader.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BetterSeidOptimization">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\BetterSeidOptimization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Boo.Lang">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Boo.Lang.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\CsvHelper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CustomDungeonsMore">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\CustomDungeonsMore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\DemiLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\DOTween.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\DOTweenPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Febucci.TextAnimator.Runtime">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Febucci.TextAnimator.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.19.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Google.Protobuf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HarmonyXInterop">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\HarmonyXInterop.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IFacebook">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\IFacebook.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IsTools">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽工具库\plugins\IsTools.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MiniExcel">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\MiniExcel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\Mono.Cecil.Mdb.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\Mono.Cecil.Pdb.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\Mono.Cecil.Rocks.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\MonoMod.RuntimeDetour.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\B\MonoMod.Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Next">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\Next.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NextMoreCommand">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\NextMoreCommand.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="spine-csharp">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\spine-csharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="spine-unity">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\spine-unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="spine-unity-examples">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\spine-unity-examples.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Unity.Analytics.DataPrivacy.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Unity.Postprocessing.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.AccessibilityModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.Advertisements.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.AIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.ARModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.BaselibModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.BaselibModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.ClothModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.ClusterInputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.CrashReportingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.DirectorModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.FileSystemHttpModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.GridModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.Networking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.Purchasing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.SpatialTracking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.StyleSheetsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.TilemapModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.Timeline.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.TimelineModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.TLSModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UNETModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.VFXModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.VideoModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.VRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.WindModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.XRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnsubscribeNextMoreCommandOld">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\UnsubscribeNextMoreCommandOld.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VContainer">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\VContainer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VContainer.EnableCodeGen">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\VContainer.EnableCodeGen.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="XCharts.Runtime">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\XCharts.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="YarnSpinner">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\YarnSpinner.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="YarnSpinner.Compiler">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\YarnSpinner.Compiler.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="YarnSpinner.Unity">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\YarnSpinner.Unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\AttackTypeMetaData.cs" />
+    <Compile Include="Data\StaticSkillTypeMetaData.cs" />
+    <Compile Include="DialogEnv\IS_MoXinHasMod.cs" />
+    <Compile Include="IsMoXinXiangJuanMain.cs" />
+    <Compile Include="Patch\ModPatch.cs" />
+    <Compile Include="Patch\NMCPatch.cs" />
+    <Compile Include="Patch\NpcTuPoPatch.cs" />
+    <Compile Include="Patch\RandomNpcActionPatch.cs" />
+    <Compile Include="Patch\SeidPatch\WudaoSeidPatch.cs" />
+    <Compile Include="Patch\SpellPatch.cs" />
+    <Compile Include="Patch\WuDaoPatch.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

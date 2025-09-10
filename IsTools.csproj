@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{12DD9317-A66E-4286-88C8-978253AB64EF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>top.Isteyft.MCS.IsTools</RootNamespace>
+    <AssemblyName>IsTools</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽工具库\plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>1</WarningLevel>
+    <PlatformTarget>ARM64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Accessibility" />
+    <Reference Include="Antlr4.Runtime.Standard">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\Antlr4.Runtime.Standard.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ArabicSupport">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\ArabicSupport.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BehaviorDesignerRuntime">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\BehaviorDesignerRuntime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\BepInEx.Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\BepInEx.Preloader.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BetterSeidOptimization">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\BetterSeidOptimization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Boo.Lang">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\Boo.Lang.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\CsvHelper.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CustomDungeonsMore">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\CustomDungeonsMore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\DemiLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\DOTween.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\DOTweenPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Febucci.TextAnimator.Runtime">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\Febucci.TextAnimator.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.19.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\Google.Protobuf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HarmonyXInterop">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\HarmonyXInterop.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IFacebook">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\IFacebook.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MiniExcel">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\MiniExcel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\Mono.Cecil.Mdb.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\Mono.Cecil.Pdb.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\Mono.Cecil.Rocks.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\MonoMod.RuntimeDetour.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\MonoMod.Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Next">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824845357\plugins\Next.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NextMoreCommand">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\NextMoreCommand.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="spine-csharp">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\spine-csharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="spine-unity">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\spine-unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.FileSystemHttpModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.Networking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.Purchasing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.SpatialTracking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.StyleSheetsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.Timeline.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.TimelineModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UNETModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnsubscribeNextMoreCommandOld">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\UnsubscribeNextMoreCommandOld.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VContainer">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\VContainer.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VContainer.EnableCodeGen">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\VContainer.EnableCodeGen.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="XCharts.Runtime">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\XCharts.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="YarnSpinner">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\YarnSpinner.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="YarnSpinner.Compiler">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\YarnSpinner.Compiler.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="YarnSpinner.Unity">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\YarnSpinner.Unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\StaticSkillSeidMetaData.cs" />
+    <Compile Include="Data\SkillSeidMetaData.cs" />
+    <Compile Include="Data\BuffSeidMetaData.cs" />
+    <Compile Include="IsToolsMain.cs" />
+    <Compile Include="Patch\ModPatch.cs" />
+    <Compile Include="Patch\SeidPatch\StaticSkillSeidPatch.cs" />
+    <Compile Include="Patch\SeidPatch\SkillSeidPatch.cs" />
+    <Compile Include="Patch\SeidPatch\BuffSeidPatch.cs" />
+    <Compile Include="Patch\JsonDataPatch.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test.cs" />
+    <Compile Include="Util\ItemUtils.cs" />
+    <Compile Include="Util\JsonObjectUtils.cs" />
+    <Compile Include="Util\LogUtils.cs" />
+    <Compile Include="Util\SettingUtils.cs" />
+    <Compile Include="Util\StaticSkillUtils.cs" />
+    <Compile Include="Util\TaskUtils.cs" />
+    <Compile Include="Util\AutoSaveUtils.cs" />
+    <Compile Include="Util\WarpUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DialogEnv\" />
+    <Folder Include="DialogEvent\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,7 @@
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\幽州\plugins\YouZhou.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\幽州\plugins\YouZhou.pdb
+F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.csproj.AssemblyReference.cache
+F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.csproj.CoreCompileInputs.cache
+F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.dll
+F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.pdb
+F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.csproj.CopyComplete

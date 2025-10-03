@@ -506,6 +506,7 @@
     <Compile Include="Data\StaticSkillTypeMetaData.cs" />
     <Compile Include="DialogEnv\IS_MoXinHasMod.cs" />
     <Compile Include="IsMoXinXiangJuanMain.cs" />
+    <Compile Include="Patch\AttackTypePatch.cs" />
     <Compile Include="Patch\ModPatch.cs" />
     <Compile Include="Patch\NMCPatch.cs" />
     <Compile Include="Patch\NpcTuPoPatch.cs" />

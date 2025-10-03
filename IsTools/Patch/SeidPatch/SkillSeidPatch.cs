@@ -40,6 +40,9 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 case 365:
                     realizeSeid365(__instance, seid, attaker, damage, receiver);
                     return false;
+                case 366:
+                    realizeSeid366(__instance, seid, attaker, damage, receiver);
+                    return false;
                 default:
                     return true;
             }
@@ -53,6 +56,12 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             JSONObject buffIds = seidJson["value1"];         // buff ID数组
             JSONObject requiredLayers = seidJson["value2"]; // 每多少层触发一次 (Y)
             JSONObject damageAdds = seidJson["value3"];     // 每次触发增加的伤害 (Z)
+                                                            // 新增value4处理，默认为0（自身）
+            int target = 1;
+            if (seidJson.HasField("value4"))
+            {
+                target = seidJson["value4"].I;
+            }
 
             // 初始总伤害
             int totalDamage = damage[0];
@@ -71,9 +80,17 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 int buffId = buffIds[i].I;
                 int triggerLayer = requiredLayers[i].I;  // 每Y层触发一次
                 int damageAdd = damageAdds[i].I;        // 每次增加Z伤害
+                int currentLayer;
+                if (target < 2)
+                {
+                    // 获取攻击者当前buff总层数
+                    currentLayer = attaker.buffmag.GetBuffSum(buffId);
+                }
+                else
+                {
+                    currentLayer = receiver.buffmag.GetBuffSum(buffId);
+                }
 
-                // 获取攻击者当前buff总层数
-                int currentLayer = attaker.buffmag.GetBuffSum(buffId);
 
                 // 计算可以触发多少次 (currentLayer / Y)
                 int triggerTimes = currentLayer / triggerLayer;
@@ -83,9 +100,9 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                     // 增加总伤害 = 触发次数 × 每次增加的伤害
                     totalDamage += triggerTimes * damageAdd;
 
-                    IsToolsMain.Log($"buff效果触发: ID={buffId}, 当前层数={currentLayer}, " +
-                                       $"每{triggerLayer}层增加{damageAdd}伤害, 触发{triggerTimes}次, " +
-                                       $"总增加{triggerTimes * damageAdd}伤害");
+                    //IsToolsMain.Log($"buff效果触发: ID={buffId}, 当前层数={currentLayer}, " +
+                    //                   $"每{triggerLayer}层增加{damageAdd}伤害, 触发{triggerTimes}次, " +
+                    //                   $"总增加{triggerTimes * damageAdd}伤害");
                 }
             }
 
@@ -164,7 +181,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                         }
                     }
 
-                    IsToolsMain.Log($"buff效果触发: ID={buffId}, 当前层数={currentLayer}, 每{triggerLayer}层增加{damageAdd}伤害, 触发{triggerTimes}次, 总消耗{totalConsume}层");
+                    //IsToolsMain.Log($"buff效果触发: ID={buffId}, 当前层数={currentLayer}, 每{triggerLayer}层增加{damageAdd}伤害, 触发{triggerTimes}次, 总消耗{totalConsume}层");
                 }
             }
 
@@ -274,6 +291,21 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             catch
             {
                 IsToolsMain.LogInfo("lua返回值出错!");
+            }
+        }
+        private static void realizeSeid366(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
+        {
+            int i = __instance.getSeidJson(seid)["value1"].I;
+
+            // 生成 1-100 的随机数
+            int randomValue = new System.Random().Next(1, 101);
+
+            // 如果随机数 <= i，则触发效果（damage[2] = 1）
+            if (randomValue <= i)
+            {
+                {
+                    damage[2] = 1;
+                }
             }
         }
     }

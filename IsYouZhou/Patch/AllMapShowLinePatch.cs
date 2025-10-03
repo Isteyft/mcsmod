@@ -28,7 +28,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
                     GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(gameObject);
                     gameObject2.name = "750";
                     gameObject2.transform.parent = MapNodeManager.inst.transform.Find("LevelsWorld0");
-                    gameObject2.transform.localPosition = new Vector3(-3f, 14f, 0f);
+                    gameObject2.transform.localPosition = new Vector3(-4.4f, 14f, 0f);
                     gameObject2.gameObject.SetActive(true);
                     gameObject2.GetComponent<MapComponent>().gameObject.SetActive(true);
                     //gameObject2.transform.localPosition += new Vector3(-1f, 1f, 0f);

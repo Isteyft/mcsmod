@@ -27,7 +27,9 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             {
                 if (AllMapBase.MapData == null)
                 {
+                    // 从场景JSON数据中获取幽州地图数据
                     JSONObject jsonobject = Jsondata.SceneJsonData["幽州"];
+                    // 反序列化为AllMapJson对象
                     AllMapBase.MapData = JsonConvert.DeserializeObject<AllMapJson>(jsonobject.ToString());
                 }
                 return AllMapBase.MapData;
@@ -39,6 +41,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             get
             {
                 Dictionary<int, List<int>> dictionary;
+                // 尝试从NPC结算管理器中获取当前场景的NPC字典
                 bool flag = NpcJieSuanManager.inst.npcMap.fuBenNPCDictionary.TryGetValue(Tools.getScreenName(), out dictionary);
                 Dictionary<int, List<int>> result;
                 if (flag)
@@ -52,11 +55,13 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 return result;
             }
         }
+        // 当前地图的npc
         public static List<int> NOWMAPNPCLIST
         {
             get
             {
                 List<int> list = new List<int>();
+                // 遍历所有NPC列表并合并
                 foreach (List<int> collection in AllMapBase.NPCLIST.Values)
                 {
                     list.AddRange(collection);
@@ -66,25 +71,33 @@ namespace top.Isteyft.MCS.YouZhou.Scene
         }
         private void Awake()
         {
+            // 设置单例实例
             AllMapBase.Inst = this;
+
+            // 获取主摄像机并添加必要组件
             GameObject gameObject = base.transform.Find("/Main Camera").gameObject;
-            gameObject.AddComponent<AllMapManage>();
-            gameObject.AddComponent<DialogProcess>();
-            gameObject.AddComponent<CameraController>();
+            gameObject.AddComponent<AllMapManage>();      // 地图管理组件
+            gameObject.AddComponent<DialogProcess>();     // 对话处理组件
+            gameObject.AddComponent<CameraController>();  // 摄像机控制组件
             //if (gameObject.GetComponent<CamaraFollow>() == null)
             //{
             //    CamaraFollow camaraFollow = gameObject.AddComponent<CamaraFollow>();
             //    camaraFollow.levo = base.transform.Find("/dian1").GetComponent<Transform>();
             //    camaraFollow.desno = base.transform.Find("/dian2").GetComponent<Transform>();
             //}
+            // 获取大地图根节点并添加线路显示组件
             this.LevelsWorld0 = base.transform.Find("/AllMap/LevelsWorld0").gameObject;
             this.LevelsWorld0.AddComponent<AllMapLineShow>();
+            // 获取当前场景名称
             string nowSceneName = SceneEx.NowSceneName;
+            // 如果地图数据未加载，尝试加载
             if (AllMapBase.MapData == null)
             {
                 try
                 {
+                    // 从场景JSON数据中获取当前场景数据
                     JSONObject jsonobject = Jsondata.SceneJsonData[nowSceneName];
+                    // 反序列化为AllMapJson对象
                     AllMapBase.MapData = JsonConvert.DeserializeObject<AllMapJson>(jsonobject.ToString());
                 }
                 catch
@@ -165,20 +178,29 @@ namespace top.Isteyft.MCS.YouZhou.Scene
         {
             if (AllMapBase.MapData != null)
             {
-                // 音乐
+                // 播放地图背景音乐
                 MusicMag.instance.playMusic(AllMapBase.MapData.Music);
             }
+
+            // 延迟设置玩家位置
             base.Invoke("SetPlayerIndex", 0.4f);
+            // 延迟生成NPC
             base.Invoke("AutoSetNpcIndex", 1f);
         }
         public void SetPlayerIndex()
         {
+            // 获取玩家在当前场景的路点索引
             int nowIndex = PlayerEx.Player.fubenContorl[Tools.getScreenName()].NowIndex;
             BaseMapCompont baseMapCompont;
+
+            // 根据索引找到对应的路点
             if (AllMapManage.instance.mapIndex.TryGetValue(nowIndex, out baseMapCompont))
             {
+                // 设置玩家位置（稍微向下偏移0.4个单位）
                 Vector3 position = new Vector3(baseMapCompont.transform.position.x, baseMapCompont.transform.position.y - 0.4f, baseMapCompont.transform.position.z);
                 AllMapManage.instance.MapPlayerController.transform.position = position;
+
+                // 如果是AllMapComponent类型，激活入口点
                 AllMapComponent allMapComponent = baseMapCompont as AllMapComponent;
                 if (allMapComponent.enter != null)
                 {
@@ -191,14 +213,18 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             bool flag = AllMapBase.NPCLIST == null;
             if (!flag)
             {
+                // 遍历NPC字典（key为路点ID，value为NPC ID列表）
                 this.monsterlist = new Dictionary<int, AllMapNpcController>();
                 foreach (KeyValuePair<int, List<int>> keyValuePair in AllMapBase.NPCLIST)
                 {
                     BaseMapCompont baseMapCompont;
+                    // 根据路点ID找到对应路点
                     if (AllMapManage.instance.mapIndex.TryGetValue(keyValuePair.Key, out baseMapCompont))
                     {
+                        // 获取路点位置
                         Vector3 position = baseMapCompont.gameObject.transform.position;
                         List<int> value = keyValuePair.Value;
+                        // 为每个NPC ID创建怪物实例
                         for (int i = 0; i < value.Count; i++)
                         {
                             int npcID = value[i];
@@ -211,10 +237,12 @@ namespace top.Isteyft.MCS.YouZhou.Scene
         private void UpdateNpcIndex()
         {
             Dictionary<int, AllMapNpcController> dictionary = new Dictionary<int, AllMapNpcController>();
+            // 复制当前怪物列表
             foreach (KeyValuePair<int, AllMapNpcController> keyValuePair in this.monsterlist)
             {
                 dictionary.Add(keyValuePair.Key, keyValuePair.Value);
             }
+            // 收集需要保留的NPC ID
             List<int> list = new List<int>();
             foreach (KeyValuePair<int, AllMapNpcController> keyValuePair2 in dictionary)
             {
@@ -223,13 +251,16 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                     list.Add(keyValuePair2.Key);
                 }
             }
+            // 获取当前NPC列表
             Dictionary<int, List<int>> npclist = AllMapBase.NPCLIST;
+            // 更新NPC位置
             foreach (KeyValuePair<int, List<int>> keyValuePair3 in npclist)
             {
                 List<int> value = keyValuePair3.Value;
                 for (int i = 0; i < value.Count; i++)
                 {
                     int num = value[i];
+                    // 如果NPC已存在，更新其位置
                     if (list.Contains(num))
                     {
                         AllMapNpcController allMapNpcController = this.monsterlist[num];
@@ -237,6 +268,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                     }
                     else
                     {
+                        // 否则创建新的NPC实例
                         BaseMapCompont baseMapCompont;
                         if (AllMapManage.instance.mapIndex.TryGetValue(keyValuePair3.Key, out baseMapCompont))
                         {
@@ -248,9 +280,12 @@ namespace top.Isteyft.MCS.YouZhou.Scene
         }
         private void CreateMonster(int npcID, Vector3 vector3, int index)
         {
+            // 实例化怪物预制体
             GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.monster);
             gameObject.name = npcID.ToString();
+            // 设置位置（根据index垂直偏移）
             gameObject.transform.position = new Vector3(vector3.x, vector3.y + (float)index * 0.4f, vector3.z);
+            // 添加NPC控制器并添加到怪物列表
             AllMapNpcController value = gameObject.AddComponent<AllMapNpcController>();
             this.monsterlist.Add(npcID, value);
         }

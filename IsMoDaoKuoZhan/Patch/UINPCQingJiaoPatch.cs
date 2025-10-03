@@ -31,25 +31,25 @@ namespace top.Isteyft.MCS.IsMoDaoKuoZhanMain.Patch
                 UINPCJiaoHu.Inst.IsQingJiaoShiBaiSW = false;
                 if (npc.FavorLevel < FavorDict[pinJie])
                 {
-                    Tools.Say("桀桀桀，我们的感情还没这么好吧？", npc.ID);
+                    Tools.Say("我们的感情还没这么好吧？", npc.ID);
                     return;
                 }
                 int qingFenCost = NPCEx.GetQingFenCost(skill, isGongFa: true);
                 if (npc.QingFen < qingFenCost)
                 {
-                    Tools.Say("桀桀桀，我像是这么慷慨的人吗？", npc.ID);
+                    Tools.Say("我像是这么慷慨的人吗？", npc.ID);
                     //UINPCJiaoHu.Inst.IsQingJiaoShiBaiQF = true;
                     return;
                 }
 
                 if (npc.IsNingZhouNPC && PlayerEx.GetNingZhouShengWangLevel() > 1)
                 {
-                    Tools.Say("桀桀桀，魔道功法可不会教给宁州的好人。", npc.ID);
+                    Tools.Say("魔道功法可不会教给宁州的好人。", npc.ID);
                     return;
                 }
                 if (!npc.IsNingZhouNPC && PlayerEx.GetSeaShengWangLevel() > 1)
                 {
-                    Tools.Say("桀桀桀，魔道功法可不会教给无尽之海的好人。", npc.ID);
+                    Tools.Say("魔道功法可不会教给无尽之海的好人。", npc.ID);
                     return;
                 }
 
@@ -62,12 +62,12 @@ namespace top.Isteyft.MCS.IsMoDaoKuoZhanMain.Patch
 
                 if (QingJiaoBook == null)
                 {
-                    Tools.Say("{punch=10,1}桀桀桀桀桀桀，这个功法我也不太懂，还是算了吧。", npc.ID);
+                    Tools.Say("{punch=10,1}这个功法我也不太懂，还是算了吧。", npc.ID);
                     return;
                 }
                 NPCEx.AddQingFen(npc.ID, -qingFenCost);
                 PlayerEx.Player.addItem(QingJiaoBook.id, 1, null, ShowText: true);
-                Tools.Say("{punch=5,2}桀桀桀桀桀桀桀~" + $"既然如此，便教你《{QingJiaoBook.name}》", npc.ID);
+                Tools.Say($"既然如此，便教你《{QingJiaoBook.name}》", npc.ID);
         }
 
             [HarmonyPostfix]
@@ -84,25 +84,25 @@ namespace top.Isteyft.MCS.IsMoDaoKuoZhanMain.Patch
                 UINPCJiaoHu.Inst.IsQingJiaoShiBaiSW = false;
                 if (npc.FavorLevel < FavorDict[pinJie])
                 {
-                    Tools.Say("桀桀，我们的感情还没这么好吧？", npc.ID);
+                    Tools.Say("我们的感情还没这么好吧？", npc.ID);
                     return;
                 }
                 int qingFenCost = NPCEx.GetQingFenCost(skill, isGongFa: false);
                 if (npc.QingFen < qingFenCost)
                 {
-                    Tools.Say("桀桀，我像是这么慷慨的人吗？", npc.ID);
+                    Tools.Say("我像是这么慷慨的人吗？", npc.ID);
                     //UINPCJiaoHu.Inst.IsQingJiaoShiBaiQF = true;
                     return;
                 }
 
                 if (npc.IsNingZhouNPC && PlayerEx.GetNingZhouShengWangLevel() > 1)
                 {
-                    Tools.Say("桀桀，魔道神通可不会教给好人。", npc.ID);
+                    Tools.Say("魔道神通可不会教给好人。", npc.ID);
                     return;
                 }
                 if (!npc.IsNingZhouNPC && PlayerEx.GetSeaShengWangLevel() > 1)
                 {
-                    Tools.Say("桀桀，魔道神通可不会教给好人。", npc.ID);
+                    Tools.Say("魔道神通可不会教给好人。", npc.ID);
                     return;
                 }
                 UINPCJiaoHu.Inst.HideNPCQingJiaoPanel();
@@ -114,12 +114,12 @@ namespace top.Isteyft.MCS.IsMoDaoKuoZhanMain.Patch
 
                 if (QingJiaoBook == null)
                 {
-                    Tools.Say("{punch=10,1}桀桀，这个神通我也不太懂，还是算了吧。", npc.ID);
+                    Tools.Say("{punch=10,1}这个神通我也不太懂，还是算了吧。", npc.ID);
                     return;
                 }
                 NPCEx.AddQingFen(npc.ID, -qingFenCost);
                 IsMoDaoKuoZhanMain.Log(QingJiaoBook.id + QingJiaoBook.name + QingJiaoBook.desc);
-                Tools.Say("{punch=10,2}桀桀!!!!!" + $"既然如此，便教你《{QingJiaoBook.name}》", Tools.instance.MonstarID);
+                Tools.Say($"既然如此，便教你《{QingJiaoBook.name}》", npc.ID);
                 PlayerEx.Player.addItem(QingJiaoBook.id, 1, null, ShowText: true);
         }
         }

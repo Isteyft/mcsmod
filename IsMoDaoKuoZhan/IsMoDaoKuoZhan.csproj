@@ -40,6 +40,7 @@
     <Compile Include="ModPatch\LunDaoPatch\LunDaoSuccessPatch.cs" />
     <Compile Include="ModPatch\LunDaoPatch\LunTiMagPatch.cs" />
     <Compile Include="ModPatch\LunDaoPatch\SelectLunTiPatch.cs" />
+    <Compile Include="Patch\AttackTypePatch.cs" />
     <Compile Include="Patch\BagCaiLiaoItemPatch.cs" />
     <Compile Include="Patch\BuffPatch.cs" />
     <Compile Include="Patch\FightFaBaoShowPatch.cs" />

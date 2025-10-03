@@ -410,6 +410,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DialogEvent\YZMove.cs" />
     <Compile Include="DialogEvent\LoadYZ.cs" />
     <Compile Include="GamePlayer\YZSceneManeger.cs" />
     <Compile Include="IsToolsMain.cs" />
@@ -427,8 +428,12 @@
     <Compile Include="Scene\BtnClick.cs" />
     <Compile Include="Scene\CameraController.cs" />
     <Compile Include="Scene\GravityAnim.cs" />
+    <Compile Include="Scene\LoadingScreenPatch.cs" />
     <Compile Include="Scene\LudianJson.cs" />
+    <Compile Include="Scene\MapMoveData.cs" />
     <Compile Include="Scene\NpcInfo.cs" />
+    <Compile Include="Scene\YZMove.cs" />
+    <Compile Include="Scene\YZSceneManeger.cs" />
     <Compile Include="UI\YouZhouUIManager.cs" />
     <Compile Include="Utils\MyUtil.cs" />
     <Compile Include="Utils\Task.cs" />

@@ -433,6 +433,7 @@
     <Compile Include="DialogEnv\Fight\IS_GetBuffByType.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeP.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeSum.cs" />
+    <Compile Include="DialogEnv\Fight\IS_GetUsedSkillsId.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeSumP.cs" />
     <Compile Include="DialogEnv\Item\IS_GetRandomItemType.cs" />
     <Compile Include="DialogEnv\Item\IS_GetRandomItemTypeID.cs" />
@@ -451,6 +452,7 @@
     <Compile Include="DialogEnv\Npc\IS_GetNpcWuDaoLevel.cs" />
     <Compile Include="DialogEnv\Player\IS_HasWuDaoSkills.cs" />
     <Compile Include="DialogEnv\Task\GetTaskIndex.cs" />
+    <Compile Include="DialogEvent\Fight\IS_GetSkill.cs" />
     <Compile Include="DialogEvent\Map\IS_NpcWarp.cs" />
     <Compile Include="DialogEvent\Map\IS_PlayerMove.cs" />
     <Compile Include="DialogEvent\Map\IS_PlayerWalk.cs" />
@@ -469,6 +471,7 @@
     <Compile Include="DialogEvent\Npc\IS_AddFriend.cs" />
     <Compile Include="DialogEvent\Npc\IS_AddSceneNpc.cs" />
     <Compile Include="DialogEvent\Npc\IS_SetNpcChengHaoId.cs" />
+    <Compile Include="DialogEvent\Player\IS_GetId.cs" />
     <Compile Include="DialogEvent\Player\IS_AddShengPing.cs" />
     <Compile Include="DialogEvent\Player\IS_AddShengWang.cs" />
     <Compile Include="DialogEvent\Player\IS_SetPlayerNameFace.cs" />

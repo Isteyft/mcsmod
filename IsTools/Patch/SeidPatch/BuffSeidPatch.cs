@@ -1,4 +1,5 @@
 ﻿using Fungus;
+using Google.Protobuf.WellKnownTypes;
 using HarmonyLib;
 using JSONClass;
 using KBEngine;
@@ -6,11 +7,16 @@ using PaiMai;
 using SkySwordKill.Next;
 using SkySwordKill.Next.DialogSystem;
 using SkySwordKill.Next.Lua;
-using SkySwordKill.NextMoreCommand.Custom.RealizeSeid;
+using SkySwordKill.NextMoreCommand.Utils;
+using Spine.Unity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using top.Isteyft.MCS.IsTools.Util;
+using UnityEngine.Networking.Types;
 using XLua;
+using System.Timers;
+using YSGame;
 
 namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
 {
@@ -50,6 +56,12 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                     return false;
                 case 366:
                     ListRealizeSeid366(seid, avatar, buffInfo, flag, __instance);
+                    return false;
+                case 368:
+                    ListRealizeSeid368(seid, avatar, buffInfo, flag, __instance);
+                    return false;
+                case 369:
+                    ListRealizeSeid369(seid, avatar, buffInfo, flag, __instance);
                     return false;
                 default:
                     return true;
@@ -102,20 +114,6 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                             return false; 
                         }
                     }
-                case 368:
-                {
-                    int key = flag[1];
-                    List<JSONObject> list = __instance.getSeidJson(nowSeid)["value1"].list;
-                    foreach (JSONObject __i2 in list)
-                    {
-                        if (_skillJsonData.DataDict[key].AttackType.FindAll((int a) => a == __i2.I).Count > 0)
-                        {
-                            // 找到匹配项，是不符合条件的属性
-                            return false; // 不触发后续
-                        }
-                    }
-                        return true;
-                }
                 default:
                     return true;
             }
@@ -124,7 +122,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             // <summary>
             /// SEID 360 修改实现：随机从buff数组中获得相应的buff数量
             /// </summary>
-            private static void ListRealizeSeid360(int seid, Avatar avatar, IReadOnlyList<int> flag, Buff instance)
+        private static void ListRealizeSeid360(int seid, Avatar avatar, IReadOnlyList<int> flag, Buff instance)
         {
             // 从配置获取参数
             List<int> buffIds = instance.getSeidJson(seid).GetFieldList("value1");    // Buff ID列表
@@ -237,6 +235,148 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
         //buff护盾，基本没用，全靠buff的patch
         private static void ListRealizeSeid366(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         {
+        }
+        private static void ListRealizeSeid368(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        {
+            //UIPopTip.Inst.Pop("该seid目前废弃");
+            if (avatar.UsedSkills.Count == 0) return;
+            int skillID = avatar.UsedSkills[avatar.UsedSkills.Count - 1];
+            GUIPackage.Skill skill = new GUIPackage.Skill(skillID, 0, 10);
+            List<int> _damage = new List<int>();
+            Tools.AddQueue(delegate
+            {
+                RoundManager.instance.NowUseLingQiType = UseLingQiType.释放技能后消耗;
+                if (jsonData.instance.skillJsonData[string.Concat(skillID)]["script"].str == "SkillAttack")
+                {
+                    _damage = skill.PutingSkill(avatar, avatar.OtherAvatar);
+                }
+                else if (jsonData.instance.skillJsonData[string.Concat(skillID)]["script"].str == "SkillSelf")
+                {
+                    _damage = skill.PutingSkill(avatar, avatar);
+                }
+
+                if (avatar.UsedSkills != null)
+                {
+                    avatar.UsedSkills.Add(skillID);
+                }
+
+                if (!instance.seid.Contains(129))
+                {
+                    avatar.spell.onBuffTickByType(8, _damage);
+                }
+
+                RoundManager.instance.NowUseLingQiType = UseLingQiType.None;
+                YSFuncList.Ints.Continue();
+            });
+        }
+        //运行next命令
+
+        private static void ListRealizeSeid369(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        {
+            int i = instance.getSeidJson(seid)["value1"].I;
+            string path = $"Effect/Prefab/gameEntity/Avater/Avater{i}/Avater{i}_1";
+            var isAvatarSkl = false;
+            // 查找场景中名为 "Avatar_10" 的 GameObject
+            var isPlayer = false;
+            UnityEngine.GameObject avatar10;
+            if (avatar == Tools.instance.getPlayer())
+            {
+                avatar10 = UnityEngine.GameObject.Find("Avatar_10");
+            }
+            else
+            {
+                avatar10 = UnityEngine.GameObject.Find("Avatar_11");
+                isPlayer = true;
+            }
+
+            if (avatar10 == null)
+            {
+                IsToolsMain.Error("Could not find Avatar_10 in the scene!");
+                return;
+            }
+
+            UnityEngine.GameObject nowPlayer = avatar10.transform.Find("Avater50_1(Clone)")?.gameObject
+                     ?? avatar10.transform.Find("Avater51_1(Clone)")?.gameObject;
+
+            if (nowPlayer == null)
+            {
+                IsToolsMain.Error("没找到玩家骨骼所在位置，检查Avater50_1(Clone)和Avater51_1(Clone)是否存在");
+                return;
+            }
+
+            UnityEngine.GameObject prefab = UnityEngine.Resources.Load<UnityEngine.GameObject>(path);
+            if (prefab == null)
+            {
+                // 获取npc性别
+                var npcSex = i.ToNpcNewId().NPCJson()["SexType"].I;
+                // 骨骼模型
+                int num = (npcSex == 1) ? 50 : 51;
+                // 载入npc预制体
+                prefab = UnityEngine.Resources.Load<UnityEngine.GameObject>(string.Format($"Effect/Prefab/gameEntity/Avater/Avater{num}/Avater{num}_1"));
+                isAvatarSkl = true;
+            }
+
+            // 实例化预制体
+            UnityEngine.GameObject avatarInstance = UnityEngine.Object.Instantiate(prefab);
+
+            avatarInstance.transform.SetParent(avatar10.transform);
+            // 先复制目标位置
+            avatarInstance.transform.position = nowPlayer.transform.position;
+
+            if (!isPlayer)
+            {
+                // 然后微调坐标（例如：x+0.5, y+1, z不变）
+                avatarInstance.transform.position = new UnityEngine.Vector3(
+                    nowPlayer.transform.position.x - 1,
+                    nowPlayer.transform.position.y + 0.5f,
+                    nowPlayer.transform.position.z
+                );
+            }
+            else
+            {
+                avatarInstance.transform.position = new UnityEngine.Vector3(
+                    -nowPlayer.transform.position.x + 1,
+                    nowPlayer.transform.position.y + 0.5f,
+                    nowPlayer.transform.position.z
+                );
+                avatarInstance.transform.rotation = UnityEngine.Quaternion.Euler(
+                    nowPlayer.transform.rotation.eulerAngles.x,
+                    nowPlayer.transform.rotation.eulerAngles.y + 180,
+                    nowPlayer.transform.rotation.eulerAngles.z
+                );
+            }
+
+            avatarInstance.transform.SetAsFirstSibling();
+
+            try
+            {
+                if (isAvatarSkl)
+                {
+                    UnityEngine.Transform spineTransform = avatarInstance.transform.Find("Spine GameObject (hero-pro)");
+
+                    if (spineTransform != null)
+                    {
+                        PlayerSetRandomFace playerFaceComponent = spineTransform.GetComponentInChildren<PlayerSetRandomFace>(true);
+                        if (playerFaceComponent != null)
+                        {
+ 
+                            playerFaceComponent.randomAvatar(i);
+                        }
+                        else
+                        {
+                            IsToolsMain.Error("PlayerSetRandomFace没有找到");
+                        }
+                    }
+                    else
+                    {
+                        IsToolsMain.Error("hero-pro没有找到");
+                    }
+                }
+            }
+            catch(Exception e) {
+                IsToolsMain.Error(e);
+            }
+
         }
     }
 }

@@ -228,7 +228,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                         for (int i = 0; i < value.Count; i++)
                         {
                             int npcID = value[i];
-                            this.CreateMonster(npcID, position, i);
+                            //this.CreateMonster(npcID, position, i);
                         }
                     }
                 }
@@ -272,22 +272,23 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                         BaseMapCompont baseMapCompont;
                         if (AllMapManage.instance.mapIndex.TryGetValue(keyValuePair3.Key, out baseMapCompont))
                         {
-                            this.CreateMonster(num, baseMapCompont.transform.position, i);
+                            //this.CreateMonster(num, baseMapCompont.transform.position, i);
+                            continue;
                         }
                     }
                 }
             }
         }
-        private void CreateMonster(int npcID, Vector3 vector3, int index)
-        {
-            // 实例化怪物预制体
-            GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.monster);
-            gameObject.name = npcID.ToString();
-            // 设置位置（根据index垂直偏移）
-            gameObject.transform.position = new Vector3(vector3.x, vector3.y + (float)index * 0.4f, vector3.z);
-            // 添加NPC控制器并添加到怪物列表
-            AllMapNpcController value = gameObject.AddComponent<AllMapNpcController>();
-            this.monsterlist.Add(npcID, value);
-        }
+        //private void CreateMonster(int npcID, Vector3 vector3, int index)
+        //{
+        //    // 实例化怪物预制体
+        //    GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.monster);
+        //    gameObject.name = npcID.ToString();
+        //    // 设置位置（根据index垂直偏移）
+        //    gameObject.transform.position = new Vector3(vector3.x, vector3.y + (float)index * 0.4f, vector3.z);
+        //    // 添加NPC控制器并添加到怪物列表
+        //    AllMapNpcController value = gameObject.AddComponent<AllMapNpcController>();
+        //    this.monsterlist.Add(npcID, value);
+        //}
     }
 }

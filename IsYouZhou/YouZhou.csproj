@@ -410,12 +410,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DialogEvent\YZ_NpcTo.cs" />
     <Compile Include="DialogEvent\YZMove.cs" />
     <Compile Include="DialogEvent\LoadYZ.cs" />
     <Compile Include="GamePlayer\YZSceneManeger.cs" />
     <Compile Include="IsToolsMain.cs" />
     <Compile Include="Patch\AllMapShowLinePatch.cs" />
     <Compile Include="Patch\BaseMapCompontPatch.cs" />
+    <Compile Include="Patch\NpcJieSuanManagerPatch.cs" />
     <Compile Include="Patch\NPCMapPatch.cs" />
     <Compile Include="Patch\UIShengWangManagerPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -437,6 +439,7 @@
     <Compile Include="UI\YouZhouUIManager.cs" />
     <Compile Include="Utils\MyUtil.cs" />
     <Compile Include="Utils\Task.cs" />
+    <Compile Include="YZAction\WanBaoLouPaiMai.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

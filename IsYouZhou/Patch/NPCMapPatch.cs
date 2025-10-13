@@ -13,7 +13,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
 
         public static List<int> npctypelist = new List<int>
         {
-            1,2
+            750,751,752,753,754,755,756,757,758,759
         };
         [HarmonyPatch("AddNpcToBigMap")]
         public static bool Prefix(int npcId, bool isCanJieSha = true)
@@ -21,8 +21,8 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             int i = jsonData.instance.AvatarJsonData[npcId.ToString()]["Type"].I;
             if (NPCMapPatch.npctypelist.Contains(i))
             {
-                int randomInt = NpcJieSuanManager.inst.getRandomInt(100, 169);
-                NPCMapPatch.AddNpcToFuBen(npcId, "幽州", randomInt);
+                int randomInt = NpcJieSuanManager.inst.getRandomInt(100, 146);
+                NPCMapPatch.AddNpcToFuBen(npcId, "F幽州", randomInt);
                 bool flag2 = isCanJieSha && NPCEx.GetFavor(npcId) < 200;
                 if (flag2)
                 {

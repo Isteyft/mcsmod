@@ -209,17 +209,41 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
 
         private static void realizeSeid363(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
-            // 获取技能配置中的value1值
-            string str = __instance.getSeidJson(seid)["value1"].Str;
-            DialogAnalysis.StartTestDialogEvent(str, null);
+            JSONObject seidJson = __instance.getSeidJson(seid);
+            string str = seidJson["value1"].Str;
+            string str2 = str;
+            if (seidJson.HasField("value2"))
+            {
+                if (seidJson["value2"].Str != "" && seidJson["value2"].Str != null)
+                {
+                    str2 = seidJson["value2"].Str;
+                }
+            }
+            if (attaker == PlayerEx.Player)
+            {
+                DialogAnalysis.StartTestDialogEvent(str, null);
+            }
+            else
+            {
+                DialogAnalysis.StartTestDialogEvent(str2, null);
+            }
 
         }
         private static void realizeSeid364(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             try
             {
-                string fileName = __instance.getSeidJson(seid)["value1"].Str;
-                string funcName = __instance.getSeidJson(seid)["value2"].Str;
+                JSONObject seidJson = __instance.getSeidJson(seid);
+                string fileName = seidJson["value1"].Str;
+                string funcName = seidJson["value2"].Str;
+                if (attaker != PlayerEx.Player)
+                {
+                    if (seidJson.HasField("value3") && seidJson.HasField("value4"))
+                    {
+                        fileName = seidJson["value3"].Str;
+                        funcName = seidJson["value4"].Str;
+                    }
+                }
                 DialogEnvironment env = new DialogEnvironment();
                 LuaEnv luaEnv = Main.Lua.LuaEnv;
                 // 2. 创建 luaUtil 类的实例，并传入 LuaEnv
@@ -256,8 +280,17 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
 
         private static void realizeSeid365(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
-            string fileName = __instance.getSeidJson(seid)["value1"].Str;
-            string funcName = __instance.getSeidJson(seid)["value2"].Str;
+            JSONObject seidJson = __instance.getSeidJson(seid);
+            string fileName = seidJson["value1"].Str;
+            string funcName = seidJson["value2"].Str;
+            if (attaker != PlayerEx.Player)
+            {
+                if (seidJson.HasField("value3") && seidJson.HasField("value4"))
+                {
+                    fileName = seidJson["value3"].Str;
+                    funcName = seidJson["value4"].Str;
+                }
+            }
             int totalDamage = damage[0];
             try
             {

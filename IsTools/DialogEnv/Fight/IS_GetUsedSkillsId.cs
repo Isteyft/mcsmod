@@ -18,7 +18,7 @@ namespace top.Isteyft.MCS.IsTools.DialogEnv.Fight
                 player = player.OtherAvatar;
             }
 
-            return player.UsedSkills[player.UsedSkills.Count - 1];; // 返回总和
+            return player.UsedSkills[player.UsedSkills.Count - 1]; // 返回总和
         }
     }
 }

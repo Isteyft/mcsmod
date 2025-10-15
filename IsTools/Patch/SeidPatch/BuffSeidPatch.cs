@@ -79,8 +79,17 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 {
                         try
                         {
-                            string fileName = __instance.getSeidJson(nowSeid)["value1"].Str;
-                            string funcName = __instance.getSeidJson(nowSeid)["value2"].Str;
+                            JSONObject seidJson = __instance.getSeidJson(nowSeid);
+                            string fileName = seidJson["value1"].Str;
+                            string funcName = seidJson["value2"].Str;
+                            if (_avatar != PlayerEx.Player)
+                            {
+                                if (seidJson.HasField("value3") && seidJson.HasField("value4"))
+                                {
+                                    fileName = seidJson["value3"].Str;
+                                    funcName = seidJson["value4"].Str;
+                                }
+                            }
                             DialogEnvironment env = new DialogEnvironment();
                             LuaEnv luaEnv = Main.Lua.LuaEnv;
                             // 2. 创建 luaUtil 类的实例，并传入 LuaEnv
@@ -228,8 +237,24 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
         //运行next命令
         private static void ListRealizeSeid365(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         {
-            string str = instance.getSeidJson(seid)["value1"].Str;
-            DialogAnalysis.StartTestDialogEvent(str, null);
+            JSONObject seidJson = instance.getSeidJson(seid);
+            string str = seidJson["value1"].Str;
+            string str2 = str;
+            if (seidJson.HasField("value2"))
+            {
+                if (seidJson["value2"].Str != "" && seidJson["value2"].Str != null)
+                {
+                    str2 = seidJson["value2"].Str;
+                }
+            }
+            if (avatar == PlayerEx.Player)
+            {
+                DialogAnalysis.StartTestDialogEvent(str, null);
+            }
+            else
+            {
+                DialogAnalysis.StartTestDialogEvent(str2, null);
+            }
         }
 
         //buff护盾，基本没用，全靠buff的patch

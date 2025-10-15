@@ -21,7 +21,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                     where directory.Name.Equals(steamId)
                     select directory).Any((DirectoryInfo directory) => !WorkshopTool.CheckModIsDisable(steamId));
         }
-        public static void LoadYouZhou()
+        public static void LoadYouZhou(int index = 1)
         {
             if (!init)
             {
@@ -35,7 +35,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
             }
             else
             {
-                LoadFuBen.loadfuben("F幽州", 1);
+                LoadFuBen.loadfuben("F幽州", index);
             }
         }
     }

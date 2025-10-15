@@ -15,7 +15,7 @@ namespace top.Isteyft.MCS.YouZhou.GamePlayer
 {
     public class YZSceneManeger : MonoBehaviour
     {
-        private void Start()
+        public void Start()
         {
             SceneManager.sceneLoaded += this.SceneLoaded;
         }

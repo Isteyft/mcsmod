@@ -436,6 +436,21 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 UIPopTip.Inst.Pop("无法抵达目标地点。", PopTipIconType.叹号);
             }
         }
+        // 强制移动
+        public static void SetAvatarNowMapIndexStatic(int nodeIndex)
+        {
+            // 获取当前玩家
+            KBEngine.Avatar player = PlayerEx.Player;
+
+            // 获取当前场景名称
+            string screenName = Tools.getScreenName();
+
+            // 保存上一个地图索引
+            Tools.instance.fubenLastIndex = player.fubenContorl[screenName].NowIndex;
+
+            // 更新当前地图索引为指定的节点索引
+            player.fubenContorl[screenName].NowIndex = nodeIndex;
+        }
         // 路径查找方法 - 使用广度优先搜索
         private List<int> FindPath(int startIndex, int targetIndex)
         {

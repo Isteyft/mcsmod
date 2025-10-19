@@ -1,4 +1,4 @@
-﻿using BepInEx;
+﻿﻿using BepInEx;
 using SkySwordKill.Next.DialogSystem;
 using System;
 using System.Collections.Generic;
@@ -11,14 +11,19 @@ using YSGame;
 
 namespace top.Isteyft.MCS.YouZhou.Scene
 {
+    // 每个路点都有这么一个对象
     public class AllMapComponent : MapComponent
     {
         // 移动速度相关参数
         private float MoveBaseSpeedMin = 1.5f;// 最小基础移动速度
         private float MoveBaseSpeed = 4f;// 基础移动速度
         public UnityEngine.GameObject enter;// 路点游戏对象
-        public bool NoEnter = false;// 是否没有路点
+        public bool NoEnter = false;// 隐藏进入
         public LudianJson Data;// 路点数据
+        public GameObject task;      // 任务标记对象
+        public GameObject shijian;   // 事件标记对象
+        public bool showTask = false;    // 是否显示任务
+        public bool showShijian = false;  // 是否显示事件
         public override int getAvatarNowMapIndex()
         {
             // 从玩家副本控制数据中获取当前地图索引
@@ -81,208 +86,6 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             // 当玩家正在移动，或者玩家当前就在这个节点，或者有事件正在运行时，不能点击
             return AllMapManage.instance.isPlayMove || this.getAvatarNowMapIndex() == this.NodeIndex || DialogAnalysis.IsRunningEvent;
         }
-        //public override void AvatarMoveToThis()
-        //{
-        //    // 获取地图玩家控制器实例
-        //    MapPlayerController playerController = AllMapManage.instance.MapPlayerController;
-        //    bool hasflyDunshu = playerController.ShowType != MapPlayerShowType.遁术;
-        //    if (hasflyDunshu)
-        //    {
-        //        UIPopTip.Inst.Pop("没有飞行遁术，无法抵达目标地点。", PopTipIconType.叹号);
-        //    }
-        //    else
-        //    {
-        //        KBEngine.Avatar player = PlayerEx.Player;
-        //        // 获取目标地图组件
-        //        BaseMapCompont baseMapCompont = AllMapManage.instance.mapIndex[this.NodeIndex];
-        //        IsToolsMain.Log("点击"+this.NodeIndex.ToString());
-        //        IsToolsMain.Log(baseMapCompont.ToString());
-        //        // 获取玩家当前所在位置的地图索引
-        //        int avatarNowMapIndex = this.getAvatarNowMapIndex();
-        //        // 获取玩家当前所在位置的地图组件
-        //        BaseMapCompont Nowcomp = AllMapManage.instance.mapIndex[avatarNowMapIndex];
-        //        // 设置移动状态为true，表示玩家正在移动
-        //        AllMapManage.instance.isPlayMove = true;
-        //        // 计算当前位置到目标位置的距离
-        //        float num = Vector2.Distance(Nowcomp.transform.position, baseMapCompont.transform.position);
-        //        // 计算移动速度：
-        //        // 如果玩家遁术值大于200，则使用最大速度
-        //        // 否则根据遁术值按比例计算速度
-        //        float num2 = (player.dunSu > 200) ? ((this.MoveBaseSpeedMin + this.MoveBaseSpeed) * 2f) : (this.MoveBaseSpeedMin + this.MoveBaseSpeed * ((float)player.dunSu / 100f));
-        //        // 速度乘以2（可能是为了调整移动时间）
-        //        num2 *= 2f;
-        //        // 计算移动所需时间 = 距离 / 速度
-        //        float num3 = num / num2;
-        //        // 创建动作队列
-        //        Queue<UnityAction> queue = new Queue<UnityAction>();
-        //        // 第一个动作：开始移动
-        //        UnityAction item = delegate ()
-        //        {
-        //            // 关闭当前地点的路点标记
-        //            Nowcomp.CloseLuDian();
-        //            // 设置玩家移动速度为1
-        //            playerController.SetSpeed(1);
-        //            iTween.MoveTo(playerController.gameObject, iTween.Hash(new object[]
-        //            {
-        //                "x",
-        //                this.transform.position.x,// 目标x坐标
-        //                "y",
-        //                this.transform.position.y - 0.2f, // 目标y坐标（稍微向下偏移0.2）
-        //                "z",
-        //                playerController.transform.position.z,// z坐标保持不变
-        //                "time",
-        //                num3,// 移动时间
-        //                "islocal",
-        //                false, // 不使用局部坐标
-        //                "EaseType",
-        //                "linear"// 线性移动
-        //            }));
-        //            // 设置WASD移动的等待时间和需要等待标志
-        //            WASDMove.waitTime = num3;
-        //            WASDMove.needWait = true;
-        //            // 在移动完成后调用callContinue方法
-        //            this.Invoke("callContinue", num3);
-        //        };
-        //        queue.Enqueue(item);
-        //        YSFuncList.Ints.AddFunc(queue);
-        //        // 创建第二个动作队列
-        //        Queue<UnityAction> queue2 = new Queue<UnityAction>();
-        //        // 第二个动作：移动完成后的处理
-        //        UnityAction item2 = delegate ()
-        //        {
-        //            // 更新玩家当前地图索引
-        //            this.setAvatarNowMapIndex();
-        //            // 停止玩家移动
-        //            playerController.SetSpeed(0);
-        //            // 设置移动状态为false
-        //            AllMapManage.instance.isPlayMove = false;
-        //            // 显示目标地点的路点标记
-        //            this.showLuDian();
-        //            // 继续执行后续动作
-        //            YSFuncList.Ints.Continue();
-        //        };
-        //        queue2.Enqueue(item2);
-        //        YSFuncList.Ints.AddFunc(queue2);
-        //    }
-        //}
-        //public override void AvatarMoveToThis()
-        //{
-        //    MapPlayerController playerController = AllMapManage.instance.MapPlayerController;
-        //    bool hasDunShu = playerController.ShowType != MapPlayerShowType.遁术;
-
-        //    // 获取当前地图数据
-        //    MapMoveData currentMapData = null;
-        //    IsToolsMain.MapMoveDatas.TryGetValue(this.NodeIndex, out currentMapData);
-        //    //bool hasData = IsToolsMain.MapMoveDatas.TryGetValue(this.NodeIndex, out currentMapData);
-        //    //// 调试2：打印地图数据情况
-        //    //IsToolsMain.Log($"节点 {this.NodeIndex} 的数据: {(hasData ? "存在" : "不存在")}");
-        //    //if (hasData)
-        //    //{
-        //    //    IsToolsMain.Log($"可移动: {currentMapData.canmove}, 可移动目标: [{string.Join(",", currentMapData.canmoveIndex)}]");
-        //    //}
-        //    if (hasDunShu)
-        //    {
-        //        if (currentMapData != null && currentMapData.canmove)
-        //        {
-        //            // 可以普通移动，计算路径
-        //            KBEngine.Avatar player = PlayerEx.Player;
-        //            BaseMapCompont targetMapCompont = AllMapManage.instance.mapIndex[this.NodeIndex];
-        //            int avatarNowMapIndex = this.getAvatarNowMapIndex();
-        //            BaseMapCompont nowComp = AllMapManage.instance.mapIndex[avatarNowMapIndex];
-
-        //            // 查找从当前位置到目标位置的路径
-        //            List<int> path = FindPath(avatarNowMapIndex, this.NodeIndex);
-        //            if (path == null || path.Count == 0)
-        //            {
-        //                UIPopTip.Inst.Pop("无法找到前往目标地点的路径。", PopTipIconType.叹号);
-        //                return;
-        //            }
-
-        //            // 开始移动
-        //            AllMapManage.instance.isPlayMove = true;
-        //            StartCoroutine(MoveAlongPath(path, playerController, nowComp));
-        //        }
-        //        else
-        //        {
-        //            // 没有飞行遁术且不允许普通移动
-        //            UIPopTip.Inst.Pop("没有飞行遁术，无法抵达目标地点。", PopTipIconType.叹号);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        KBEngine.Avatar player = PlayerEx.Player;
-        //        // 获取目标地图组件
-        //        BaseMapCompont baseMapCompont = AllMapManage.instance.mapIndex[this.NodeIndex];
-        //        //IsToolsMain.Log("点击" + this.NodeIndex.ToString());
-        //        //IsToolsMain.Log(baseMapCompont.ToString());
-        //        // 获取玩家当前所在位置的地图索引
-        //        int avatarNowMapIndex = this.getAvatarNowMapIndex();
-        //        // 获取玩家当前所在位置的地图组件
-        //        BaseMapCompont Nowcomp = AllMapManage.instance.mapIndex[avatarNowMapIndex];
-        //        // 设置移动状态为true，表示玩家正在移动
-        //        AllMapManage.instance.isPlayMove = true;
-        //        // 计算当前位置到目标位置的距离
-        //        float num = Vector2.Distance(Nowcomp.transform.position, baseMapCompont.transform.position);
-        //        // 计算移动速度：
-        //        // 如果玩家遁术值大于200，则使用最大速度
-        //        // 否则根据遁术值按比例计算速度
-        //        float num2 = (player.dunSu > 200) ? ((this.MoveBaseSpeedMin + this.MoveBaseSpeed) * 2f) : (this.MoveBaseSpeedMin + this.MoveBaseSpeed * ((float)player.dunSu / 100f));
-        //        // 速度乘以2（可能是为了调整移动时间）
-        //        num2 *= 2f;
-        //        // 计算移动所需时间 = 距离 / 速度
-        //        float num3 = num / num2;
-        //        // 创建动作队列
-        //        Queue<UnityAction> queue = new Queue<UnityAction>();
-        //        // 第一个动作：开始移动
-        //        UnityAction item = delegate ()
-        //        {
-        //            // 关闭当前地点的路点标记
-        //            Nowcomp.CloseLuDian();
-        //            // 设置玩家移动速度为1
-        //            playerController.SetSpeed(1);
-        //            iTween.MoveTo(playerController.gameObject, iTween.Hash(new object[]
-        //            {
-        //                        "x",
-        //                        this.transform.position.x,// 目标x坐标
-        //                        "y",
-        //                        this.transform.position.y - 0.2f, // 目标y坐标（稍微向下偏移0.2）
-        //                        "z",
-        //                        playerController.transform.position.z,// z坐标保持不变
-        //                        "time",
-        //                        num3,// 移动时间
-        //                        "islocal",
-        //                        false, // 不使用局部坐标
-        //                        "EaseType",
-        //                        "linear"// 线性移动
-        //            }));
-        //            // 设置WASD移动的等待时间和需要等待标志
-        //            WASDMove.waitTime = num3;
-        //            WASDMove.needWait = true;
-        //            // 在移动完成后调用callContinue方法
-        //            this.Invoke("callContinue", num3);
-        //        };
-        //        queue.Enqueue(item);
-        //        YSFuncList.Ints.AddFunc(queue);
-        //        // 创建第二个动作队列
-        //        Queue<UnityAction> queue2 = new Queue<UnityAction>();
-        //        // 第二个动作：移动完成后的处理
-        //        UnityAction item2 = delegate ()
-        //        {
-        //            // 更新玩家当前地图索引
-        //            this.setAvatarNowMapIndex();
-        //            // 停止玩家移动
-        //            playerController.SetSpeed(0);
-        //            // 设置移动状态为false
-        //            AllMapManage.instance.isPlayMove = false;
-        //            // 显示目标地点的路点标记
-        //            this.showLuDian();
-        //            // 继续执行后续动作
-        //            YSFuncList.Ints.Continue();
-        //        };
-        //        queue2.Enqueue(item2);
-        //        YSFuncList.Ints.AddFunc(queue2);
-        //    }
-        //}
         public override void AvatarMoveToThis()
         {
             MapPlayerController playerController = AllMapManage.instance.MapPlayerController;
@@ -343,6 +146,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 }
 
                 StartCoroutine(MoveAlongPath(path, playerController, nowComp));
+                AllMapBase.RefreshMarksFromStaticData();
             }
             else
             {
@@ -383,10 +187,16 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                     playerController.SetSpeed(0);
                     AllMapManage.instance.isPlayMove = false;
                     targetMapCompont.showLuDian();
+                    
+                    // 到达路点后触发任务和事件检查
+                    OnArriveAtNode(targetNodeIndex);
+                    
                     YSFuncList.Ints.Continue();
                 };
                 completeQueue.Enqueue(completeAction);
                 YSFuncList.Ints.AddFunc(completeQueue);
+                // 刷新任务事件
+                AllMapBase.RefreshMarksFromStaticData();
             }
         }
 
@@ -538,12 +348,16 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 // 更新当前地图索引
                 this.NodeIndex = targetIndex;
                 this.setAvatarNowMapIndex();
+                AllMapBase.RefreshMarksFromStaticData();
             }
 
             // 移动完成
             playerController.SetSpeed(0);
             AllMapManage.instance.isPlayMove = false;
             this.showLuDian();
+            
+            // 到达最终目标路点后触发任务和事件检查
+            OnArriveAtNode(path[path.Count - 1]);
         }
         public override void EventRandom()
         {
@@ -551,6 +365,82 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             this.AvatarMoveToThis();
             // 增加时间
             this.BaseAddTime();
+        }
+
+
+        public void SetTaskVisible(bool visible)
+        {
+            showTask = visible;
+            if (task != null)
+            {
+                task.SetActive(visible);
+            }
+            else if (visible)
+            {
+                IsToolsMain.Warning($"节点 {this.NodeIndex} 没有task子物体，无法显示任务标记");
+            }
+        }
+
+        public void SetShijianVisible(bool visible)
+        {
+            showShijian = visible;
+            if (shijian != null)
+            {
+                shijian.SetActive(visible);
+            }
+            else if (visible)
+            {
+                IsToolsMain.Warning($"节点 {this.NodeIndex} 没有shijian子物体，无法显示事件标记");
+            }
+        }
+        public void ToggleTask()
+        {
+            // 切换任务可见
+            SetTaskVisible(!showTask);
+        }
+
+        public void ToggleShijian()
+        {
+            // 切换事件可见
+            SetShijianVisible(!showShijian);
+        }
+        
+        /// <summary>
+        /// 到达路点时触发任务和事件检查
+        /// </summary>
+        /// <param name="nodeIndex">到达的节点索引</param>
+        private void OnArriveAtNode(int nodeIndex)
+        {
+            
+            // 检查并触发任务
+            if (AllMapBase.activeTasks.Contains(nodeIndex))
+            {
+                IsToolsMain.LogInfo($"到达路点 {nodeIndex}，触发任务检查");
+                
+                // 从列表中移除该任务标记
+                AllMapBase.activeTasks.Remove(nodeIndex);
+                
+                // 刷新UI显示（隐藏该节点的任务标记）
+                AllMapBase.RefreshMarksFromStaticData();
+                
+                // 触发任务对话事件
+                DialogAnalysis.StartTestDialogEvent("RunLua*幽州任务#幽州任务点", null);
+            }
+            
+            // 检查并触发事件（使用else if避免同时触发）
+            else if (AllMapBase.activeShijians.Contains(nodeIndex))
+            {
+                IsToolsMain.LogInfo($"到达路点 {nodeIndex}，触发事件检查");
+                
+                // 从列表中移除该事件标记
+                AllMapBase.activeShijians.Remove(nodeIndex);
+                
+                // 刷新UI显示（隐藏该节点的事件标记）
+                AllMapBase.RefreshMarksFromStaticData();
+                
+                // 触发事件对话事件
+                DialogAnalysis.StartTestDialogEvent("RunLua*幽州事件#幽州事件点", null);
+            }
         }
     }
 }

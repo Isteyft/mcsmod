@@ -1,12 +1,14 @@
 ﻿using HarmonyLib;
 using KBEngine;
 using KillSystem;
+using SkySwordKill.Next.DialogSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using top.Isteyft.MCS.YouZhou.GameData;
 using UnityEngine;
 using YSGame;
 
@@ -35,6 +37,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             // 调用方法
             method.Invoke(__instance, new object[] { avatar });
             KillManager.Inst.Restart();
+            IsToolsMain.YouZhouData.Data["IsYouZhouBirth"] = "1";
             if (Tools.instance.CheckHasTianFu(720004))
             {
                 // 天魔城 朱家
@@ -72,6 +75,9 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             else if (Tools.instance.CheckHasTianFu(720003))
             {
                 scene = "S27380";
+            } else
+            {
+                IsToolsMain.YouZhouData.Data["IsYouZhouBirth"] = "0";
             }
             PlayerPrefs.SetString("sceneToLoad", scene);
 

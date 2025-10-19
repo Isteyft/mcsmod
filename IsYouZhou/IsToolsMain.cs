@@ -9,6 +9,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using BepInEx;
 using HarmonyLib;
 using Newtonsoft.Json;
+using top.Isteyft.MCS.YouZhou.GameData;
 using top.Isteyft.MCS.YouZhou.GamePlayer;
 using top.Isteyft.MCS.YouZhou.Scene;
 using top.Isteyft.MCS.YouZhou.UI;
@@ -17,6 +18,9 @@ using YZSceneManeger = top.Isteyft.MCS.YouZhou.Scene.YZSceneManeger;
 
 namespace top.Isteyft.MCS.YouZhou
 {
+    [BepInDependency("skyswordkill.plugin.NextMoreCommands")]
+    [BepInDependency("skyswordkill.plugin.Next")]
+    //[BepInDependency("top.Isteyft.MCS.IsTools")]
     [BepInPlugin("top.Isteyft.MCS.YouZhou", "幽州", "1.0.0")]
     public class IsToolsMain : BaseUnityPlugin
     {
@@ -77,7 +81,7 @@ namespace top.Isteyft.MCS.YouZhou
         {
             get { return m_UIManagerHandle; }
         }
-
+        public static YZData YouZhouData { get; set; } = new YZData();
         private void Awake()
         {
             IsToolsMain.I = this;
@@ -85,6 +89,7 @@ namespace top.Isteyft.MCS.YouZhou
             GameObject gameObject = new GameObject("YouZhouMOD");
             m_UIManagerHandle = gameObject.AddComponent<YouZhouUIManager>();
             UnityEngine.Object.DontDestroyOnLoad(gameObject);
+            YouZhouData = new YZData();
 
             // Load necessary assets
             LoadAssetBundle();

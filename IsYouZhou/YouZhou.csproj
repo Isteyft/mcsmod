@@ -156,6 +156,10 @@
       <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824845357\plugins\Next.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="NextMoreCommand">
+      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\NextMoreCommand.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="spine-unity">
       <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\spine-unity.dll</HintPath>
       <Private>False</Private>
@@ -410,35 +414,43 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DialogEnv\YZ_GetData.cs" />
+    <Compile Include="DialogEvent\YZ_MapIndexShiJian.cs" />
+    <Compile Include="DialogEvent\YZ_MapIndexTask.cs" />
     <Compile Include="DialogEvent\YZ_Load.cs" />
     <Compile Include="DialogEvent\YZ_NpcTo.cs" />
     <Compile Include="DialogEvent\YZMove.cs" />
     <Compile Include="DialogEvent\LoadYZ.cs" />
+    <Compile Include="DialogEvent\YZ_RefreshMapShijians.cs" />
+    <Compile Include="GameData\YZData.cs" />
     <Compile Include="GamePlayer\YZSceneManeger.cs" />
     <Compile Include="IsToolsMain.cs" />
     <Compile Include="Patch\AllMapShowLinePatch.cs" />
     <Compile Include="Patch\BaseMapCompontPatch.cs" />
+    <Compile Include="Patch\NPCExPatch.cs" />
     <Compile Include="Patch\NpcJieSuanManagerPatch.cs" />
     <Compile Include="Patch\NPCMapPatch.cs" />
+    <Compile Include="Patch\setMenPaiHaoGanDuPatch.cs" />
     <Compile Include="Patch\StartGamePatch.cs" />
+    <Compile Include="Patch\UIHeadPanelPatch.cs" />
     <Compile Include="Patch\UIShengWangManagerPatch.cs" />
+    <Compile Include="Patch\YSNewSavePatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\AllMapBase.cs" />
     <Compile Include="Scene\AllMapClick.cs" />
     <Compile Include="Scene\AllMapComponent.cs" />
     <Compile Include="Scene\AllMapJson.cs" />
     <Compile Include="Scene\AllMapLineShow.cs" />
-    <Compile Include="Scene\AllMapNpcController.cs" />
     <Compile Include="Scene\BtnClick.cs" />
     <Compile Include="Scene\CameraController.cs" />
     <Compile Include="Scene\GravityAnim.cs" />
     <Compile Include="Scene\LoadingScreenPatch.cs" />
     <Compile Include="Scene\LudianJson.cs" />
     <Compile Include="Scene\MapMoveData.cs" />
-    <Compile Include="Scene\NpcInfo.cs" />
     <Compile Include="Scene\YZMove.cs" />
     <Compile Include="Scene\YZSceneManeger.cs" />
     <Compile Include="UI\YouZhouUIManager.cs" />
+    <Compile Include="Utils\DataUtils.cs" />
     <Compile Include="Utils\MyUtil.cs" />
     <Compile Include="Utils\Task.cs" />
     <Compile Include="YZAction\WanBaoLouPaiMai.cs" />

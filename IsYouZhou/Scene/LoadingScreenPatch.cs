@@ -15,8 +15,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
         [HarmonyPatch("LoadScene")]
         public static void Prefix()
         {
-            bool flag = !MyUtil.init;
-            if (flag)
+            if (!MyUtil.init)
             {
                 MyUtil.init = true;
                 string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/幽州.ab";

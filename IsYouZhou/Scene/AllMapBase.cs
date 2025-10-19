@@ -17,10 +17,10 @@ namespace top.Isteyft.MCS.YouZhou.Scene
         public static AllMapJson MapData;
         // 怪物
         public GameObject monster;
-        // 怪物列表
-        public Dictionary<int, AllMapNpcController> monsterlist;
         // 地图对象
         public GameObject LevelsWorld0;
+        public static List<int> activeTasks = new List<int>();
+        public static List<int> activeShijians = new List<int>();
         public static AllMapJson 幽州
         {
             get
@@ -55,20 +55,6 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 return result;
             }
         }
-        // 当前地图的npc
-        public static List<int> NOWMAPNPCLIST
-        {
-            get
-            {
-                List<int> list = new List<int>();
-                // 遍历所有NPC列表并合并
-                foreach (List<int> collection in AllMapBase.NPCLIST.Values)
-                {
-                    list.AddRange(collection);
-                }
-                return list;
-            }
-        }
         private void Awake()
         {
             // 设置单例实例
@@ -76,7 +62,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
 
             // 获取主摄像机并添加必要组件
             GameObject gameObject = base.transform.Find("/Main Camera").gameObject;
-            gameObject.AddComponent<AllMapManage>();      // 地图管理组件
+            gameObject.AddComponent<AllMapManage>();      // 地图管理组件，玩家加载
             gameObject.AddComponent<DialogProcess>();     // 对话处理组件
             gameObject.AddComponent<CameraController>();  // 摄像机控制组件
             //if (gameObject.GetComponent<CamaraFollow>() == null)
@@ -87,6 +73,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             //}
             // 获取大地图根节点并添加线路显示组件
             this.LevelsWorld0 = base.transform.Find("/AllMap/LevelsWorld0").gameObject;
+            // 连线
             this.LevelsWorld0.AddComponent<AllMapLineShow>();
             // 获取当前场景名称
             string nowSceneName = SceneEx.NowSceneName;
@@ -172,6 +159,24 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                         allMapComponent.NoEnter = true;
                     }
                 }
+                
+                // 查找task和shijian子物体
+                Transform taskTransform = gameObject.transform.Find("Task");
+                Transform shijianTransform = gameObject.transform.Find("shijian");
+
+                if (taskTransform != null)
+                {
+                    // 为了该路点的task进行一个增加
+                    allMapComponent.task = taskTransform.gameObject;
+                    allMapComponent.SetTaskVisible(false); // 默认隐藏
+                }
+
+                if (shijianTransform != null)
+                {
+                    // 为了该路点的shijian进行一个增加
+                    allMapComponent.shijian = shijianTransform.gameObject;
+                    allMapComponent.SetShijianVisible(false); // 默认隐藏
+                }
             }
         }
         private void Start()
@@ -184,8 +189,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
 
             // 延迟设置玩家位置
             base.Invoke("SetPlayerIndex", 0.4f);
-            // 延迟生成NPC
-            base.Invoke("AutoSetNpcIndex", 1f);
+            base.Invoke("RefreshMarksFromStaticDataWrapper", 0.5f); // 延迟刷新标记
         }
         public void SetPlayerIndex()
         {
@@ -197,7 +201,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             if (AllMapManage.instance.mapIndex.TryGetValue(nowIndex, out baseMapCompont))
             {
                 // 设置玩家位置（稍微向下偏移0.4个单位）
-                Vector3 position = new Vector3(baseMapCompont.transform.position.x, baseMapCompont.transform.position.y - 0.4f, baseMapCompont.transform.position.z);
+                Vector3 position = new Vector3(baseMapCompont.transform.position.x, baseMapCompont.transform.position.y - 0.2f, baseMapCompont.transform.position.z);
                 AllMapManage.instance.MapPlayerController.transform.position = position;
 
                 // 如果是AllMapComponent类型，激活入口点
@@ -208,87 +212,198 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 }
             }
         }
-        public void AutoSetNpcIndex()
+
+
+        // 实例方法包装器，用于Invoke调用
+        private void RefreshMarksFromStaticDataWrapper()
         {
-            bool flag = AllMapBase.NPCLIST == null;
-            if (!flag)
+            RefreshMarksFromStaticData();
+        }
+        // 刷新任务事件
+        public static void RefreshMarksFromStaticData()
+        {
+            if (AllMapManage.instance == null || AllMapManage.instance.mapIndex == null)
             {
-                // 遍历NPC字典（key为路点ID，value为NPC ID列表）
-                this.monsterlist = new Dictionary<int, AllMapNpcController>();
-                foreach (KeyValuePair<int, List<int>> keyValuePair in AllMapBase.NPCLIST)
+                IsToolsMain.Warning("AllMapManage.instance 或 mapIndex 为空，无法刷新标记");
+                return;
+            }
+
+            IsToolsMain.LogInfo($"开始刷新标记 - activeTasks数量: {activeTasks.Count}, activeShijians数量: {activeShijians.Count}");
+            // 遍历所有index
+            foreach (var pair in AllMapManage.instance.mapIndex)
+            {
+                // 获取每个路点的value
+                AllMapComponent component = pair.Value as AllMapComponent;
+                if (component != null)
                 {
-                    BaseMapCompont baseMapCompont;
-                    // 根据路点ID找到对应路点
-                    if (AllMapManage.instance.mapIndex.TryGetValue(keyValuePair.Key, out baseMapCompont))
+                    // 获取是否有任务和事件元素
+                    bool hasTask = activeTasks.Contains(pair.Key);
+                    bool hasShijian = activeShijians.Contains(pair.Key);
+                    
+                    // 根据静态数组 activeTasks 和 activeShijians 设置显示状态
+                    component.SetTaskVisible(hasTask);
+                    component.SetShijianVisible(hasShijian);
+                    
+                    if (hasTask || hasShijian)
                     {
-                        // 获取路点位置
-                        Vector3 position = baseMapCompont.gameObject.transform.position;
-                        List<int> value = keyValuePair.Value;
-                        // 为每个NPC ID创建怪物实例
-                        for (int i = 0; i < value.Count; i++)
-                        {
-                            int npcID = value[i];
-                            //this.CreateMonster(npcID, position, i);
-                        }
+                        IsToolsMain.LogInfo($"节点 {pair.Key}: task={hasTask}(对象:{component.task != null}), shijian={hasShijian}(对象:{component.shijian != null})");
                     }
                 }
             }
         }
-        private void UpdateNpcIndex()
+        // 显示/隐藏所有路点的task标记
+        public void SetAllTasksVisible(bool visible)
         {
-            Dictionary<int, AllMapNpcController> dictionary = new Dictionary<int, AllMapNpcController>();
-            // 复制当前怪物列表
-            foreach (KeyValuePair<int, AllMapNpcController> keyValuePair in this.monsterlist)
+            foreach (var mapComponent in AllMapManage.instance.mapIndex.Values)
             {
-                dictionary.Add(keyValuePair.Key, keyValuePair.Value);
-            }
-            // 收集需要保留的NPC ID
-            List<int> list = new List<int>();
-            foreach (KeyValuePair<int, AllMapNpcController> keyValuePair2 in dictionary)
-            {
-                if (!keyValuePair2.Value.CheckDestroy())
+                AllMapComponent component = mapComponent as AllMapComponent;
+                if (component != null)
                 {
-                    list.Add(keyValuePair2.Key);
+                    component.SetTaskVisible(visible);
                 }
             }
-            // 获取当前NPC列表
-            Dictionary<int, List<int>> npclist = AllMapBase.NPCLIST;
-            // 更新NPC位置
-            foreach (KeyValuePair<int, List<int>> keyValuePair3 in npclist)
+        }
+
+        // 显示/隐藏所有路点的shijian标记
+        public void SetAllShijiansVisible(bool visible)
+        {
+            foreach (var mapComponent in AllMapManage.instance.mapIndex.Values)
             {
-                List<int> value = keyValuePair3.Value;
-                for (int i = 0; i < value.Count; i++)
+                AllMapComponent component = mapComponent as AllMapComponent;
+                if (component != null)
                 {
-                    int num = value[i];
-                    // 如果NPC已存在，更新其位置
-                    if (list.Contains(num))
+                    component.SetShijianVisible(visible);
+                }
+            }
+        }
+
+        public void ToggleShijianByIndex(int index)
+        {
+            if (AllMapManage.instance.mapIndex.TryGetValue(index, out var component))
+            {
+                AllMapComponent mapComponent = component as AllMapComponent;
+                if (mapComponent != null)
+                {
+                    // 切换显示状态
+                    bool newState = !mapComponent.showShijian;
+                    mapComponent.SetShijianVisible(newState);
+
+                    // 更新数组
+                    if (newState)
                     {
-                        AllMapNpcController allMapNpcController = this.monsterlist[num];
-                        allMapNpcController.SetNpcMove(keyValuePair3.Key);
+                        if (!activeShijians.Contains(index))
+                            activeShijians.Add(index);
                     }
                     else
                     {
-                        // 否则创建新的NPC实例
-                        BaseMapCompont baseMapCompont;
-                        if (AllMapManage.instance.mapIndex.TryGetValue(keyValuePair3.Key, out baseMapCompont))
-                        {
-                            //this.CreateMonster(num, baseMapCompont.transform.position, i);
-                            continue;
-                        }
+                        activeShijians.Remove(index);
                     }
                 }
             }
         }
-        //private void CreateMonster(int npcID, Vector3 vector3, int index)
-        //{
-        //    // 实例化怪物预制体
-        //    GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.monster);
-        //    gameObject.name = npcID.ToString();
-        //    // 设置位置（根据index垂直偏移）
-        //    gameObject.transform.position = new Vector3(vector3.x, vector3.y + (float)index * 0.4f, vector3.z);
-        //    // 添加NPC控制器并添加到怪物列表
-        //    AllMapNpcController value = gameObject.AddComponent<AllMapNpcController>();
-        //    this.monsterlist.Add(npcID, value);
-        //}
+
+        public void ToggleTaskByIndex(int index)
+        {
+            if (AllMapManage.instance.mapIndex.TryGetValue(index, out var component))
+            {
+                AllMapComponent mapComponent = component as AllMapComponent;
+                if (mapComponent != null)
+                {
+                    // 切换显示状态
+                    bool newState = !mapComponent.showTask;
+                    mapComponent.SetTaskVisible(newState);
+
+                    // 更新数组
+                    if (newState)
+                    {
+                        if (!activeTasks.Contains(index))
+                            activeTasks.Add(index);
+                    }
+                    else
+                    {
+                        activeTasks.Remove(index);
+                    }
+                }
+            }
+        }
+        public bool IsShijianActive(int index)
+        {
+            return activeShijians.Contains(index);
+        }
+
+        public bool IsTaskActive(int index)
+        {
+            return activeTasks.Contains(index);
+        }
+
+        /// <summary>
+        /// 地图事件刷新：清空旧事件，随机生成3个新事件（100-146之间，不与任务冲突）
+        /// 适用于游戏结算后刷新事件，确保地图一直有3个事件
+        /// </summary>
+        public static void RefreshMapShijians()
+        {
+            // 清空所有旧的事件
+            int oldCount = activeShijians.Count;
+            activeShijians.Clear();
+            IsToolsMain.LogInfo($"清空旧事件，原有数量: {oldCount}");
+            
+            // 生成新的3个事件ID
+            List<int> newIds = GenerateRandomShijianIds();
+            
+            // 添加到activeShijians列表
+            foreach (int id in newIds)
+            {
+                activeShijians.Add(id);
+            }
+            
+            // 刷新地图标记显示
+            if (AllMapManage.instance != null && AllMapManage.instance.mapIndex != null)
+            {
+                RefreshMarksFromStaticData();
+            }
+            
+            IsToolsMain.LogInfo($"地图事件刷新完成，新事件ID: [{string.Join(", ", newIds)}]");
+        }
+        
+        /// <summary>
+        /// 随机生成三个事件ID，范围在100-146之间，不与任务冲突
+        /// </summary>
+        /// <returns>返回包含三个随机ID的列表</returns>
+        private static List<int> GenerateRandomShijianIds()
+        {
+            List<int> result = new List<int>();
+            System.Random random = new System.Random();
+            int minId = 100;
+            int maxId = 146;
+            
+            // 创建可用ID池（排除已激活的任务ID）
+            List<int> availableIds = new List<int>();
+            for (int i = minId; i <= maxId; i++)
+            {
+                if (!activeTasks.Contains(i))
+                {
+                    availableIds.Add(i);
+                }
+            }
+            
+            // 检查是否有足够的可用ID
+            if (availableIds.Count < 3)
+            {
+                IsToolsMain.Warning($"可用的事件ID不足，当前可用数量: {availableIds.Count}");
+                // 返回所有可用的ID
+                return availableIds;
+            }
+            
+            // 随机选择3个ID
+            for (int i = 0; i < 3; i++)
+            {
+                int randomIndex = random.Next(availableIds.Count);
+                int selectedId = availableIds[randomIndex];
+                result.Add(selectedId);
+                availableIds.RemoveAt(randomIndex); // 移除已选择的ID，确保不重复
+            }
+            
+            return result;
+        }
     }
 }

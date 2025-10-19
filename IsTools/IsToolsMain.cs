@@ -12,6 +12,8 @@ using XCharts;
 
 namespace top.Isteyft.MCS.IsTools
 {
+    [BepInDependency("skyswordkill.plugin.NextMoreCommands")]
+    [BepInDependency("skyswordkill.plugin.Next")]
     [BepInPlugin("top.Isteyft.MCS.IsTools", "白泽工具库", "1.0.0")]
     public class IsToolsMain : BaseUnityPlugin
     {

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using top.Isteyft.MCS.IsTools.Util;
+using top.Isteyft.MCS.YouZhou.Scene;
 using UnityEngine;
 
 namespace top.Isteyft.MCS.YouZhou.Utils
@@ -36,6 +37,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
             else
             {
                 LoadFuBen.loadfuben("F幽州", index);
+                AllMapBase.RefreshMarksFromStaticData();
             }
         }
     }

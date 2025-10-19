@@ -25,6 +25,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
                 allMapBase.gameObject.AddComponent<SceneBase>();
                 SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+                AllMapBase.RefreshMarksFromStaticData();
             }
         }
 

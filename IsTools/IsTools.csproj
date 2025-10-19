@@ -191,6 +191,10 @@
       <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\M\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
@@ -483,10 +487,13 @@
     <Compile Include="DialogEvent\Task\IS_NextTask.cs" />
     <Compile Include="DialogEvent\Task\IS_SetTaskCompleted.cs" />
     <Compile Include="DialogEvent\Task\IS_SetTaskIndex.cs" />
+    <Compile Include="DialogEvent\UI\IS_GetMusic.cs" />
+    <Compile Include="DialogEvent\UI\IS_OpenTieJian.cs" />
     <Compile Include="IsToolsMain.cs" />
     <Compile Include="ModPatch\EffectPatch.cs" />
     <Compile Include="ModPatch\LianQiNamePatch.cs" />
     <Compile Include="ModPatch\MoreNPCInfoPatch.cs" />
+    <Compile Include="Util\MusicScanner.cs" />
     <Compile Include="Patch\RoundManagerPatch\LingQiCardPatch.cs" />
     <Compile Include="Patch\SeidPatch\ItemSeidPatch.cs" />
     <Compile Include="Patch\testPatch.cs" />

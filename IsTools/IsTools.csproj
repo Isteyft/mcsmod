@@ -493,6 +493,7 @@
     <Compile Include="ModPatch\EffectPatch.cs" />
     <Compile Include="ModPatch\LianQiNamePatch.cs" />
     <Compile Include="ModPatch\MoreNPCInfoPatch.cs" />
+    <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
     <Compile Include="Util\MusicScanner.cs" />
     <Compile Include="Patch\RoundManagerPatch\LingQiCardPatch.cs" />
     <Compile Include="Patch\SeidPatch\ItemSeidPatch.cs" />

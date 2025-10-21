@@ -438,7 +438,9 @@
     <Compile Include="Patch\NPCMapPatch.cs" />
     <Compile Include="Patch\setMenPaiHaoGanDuPatch.cs" />
     <Compile Include="Patch\StartGamePatch.cs" />
+    <Compile Include="Patch\ToolsPatch.cs" />
     <Compile Include="Patch\UIHeadPanelPatch.cs" />
+    <Compile Include="Patch\UINPCQingJiaoPatch.cs" />
     <Compile Include="Patch\UIShengWangManagerPatch.cs" />
     <Compile Include="Patch\YSNewSavePatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

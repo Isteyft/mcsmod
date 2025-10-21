@@ -27,7 +27,6 @@ namespace top.Isteyft.MCS.IsMoDaoKuoZhanMain.Patch
                 jsonData.instance.BuffSeidJsonData[109]["4013"]["value1"].Add(52499);
             }
         }
-        //MaiJiu.MCS.LingJie.Patch.JieDanManagerPatch
         [HarmonyPatch("getJinDanID")]
         [HarmonyPrefix]
         public static bool PrefixGetJinDanID(JieDanManager __instance, ref int __result)
@@ -125,7 +124,6 @@ namespace top.Isteyft.MCS.IsMoDaoKuoZhanMain.Patch
     [HarmonyPatch(typeof(showJieDanBuff), "Start")]
     public class ShowJieDanBuffPatch
     {
-        // Token: 0x060000A5 RID: 165 RVA: 0x00007D38 File Offset: 0x00005F38
         [HarmonyPostfix]
         public static void Postfix(showJieDanBuff __instance)
         {

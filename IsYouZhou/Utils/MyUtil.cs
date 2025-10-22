@@ -40,6 +40,18 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
+
+        public static void LoadYouZhouNoMapScenes(int index = 1)
+        {
+            if (!init)
+            {
+                init = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/幽州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("F幽州", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
     }
 
 }

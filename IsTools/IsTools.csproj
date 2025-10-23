@@ -455,6 +455,7 @@
     <Compile Include="DialogEnv\Mod\IS_HasMod.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcStaticSkillLevel.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcWuDaoLevel.cs" />
+    <Compile Include="DialogEnv\Player\IS_HasKeZhanTime.cs" />
     <Compile Include="DialogEnv\Player\IS_HasWuDaoSkills.cs" />
     <Compile Include="DialogEnv\Task\GetTaskIndex.cs" />
     <Compile Include="DialogEvent\Fight\IS_GetSkill.cs" />

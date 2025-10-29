@@ -63,6 +63,9 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 case 369:
                     ListRealizeSeid369(seid, avatar, buffInfo, flag, __instance);
                     return false;
+                case 370:
+                    ListRealizeSeid370(seid, avatar, buffInfo, flag, __instance);
+                    return false;
                 default:
                     return true;
             }
@@ -402,6 +405,14 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 IsToolsMain.Error(e);
             }
 
+        }
+
+        private static void ListRealizeSeid370(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        {
+            JSONObject seidJson = instance.getSeidJson(seid);
+            int buffId = seidJson["value1"].I;    // Buff ID列表
+            int num = (int)((double)flag[0] / 100.0 * (double)seidJson["value2"].I * (double)buffInfo[1]);
+            avatar.spell.addBuff(buffId, num);
         }
     }
 }

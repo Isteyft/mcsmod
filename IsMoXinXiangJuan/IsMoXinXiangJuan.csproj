@@ -511,13 +511,11 @@
     <Compile Include="Patch\NMCPatch.cs" />
     <Compile Include="Patch\NpcTuPoPatch.cs" />
     <Compile Include="Patch\RandomNpcActionPatch.cs" />
+    <Compile Include="Patch\CardMagPatch.cs" />
     <Compile Include="Patch\SeidPatch\WudaoSeidPatch.cs" />
     <Compile Include="Patch\SpellPatch.cs" />
     <Compile Include="Patch\WuDaoPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

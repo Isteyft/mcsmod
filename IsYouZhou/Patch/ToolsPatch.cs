@@ -26,7 +26,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
                 return true;
             }
             string shili = DialogAnalysis.GetStr("幽州家族");
-            IsToolsMain.Log(shili);
+            //IsToolsMain.Log(shili);
             switch (shili)
             {
                 case "朱":

@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using GUIPackage;
+using HarmonyLib;
 using KBEngine;
 using SkySwordKill.Next;
 using SkySwordKill.Next.DialogSystem;
@@ -42,6 +43,12 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                     return false;
                 case 366:
                     realizeSeid366(__instance, seid, attaker, damage, receiver);
+                    return false;
+                case 367:
+                    realizeSeid367(__instance, seid, attaker, damage, receiver);
+                    return false;
+                case 368:
+                    realizeSeid368(__instance, seid, attaker, damage, receiver);
                     return false;
                 default:
                     return true;
@@ -339,6 +346,147 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 {
                     damage[2] = 1;
                 }
+            }
+        }
+
+        private static void realizeSeid367(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
+        {
+            JSONObject seidJson = __instance.getSeidJson(seid);
+            string fileName = seidJson["value1"].Str;
+            string funcName = seidJson["value2"].Str;
+            if (attaker != PlayerEx.Player)
+            {
+                if (seidJson.HasField("value3") && seidJson.HasField("value4"))
+                {
+                    fileName = seidJson["value3"].Str;
+                    funcName = seidJson["value4"].Str;
+                }
+            }
+            int totalDamage = damage[0];
+            try
+            {
+                DialogEnvironment env = new DialogEnvironment();
+                LuaEnv luaEnv = Main.Lua.LuaEnv;
+                // 2. 创建 luaUtil 类的实例，并传入 LuaEnv
+                var luaTool = new luaUtil(luaEnv);
+                // 假设 DialogCommand 有公共构造函数
+                // 直接指定指令头和参数（跳过解析）
+                var command = new DialogCommand(
+                    commandHead: "RunLua",             // 指令类型
+                    paramList: new[] { fileName, funcName },   // 参数数组
+                    bindEventData: null,            // 关联数据（可选）
+                    isEnd: false                    // 是否结束对话
+                );
+                // 3. 调用实例方法 RunFunc
+                object[] o = luaTool.RunFuncHasResult("lib/dialogResult", "runEventResult", new object[]
+                {
+                                fileName,
+                                funcName,
+                                command,
+                                env,
+                                //new Action(() => { }),
+                                null
+            });
+                //IsToolsMain.LogInfo(o[0].ToString());
+                //Type valueType = o[0].GetType();
+                //IsToolsMain.LogInfo($"具体类型: {valueType.Name}");
+                damage[0] = totalDamage + (totalDamage + Convert.ToInt32(o[0]))/100;
+            }
+            catch
+            {
+                IsToolsMain.LogInfo("lua返回值出错!");
+            }
+        }
+
+        private static void realizeSeid368(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
+        {
+            JSONObject seidJson = __instance.getSeidJson(seid);
+            string fileName = seidJson["value1"].Str;
+            string funcName = seidJson["value2"].Str;
+            if (attaker != PlayerEx.Player)
+            {
+                if (seidJson.HasField("value3") && seidJson.HasField("value4"))
+                {
+                    fileName = seidJson["value3"].Str;
+                    funcName = seidJson["value4"].Str;
+                }
+            }
+            int totalDamage = damage[0];
+            try
+            {
+                DialogEnvironment env = new DialogEnvironment();
+                LuaEnv luaEnv = Main.Lua.LuaEnv;
+                // 2. 创建 luaUtil 类的实例，并传入 LuaEnv
+                var luaTool = new luaUtil(luaEnv);
+                // 假设 DialogCommand 有公共构造函数
+                // 直接指定指令头和参数（跳过解析）
+                var command = new DialogCommand(
+                    commandHead: "RunLua",             // 指令类型
+                    paramList: new[] { fileName, funcName },   // 参数数组
+                    bindEventData: null,            // 关联数据（可选）
+                    isEnd: false                    // 是否结束对话
+                );
+                // 3. 调用实例方法 RunFunc
+                object[] o = luaTool.RunFuncHasResult("lib/dialogResult", "runEventResult", new object[]
+                {
+                                fileName,
+                                funcName,
+                                command,
+                                env,
+                                //new Action(() => { }),
+                                null
+            });
+                //IsToolsMain.LogInfo(o[0].ToString());
+                //Type valueType = o[0].GetType();
+                //IsToolsMain.LogInfo($"具体类型: {valueType.Name}");
+                int count = Convert.ToInt32(o[0]);
+                int skillId = seidJson["value5"].I;  //神通ID
+                int skillDamage = seidJson["value6"].I;  //技能伤害
+                for (int j = 0; j < count; j++)
+                {
+                    if (__instance.LateDamages == null)
+                    {
+                        __instance.LateDamages = new List<LateDamage>();
+                    }
+                    if (__instance.skill_ID == 12508)
+                    {
+                        int buffSum = attaker.buffmag.GetBuffSum(skillDamage);
+                        __instance.LateDamages.Add(new LateDamage
+                        {
+                            SkillId = skillId,
+                            Damage = buffSum
+                        });
+                    }
+                    else if (__instance.SkillID == 12513)
+                    {
+                        __instance.LateDamages.Add(new LateDamage
+                        {
+                            SkillId = skillId,
+                            Damage = DuanTiFightManager.Inst.LeiDamage
+                        });
+                    }
+                    else if (__instance.SkillID == 1170)
+                    {
+                        int damage2 = GlobalValue.Get(skillDamage, "unknow");
+                        __instance.LateDamages.Add(new LateDamage
+                        {
+                            SkillId = skillId,
+                            Damage = damage2
+                        });
+                    }
+                    else
+                    {
+                        __instance.LateDamages.Add(new LateDamage
+                        {
+                            SkillId = skillId,
+                            Damage = skillDamage
+                        });
+                    }
+                }
+            }
+            catch
+            {
+                IsToolsMain.LogInfo("lua返回值出错!");
             }
         }
     }

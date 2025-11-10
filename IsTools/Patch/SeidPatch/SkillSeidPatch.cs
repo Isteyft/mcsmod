@@ -5,6 +5,7 @@ using SkySwordKill.Next;
 using SkySwordKill.Next.DialogSystem;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using top.Isteyft.MCS.IsTools.Util;
 using UnityEngine.Networking.Types;
 using WXB;
@@ -13,7 +14,7 @@ using XLua;
 namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
 {
     [HarmonyPatch(typeof(GUIPackage.Skill))]
-    internal class SkillSeidPatch
+    public class SkillSeidPatch
     {
         [HarmonyPrefix]
         [HarmonyPatch("realizeSeid")]
@@ -52,6 +53,103 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                     return false;
                 default:
                     return true;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("VirtualPutingSkill")]
+        public static void Postfix_VirtualPutingSkill(Entity _attaker, Entity _receiver, int type, ref List<int> __result,
+            GUIPackage.Skill __instance, List<int> ___NowSkillSeid)
+        {
+            try
+            {
+                //IsToolsMain.LogInfo("01还有" + (__instance.LateDamages?.Count ?? 0));
+
+                // 添加 seid 368 逻辑，与 seid 11 完全一样
+                if (___NowSkillSeid.Contains(368) && __instance.LateDamages != null && __instance.LateDamages.Count > 0)
+                {
+                    KBEngine.Avatar avatar = (KBEngine.Avatar)_attaker;
+                    KBEngine.Avatar avatar2 = (KBEngine.Avatar)_receiver;
+
+                    int totalDamage = __result.Count > 0 ? __result[0] : 0;
+
+                    // 完全复制 seid 11 的逻辑
+                    foreach (LateDamage lateDamage in __instance.LateDamages)
+                    {
+                        List<int> lateResult = new GUIPackage.Skill(lateDamage.SkillId, (int)avatar.level, 5)
+                        {
+                            Damage = lateDamage.Damage
+                        }.PutingSkill(avatar, avatar2, type);
+
+                        if (lateResult.Count > 0)
+                        {
+                            totalDamage += lateResult[0];
+                        }
+                    }
+
+                    // 更新最终伤害值
+                    if (__result.Count > 0)
+                    {
+                        __result[0] = totalDamage;
+                    }
+
+                    // 直接清空原始字段
+                    __instance.LateDamages.Clear();
+                    //IsToolsMain.LogInfo("02还有" + __instance.LateDamages.Count);
+                }
+            }
+            catch (System.Exception e)
+            {
+                IsToolsMain.Error($"VirtualPutingSkill seid 368出错: {e}");
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("PutingSkill")]
+        public static void Postfix_PutingSkill(Entity _attaker, Entity _receiver, int type, ref List<int> __result,
+            GUIPackage.Skill __instance, List<int> ___NowSkillSeid)
+        {
+            //IsToolsMain.Log("进入多段释放");
+            try
+            {
+                //IsToolsMain.LogInfo("1还有" + (__instance.LateDamages?.Count ?? 0));
+
+                // 添加 seid 368 逻辑，与 seid 11 完全一样
+                if (___NowSkillSeid.Contains(368) && __instance.LateDamages != null && __instance.LateDamages.Count > 0)
+                {
+                    KBEngine.Avatar avatar = (KBEngine.Avatar)_attaker;
+                    KBEngine.Avatar avatar2 = (KBEngine.Avatar)_receiver;
+
+                    int totalDamage = __result.Count > 0 ? __result[0] : 0;
+
+                    // 完全复制 seid 11 的逻辑
+                    foreach (LateDamage lateDamage in __instance.LateDamages)
+                    {
+                        List<int> lateResult = new GUIPackage.Skill(lateDamage.SkillId, avatar.level, 5)
+                        {
+                            Damage = lateDamage.Damage
+                        }.PutingSkill(avatar, avatar2, type);
+
+                        if (lateResult.Count > 0)
+                        {
+                            totalDamage += lateResult[0];
+                        }
+                    }
+
+                    // 更新最终伤害值
+                    if (__result.Count > 0)
+                    {
+                        __result[0] = totalDamage;
+                    }
+
+                    // 直接清空原始字段
+                    __instance.LateDamages.Clear();
+                    //IsToolsMain.LogInfo("2还有" + __instance.LateDamages.Count);
+                }
+            }
+            catch (System.Exception e)
+            {
+                IsToolsMain.Error($"seid 368出错: {e}");
             }
         }
         private static void realizeSeid360(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
@@ -390,7 +488,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 //IsToolsMain.LogInfo(o[0].ToString());
                 //Type valueType = o[0].GetType();
                 //IsToolsMain.LogInfo($"具体类型: {valueType.Name}");
-                damage[0] = totalDamage + (totalDamage + Convert.ToInt32(o[0]))/100;
+                damage[0] = totalDamage + (totalDamage * Convert.ToInt32(o[0]))/100;
             }
             catch
             {
@@ -442,46 +540,19 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 int count = Convert.ToInt32(o[0]);
                 int skillId = seidJson["value5"].I;  //神通ID
                 int skillDamage = seidJson["value6"].I;  //技能伤害
-                for (int j = 0; j < count; j++)
+                IsToolsMain.LogInfo("count"+count+"....skillid:" + skillId + ",Damage:" + skillDamage);
+                for (int i = 0; i < count; i++)
                 {
+                    IsToolsMain.LogInfo(count.ToString());
                     if (__instance.LateDamages == null)
                     {
                         __instance.LateDamages = new List<LateDamage>();
                     }
-                    if (__instance.skill_ID == 12508)
+                    __instance.LateDamages.Add(new LateDamage
                     {
-                        int buffSum = attaker.buffmag.GetBuffSum(skillDamage);
-                        __instance.LateDamages.Add(new LateDamage
-                        {
-                            SkillId = skillId,
-                            Damage = buffSum
-                        });
-                    }
-                    else if (__instance.SkillID == 12513)
-                    {
-                        __instance.LateDamages.Add(new LateDamage
-                        {
-                            SkillId = skillId,
-                            Damage = DuanTiFightManager.Inst.LeiDamage
-                        });
-                    }
-                    else if (__instance.SkillID == 1170)
-                    {
-                        int damage2 = GlobalValue.Get(skillDamage, "unknow");
-                        __instance.LateDamages.Add(new LateDamage
-                        {
-                            SkillId = skillId,
-                            Damage = damage2
-                        });
-                    }
-                    else
-                    {
-                        __instance.LateDamages.Add(new LateDamage
-                        {
-                            SkillId = skillId,
-                            Damage = skillDamage
-                        });
-                    }
+                        SkillId = skillId,
+                        Damage = skillDamage
+                    });
                 }
             }
             catch

@@ -74,7 +74,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             }
             else if (Tools.instance.CheckHasTianFu(720003))
             {
-                scene = "S27380";
+                scene = "S27510";
             } else
             {
                 IsToolsMain.YouZhouData.Data["IsYouZhouBirth"] = "0";

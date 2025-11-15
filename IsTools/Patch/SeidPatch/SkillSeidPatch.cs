@@ -488,7 +488,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 //IsToolsMain.LogInfo(o[0].ToString());
                 //Type valueType = o[0].GetType();
                 //IsToolsMain.LogInfo($"具体类型: {valueType.Name}");
-                damage[0] = totalDamage + (totalDamage * Convert.ToInt32(o[0]))/100;
+                damage[0] = totalDamage + (totalDamage * Convert.ToInt32(o[0]))/10000;
             }
             catch
             {
@@ -540,10 +540,10 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 int count = Convert.ToInt32(o[0]);
                 int skillId = seidJson["value5"].I;  //神通ID
                 int skillDamage = seidJson["value6"].I;  //技能伤害
-                IsToolsMain.LogInfo("count"+count+"....skillid:" + skillId + ",Damage:" + skillDamage);
+                IsToolsMain.LogInfo("段数" + count + "，多段神通:" + skillId + "，伤害:" + skillDamage);
                 for (int i = 0; i < count; i++)
                 {
-                    IsToolsMain.LogInfo(count.ToString());
+                    //IsToolsMain.LogInfo(count.ToString());
                     if (__instance.LateDamages == null)
                     {
                         __instance.LateDamages = new List<LateDamage>();

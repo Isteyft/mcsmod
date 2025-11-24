@@ -28,6 +28,12 @@ namespace top.Isteyft.MCS.YouZhou.GamePlayer
                 allMapBase.gameObject.AddComponent<SceneBase>();
                 SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
             }
+            else if (scene.name == "F雪剑域")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+            }
         }
     }
 }

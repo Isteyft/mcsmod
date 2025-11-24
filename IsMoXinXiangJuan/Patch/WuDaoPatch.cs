@@ -37,13 +37,9 @@ namespace top.Isteyft.MCS.IsMoXinXiangJuan.Patch
             [HarmonyPatch(nameof(Tools.CalcLingWuOrTuPoTime))]
             static void Postfix_CalcLingWuOrTuPoTime_StudyTime(ref int __result)
             {
-                if (HasWuDaoSkill(2601))
+                if (HasWuDaoSkill(2610))
                 {
-                    __result = Mathf.CeilToInt(__result / 1.3f);
-                }
-                if (HasWuDaoSkill(2611))
-                {
-                    __result = Mathf.CeilToInt(__result / 1.5f);
+                    __result = Mathf.CeilToInt(__result / 2.0f);
                 }
             }
         }

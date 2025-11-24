@@ -52,6 +52,36 @@ namespace top.Isteyft.MCS.YouZhou.Utils
             LoadFuBen.loadfuben("F幽州", index);
             AllMapBase.RefreshMarksFromStaticData();
         }
+
+        public static void LoadXJY(int index = 1)
+        {
+            if (!init)
+            {
+                init = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/雪剑域.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("F雪剑域"))
+            {
+                Tools.instance.loadMapScenes("F雪剑域", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("F雪剑域", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+        public static void LoadXJYNoMapScenes(int index = 1)
+        {
+            if (!init)
+            {
+                init = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/雪剑域.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("F雪剑域", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
     }
 
 }

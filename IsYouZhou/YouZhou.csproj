@@ -419,6 +419,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DialogEnv\YZ_GetData.cs" />
+    <Compile Include="DialogEvent\LoadXJY.cs" />
+    <Compile Include="DialogEvent\YZ_LoadXJYIndex.cs" />
     <Compile Include="DialogEvent\YZ_LoadIndex.cs" />
     <Compile Include="DialogEvent\YZ_OpenJiaZu.cs" />
     <Compile Include="DialogEvent\YZ_OpenMap.cs" />

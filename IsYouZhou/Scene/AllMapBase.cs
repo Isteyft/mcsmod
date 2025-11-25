@@ -64,33 +64,44 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             GameObject gameObject = base.transform.Find("/Main Camera").gameObject;
             gameObject.AddComponent<AllMapManage>();      // 地图管理组件，玩家加载
             gameObject.AddComponent<DialogProcess>();     // 对话处理组件
-            gameObject.AddComponent<CameraController>();  // 摄像机控制组件
-            //if (gameObject.GetComponent<CamaraFollow>() == null)
-            //{
-            //    CamaraFollow camaraFollow = gameObject.AddComponent<CamaraFollow>();
-            //    camaraFollow.levo = base.transform.Find("/dian1").GetComponent<Transform>();
-            //    camaraFollow.desno = base.transform.Find("/dian2").GetComponent<Transform>();
-            //}
+            //gameObject.AddComponent<CameraController>();  // 摄像机控制组件
+            if (gameObject.GetComponent<CamaraFollow>() == null)
+            {
+                CamaraFollow camaraFollow = gameObject.AddComponent<CamaraFollow>();
+                camaraFollow.levo = base.transform.Find("/dian1").GetComponent<Transform>();
+                camaraFollow.desno = base.transform.Find("/dian2").GetComponent<Transform>();
+            }
             // 获取大地图根节点并添加线路显示组件
             this.LevelsWorld0 = base.transform.Find("/AllMap/LevelsWorld0").gameObject;
             // 连线
             this.LevelsWorld0.AddComponent<AllMapLineShow>();
             // 获取当前场景名称
             string nowSceneName = SceneEx.NowSceneName;
-            // 如果地图数据未加载，尝试加载
-            if (AllMapBase.MapData == null)
+            //             // 如果地图数据未加载，尝试加载
+            // if (AllMapBase.MapData == null)
+            // {
+            //     try
+            //     {
+            //         // 从场景JSON数据中获取当前场景数据
+            //         JSONObject jsonobject = Jsondata.SceneJsonData[nowSceneName];
+            //         // 反序列化为AllMapJson对象
+            //         AllMapBase.MapData = JsonConvert.DeserializeObject<AllMapJson>(jsonobject.ToString());
+            //     }
+            //     catch
+            //     {
+            //         UIPopTip.Inst.Pop("找不到场景数据，停止加载场景！", PopTipIconType.叹号);
+            //     }
+            // 无论MapData是否为null，都重新加载当前场景的数据，确保切换地图时使用正确的数据
+            try
             {
-                try
-                {
-                    // 从场景JSON数据中获取当前场景数据
-                    JSONObject jsonobject = Jsondata.SceneJsonData[nowSceneName];
-                    // 反序列化为AllMapJson对象
-                    AllMapBase.MapData = JsonConvert.DeserializeObject<AllMapJson>(jsonobject.ToString());
-                }
-                catch
-                {
-                    UIPopTip.Inst.Pop("找不到场景数据，停止加载场景！", PopTipIconType.叹号);
-                }
+                // 从场景JSON数据中获取当前场景数据
+                JSONObject jsonobject = Jsondata.SceneJsonData[nowSceneName];
+                // 反序列化为AllMapJson对象
+                AllMapBase.MapData = JsonConvert.DeserializeObject<AllMapJson>(jsonobject.ToString());
+            }
+            catch
+            {
+                UIPopTip.Inst.Pop("找不到场景数据，停止加载场景！", PopTipIconType.叹号);
             }
             this.InitIndex();
         }

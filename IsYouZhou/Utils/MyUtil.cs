@@ -16,6 +16,8 @@ namespace top.Isteyft.MCS.YouZhou.Utils
     public class MyUtil
     {
         public static bool init = false;
+        public static bool XJYinit = false;
+        public static bool ZZinit = false;
         public static bool HasMod(string steamId)
         {
             return (from directory in WorkshopTool.GetAllModDirectory()
@@ -53,11 +55,11 @@ namespace top.Isteyft.MCS.YouZhou.Utils
             AllMapBase.RefreshMarksFromStaticData();
         }
 
-        public static void LoadXJY(int index = 1)
+        public static void LoadXJY(int index = 1000)
         {
-            if (!init)
+            if (!XJYinit)
             {
-                init = true;
+                XJYinit = true;
                 string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/雪剑域.ab";
                 AssetBundle.LoadFromFile(path);
             }
@@ -71,15 +73,45 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
-        public static void LoadXJYNoMapScenes(int index = 1)
+        public static void LoadXJYNoMapScenes(int index = 1000)
         {
-            if (!init)
+            if (!XJYinit)
             {
-                init = true;
+                XJYinit = true;
                 string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/雪剑域.ab";
                 AssetBundle.LoadFromFile(path);
             }
             LoadFuBen.loadfuben("F雪剑域", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
+
+        public static void LoadZZ(int index = 310)
+        {
+            if (!ZZinit)
+            {
+                ZZinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/中州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("F中州"))
+            {
+                Tools.instance.loadMapScenes("F中州", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("F中州", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+        public static void LoadZZNoMapScenes(int index = 310)
+        {
+            if (!ZZinit)
+            {
+                ZZinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/中州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("F中州", index);
             AllMapBase.RefreshMarksFromStaticData();
         }
     }

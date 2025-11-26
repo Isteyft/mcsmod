@@ -122,7 +122,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
         }
         
         // 衡州
-        public static void LoadHZ(int index = 310)
+        public static void LoadHZ(int index = 510)
         {
             if (!HZinit)
             {
@@ -140,7 +140,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
-        public static void LoadHZNoMapScenes(int index = 310)
+        public static void LoadHZNoMapScenes(int index = 510)
         {
             if (!HZinit)
             {
@@ -153,7 +153,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
         }
         
         // 灞州
-        public static void LoadBZ(int index = 310)
+        public static void LoadBZ(int index = 710)
         {
             if (!BZinit)
             {
@@ -171,7 +171,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
-        public static void LoadBZNoMapScenes(int index = 310)
+        public static void LoadBZNoMapScenes(int index = 710)
         {
             if (!BZinit)
             {
@@ -184,7 +184,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
         }
         
         // 颍州
-        public static void LoadYingZhou(int index = 310)
+        public static void LoadYingZhou(int index = 901)
         {
             if (!YingZhouinit)
             {
@@ -202,7 +202,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
-        public static void LoadYingZhouNoMapScenes(int index = 310)
+        public static void LoadYingZhouNoMapScenes(int index = 901)
         {
             if (!YingZhouinit)
             {
@@ -215,7 +215,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
         }
         
         // 靖州
-        public static void LoadJZ(int index = 310)
+        public static void LoadJZ(int index = 1101)
         {
             if (!JZinit)
             {
@@ -233,7 +233,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
-        public static void LoadJZNoMapScenes(int index = 310)
+        public static void LoadJZNoMapScenes(int index = 1101)
         {
             if (!JZinit)
             {
@@ -246,7 +246,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
         }
         
         // 渝州
-        public static void LoadYuZhou(int index = 310)
+        public static void LoadYuZhou(int index = 1301)
         {
             if (!YuZhouinit)
             {
@@ -264,7 +264,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
-        public static void LoadYuZhouNoMapScenes(int index = 310)
+        public static void LoadYuZhouNoMapScenes(int index = 1310)
         {
             if (!YuZhouinit)
             {
@@ -277,7 +277,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
         }
         
         // 雍州
-        public static void LoadYongZhou(int index = 310)
+        public static void LoadYongZhou(int index = 1510)
         {
             if (!YongZhouinit)
             {
@@ -295,7 +295,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
-        public static void LoadYongZhouNoMapScenes(int index = 310)
+        public static void LoadYongZhouNoMapScenes(int index = 1501)
         {
             if (!YongZhouinit)
             {

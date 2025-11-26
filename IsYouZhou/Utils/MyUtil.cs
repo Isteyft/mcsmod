@@ -184,7 +184,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
         }
         
         // 颍州
-        public static void LoadYZ(int index = 310)
+        public static void LoadYingZhou(int index = 310)
         {
             if (!YingZhouinit)
             {
@@ -202,7 +202,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
-        public static void LoadYZNoMapScenes(int index = 310)
+        public static void LoadYingZhouNoMapScenes(int index = 310)
         {
             if (!YingZhouinit)
             {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using top.Isteyft.MCS.YouZhou.Utils;
 using UnityEngine;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent
+namespace top.Isteyft.MCS.YouZhou.DialogEvent.LoadBigMap
 {
     [DialogEvent("YZ_GetRes")]
     public class YZ_GetRes : IDialogEvent

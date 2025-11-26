@@ -33,6 +33,42 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/中州.ab";
                 AssetBundle.LoadFromFile(path);
             }
+            if (!MyUtil.HZinit)
+            {
+                MyUtil.HZinit = true;
+                string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/衡州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (!MyUtil.BZinit)
+            {
+                MyUtil.BZinit = true;
+                string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/灞州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (!MyUtil.YingZhouinit)
+            {
+                MyUtil.YingZhouinit = true;
+                string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/颍州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (!MyUtil.JZinit)
+            {
+                MyUtil.JZinit = true;
+                string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/靖州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (!MyUtil.YuZhouinit)
+            {
+                MyUtil.YuZhouinit = true;
+                string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/渝州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (!MyUtil.YongZhouinit)
+            {
+                MyUtil.YongZhouinit = true;
+                string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/雍州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
         }
     }
 }

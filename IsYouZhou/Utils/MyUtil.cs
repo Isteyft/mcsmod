@@ -18,6 +18,12 @@ namespace top.Isteyft.MCS.YouZhou.Utils
         public static bool init = false;
         public static bool XJYinit = false;
         public static bool ZZinit = false;
+        public static bool HZinit = false;
+        public static bool BZinit = false;
+        public static bool YingZhouinit = false;
+        public static bool JZinit = false;
+        public static bool YuZhouinit = false;
+        public static bool YongZhouinit = false;
         public static bool HasMod(string steamId)
         {
             return (from directory in WorkshopTool.GetAllModDirectory()
@@ -112,6 +118,192 @@ namespace top.Isteyft.MCS.YouZhou.Utils
                 AssetBundle.LoadFromFile(path);
             }
             LoadFuBen.loadfuben("F中州", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
+        
+        // 衡州
+        public static void LoadHZ(int index = 310)
+        {
+            if (!HZinit)
+            {
+                HZinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/衡州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("F衡州"))
+            {
+                Tools.instance.loadMapScenes("F衡州", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("F衡州", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+        public static void LoadHZNoMapScenes(int index = 310)
+        {
+            if (!HZinit)
+            {
+                HZinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/衡州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("F衡州", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
+        
+        // 灞州
+        public static void LoadBZ(int index = 310)
+        {
+            if (!BZinit)
+            {
+                BZinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/灞州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("F灞州"))
+            {
+                Tools.instance.loadMapScenes("F灞州", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("F灞州", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+        public static void LoadBZNoMapScenes(int index = 310)
+        {
+            if (!BZinit)
+            {
+                BZinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/灞州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("F灞州", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
+        
+        // 颍州
+        public static void LoadYZ(int index = 310)
+        {
+            if (!YingZhouinit)
+            {
+                YingZhouinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/颍州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("F颍州"))
+            {
+                Tools.instance.loadMapScenes("F颍州", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("F颍州", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+        public static void LoadYZNoMapScenes(int index = 310)
+        {
+            if (!YingZhouinit)
+            {
+                YingZhouinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/颍州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("F颍州", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
+        
+        // 靖州
+        public static void LoadJZ(int index = 310)
+        {
+            if (!JZinit)
+            {
+                JZinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/靖州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("F靖州"))
+            {
+                Tools.instance.loadMapScenes("F靖州", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("F靖州", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+        public static void LoadJZNoMapScenes(int index = 310)
+        {
+            if (!JZinit)
+            {
+                JZinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/靖州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("F靖州", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
+        
+        // 渝州
+        public static void LoadYuZhou(int index = 310)
+        {
+            if (!YuZhouinit)
+            {
+                YuZhouinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/渝州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("F渝州"))
+            {
+                Tools.instance.loadMapScenes("F渝州", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("F渝州", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+        public static void LoadYuZhouNoMapScenes(int index = 310)
+        {
+            if (!YuZhouinit)
+            {
+                YuZhouinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/渝州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("F渝州", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
+        
+        // 雍州
+        public static void LoadYongZhou(int index = 310)
+        {
+            if (!YongZhouinit)
+            {
+                YongZhouinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/雍州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("F雍州"))
+            {
+                Tools.instance.loadMapScenes("F雍州", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("F雍州", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+        public static void LoadYongZhouNoMapScenes(int index = 310)
+        {
+            if (!YongZhouinit)
+            {
+                YongZhouinit = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/雍州.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("F雍州", index);
             AllMapBase.RefreshMarksFromStaticData();
         }
     }

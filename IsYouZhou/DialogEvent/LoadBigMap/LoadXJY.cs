@@ -7,15 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using top.Isteyft.MCS.YouZhou.Utils;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent
+namespace top.Isteyft.MCS.YouZhou.DialogEvent.LoadBigMap
 {
-    [DialogEvent("YZ_LoadXJYIndex")]
-    public class YZ_LoadXJYIndex : IDialogEvent
+    [DialogEvent("LoadXJY")]
+    public class LoadXJY : IDialogEvent
     {
         public void Execute(DialogCommand command, DialogEnvironment env, Action callback)
         {
-            int index = command.GetInt(0, 1);
-            MyUtil.LoadXJYNoMapScenes(index);
+            MyUtil.LoadXJY();
 
             callback?.Invoke();
         }

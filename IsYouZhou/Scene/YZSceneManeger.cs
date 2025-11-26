@@ -34,7 +34,49 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
                 AllMapBase.RefreshMarksFromStaticData();
             }
-            else if (name == "F中州")  // 添加新的地图处理逻辑
+            else if (name == "F中州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+            else if (name == "F衡州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+            else if (name == "F灞州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+            else if (name == "F颍州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+            else if (name == "F靖州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+            else if (name == "F渝州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+            else if (name == "F雍州")
             {
                 AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
                 allMapBase.gameObject.AddComponent<SceneBase>();

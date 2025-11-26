@@ -40,6 +40,42 @@ namespace top.Isteyft.MCS.YouZhou.GamePlayer
                 allMapBase.gameObject.AddComponent<SceneBase>();
                 SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
             }
+            else if (scene.name == "F衡州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+            }
+            else if (scene.name == "F灞州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+            }
+            else if (scene.name == "F颍州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+            }
+            else if (scene.name == "F靖州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+            }
+            else if (scene.name == "F渝州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+            }
+            else if (scene.name == "F雍州")
+            {
+                AllMapBase allMapBase = new UnityEngine.GameObject("Manager").AddComponent<AllMapBase>();
+                allMapBase.gameObject.AddComponent<SceneBase>();
+                SceneManager.MoveGameObjectToScene(allMapBase.gameObject, scene);
+            }
         }
     }
 }

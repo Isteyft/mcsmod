@@ -1,4 +1,4 @@
-﻿using SkySwordKill.Next.DialogEvent;
+using SkySwordKill.Next.DialogEvent;
 using SkySwordKill.Next.DialogSystem;
 using System;
 using System.Collections.Generic;
@@ -7,14 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using top.Isteyft.MCS.YouZhou.Utils;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent
+namespace top.Isteyft.MCS.YouZhou.DialogEvent.LoadBigMap
 {
-    [DialogEvent("LoadZZ")]
-    public class LoadZZ : IDialogEvent
+    [DialogEvent("LoadBZ")]
+    public class LoadBZ : IDialogEvent
     {
         public void Execute(DialogCommand command, DialogEnvironment env, Action callback)
         {
-            MyUtil.LoadZZ();
+            MyUtil.LoadBZ();
 
             callback?.Invoke();
         }

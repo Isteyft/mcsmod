@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using top.Isteyft.MCS.YouZhou.Utils;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent
+namespace top.Isteyft.MCS.YouZhou.DialogEvent.LoadBigMap
 {
     [DialogEvent("YZ_LoadIndex")]
     public class YZ_LoadIndex : IDialogEvent

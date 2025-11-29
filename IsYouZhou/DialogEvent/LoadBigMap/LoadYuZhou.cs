@@ -10,6 +10,7 @@ using top.Isteyft.MCS.YouZhou.Utils;
 namespace top.Isteyft.MCS.YouZhou.DialogEvent.LoadBigMap
 {
     [DialogEvent("LoadYuZhou")]
+    [DialogEvent("”Â÷›")]
     public class LoadYuZhou : IDialogEvent
     {
         public void Execute(DialogCommand command, DialogEnvironment env, Action callback)

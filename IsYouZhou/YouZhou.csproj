@@ -119,6 +119,9 @@
       <HintPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽工具库\plugins\IsTools.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="LingJie">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2968233692\plugins\LingJie.dll</HintPath>
+    </Reference>
     <Reference Include="MaiJiu.MCS.HH.ModPatch">
       <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\埋久工具库\plugins\MaiJiu.MCS.HH.ModPatch.dll</HintPath>
       <Private>False</Private>

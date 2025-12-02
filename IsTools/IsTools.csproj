@@ -440,6 +440,7 @@
     <Compile Include="DialogEnv\Fight\IS_GetBuffSum.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetUsedSkillsId.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeSumP.cs" />
+    <Compile Include="DialogEnv\Item\IS_GetItemNum.cs" />
     <Compile Include="DialogEnv\Item\IS_GetRandomItemType.cs" />
     <Compile Include="DialogEnv\Item\IS_GetRandomItemTypeID.cs" />
     <Compile Include="DialogEnv\Map\IS_GetCurAllMapIndex.cs" />
@@ -494,6 +495,7 @@
     <Compile Include="ModPatch\EffectPatch.cs" />
     <Compile Include="ModPatch\LianQiNamePatch.cs" />
     <Compile Include="ModPatch\MoreNPCInfoPatch.cs" />
+    <Compile Include="Patch\FightTempValuePatch.cs" />
     <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
     <Compile Include="Util\MusicScanner.cs" />
     <Compile Include="Patch\RoundManagerPatch\LingQiCardPatch.cs" />

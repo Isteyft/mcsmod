@@ -4,3 +4,4 @@ F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.csproj.AssemblyReference.cache
 F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.csproj.CoreCompileInputs.cache
 F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.dll
 F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.pdb
+F:\ProjectAll\C#\IsYouZhou\obj\Debug\YouZhou.csproj.CopyComplete

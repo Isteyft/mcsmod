@@ -121,6 +121,7 @@
     </Reference>
     <Reference Include="LingJie">
       <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2968233692\plugins\LingJie.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MaiJiu.MCS.HH.ModPatch">
       <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\埋久工具库\plugins\MaiJiu.MCS.HH.ModPatch.dll</HintPath>
@@ -163,8 +164,16 @@
       <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\1\nmc\NextMoreCommand.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="spine-csharp">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\spine-csharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="spine-unity">
       <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\spine-unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="spine-unity-examples">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\spine-unity-examples.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -459,6 +468,7 @@
     <Compile Include="Patch\NPCMapPatch.cs" />
     <Compile Include="Patch\setMenPaiHaoGanDuPatch.cs" />
     <Compile Include="Patch\StartGamePatch.cs" />
+    <Compile Include="Patch\TabUIPatch.cs" />
     <Compile Include="Patch\ToolsPatch.cs" />
     <Compile Include="Patch\UIHeadPanelPatch.cs" />
     <Compile Include="Patch\UINPCQingJiaoPatch.cs" />

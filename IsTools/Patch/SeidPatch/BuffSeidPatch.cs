@@ -66,6 +66,15 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 case 370:
                     ListRealizeSeid370(seid, avatar, buffInfo, flag, __instance);
                     return false;
+                case 371:
+                    ListRealizeSeid371(seid, avatar, buffInfo, flag, __instance);
+                    return false;
+                case 372:
+                    ListRealizeSeid372(seid, avatar, buffInfo, flag, __instance);
+                    return false;
+                case 373:
+                    ListRealizeSeid373(seid, avatar, buffInfo, flag, __instance);
+                    return false;
                 default:
                     return true;
             }
@@ -264,12 +273,15 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
         private static void ListRealizeSeid366(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         {
         }
+        // 释放上一次技能
         private static void ListRealizeSeid368(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         {
             //UIPopTip.Inst.Pop("该seid目前废弃");
             if (avatar.UsedSkills.Count == 0) return;
-            int skillID = avatar.UsedSkills[avatar.UsedSkills.Count - 1];
-            GUIPackage.Skill skill = new GUIPackage.Skill(skillID, 0, 10);
+            //int skillID = avatar.UsedSkills[avatar.UsedSkills.Count - 1];
+            //GUIPackage.Skill skill = new GUIPackage.Skill(skillID, 0, 10);
+            GUIPackage.Skill skill = RoundManager.instance.CurSkill;
+            int skillID = skill.SkillID;
             List<int> _damage = new List<int>();
             Tools.AddQueue(delegate
             {
@@ -413,6 +425,48 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             int buffId = seidJson["value1"].I;    // Buff ID列表
             int num = (int)((double)flag[0] / 100.0 * (double)seidJson["value2"].I * (double)buffInfo[1]);
             avatar.spell.addBuff(buffId, num);
+        }
+        // 第一个是根据治疗量获得buff
+        //每获得x点治疗获得y层buff地形式
+        private static void ListRealizeSeid371(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        {
+            JSONObject seidJson = instance.getSeidJson(seid);
+            List<int> buffIds = seidJson.GetFieldList("value1");    // Buff ID列表
+            List<int> buffCounts = seidJson.GetFieldList("value2");    // Buff数量列表
+            int num = flag[0];      //治疗量
+            
+            // 遍历buffIds和buffCounts列表，为每个Buff ID添加对应的数量
+            for (int i = 0; i < buffIds.Count && i < buffCounts.Count; i++)
+            {
+                int buffId = buffIds[i];
+                int buffCount = buffCounts[i];
+                int num2 = num * buffCount * buffInfo[1];  // 治疗量 x buff数量 x 目前buff层数
+                avatar.spell.addBuff(buffId, num2);
+            }
+        }
+        // 神剑诀plus
+        private static void ListRealizeSeid372(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        {
+            JSONObject seidJson = instance.getSeidJson(seid);
+            int num = flag[0];
+            // 目标0
+            Avatar targetAvatar = instance.getTargetAvatar(seid, avatar);
+            // X Buff ID
+            int i = seidJson["value1"].I;    
+            // 目标1
+            Avatar target1 = avatar;
+            if (seidJson["target1"].I != 1)
+            {
+                target1 = avatar.OtherAvatar;
+            }
+            // 目标1的buff数量
+            int buffSum = targetAvatar.buffmag.GetBuffSum(seidJson["value2"].I);
+            int i2 = seidJson["value3"].I;    // 层数
+            targetAvatar.spell.addBuff(i, buffSum + i2);
+        }
+        // 增加释放技能的属性
+        private static void ListRealizeSeid373(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        {
         }
     }
 }

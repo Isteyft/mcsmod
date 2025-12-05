@@ -276,38 +276,19 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
         // 释放上一次技能
         private static void ListRealizeSeid368(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         {
-            //UIPopTip.Inst.Pop("该seid目前废弃");
-            if (avatar.UsedSkills.Count == 0) return;
-            //int skillID = avatar.UsedSkills[avatar.UsedSkills.Count - 1];
-            //GUIPackage.Skill skill = new GUIPackage.Skill(skillID, 0, 10);
-            GUIPackage.Skill skill = RoundManager.instance.CurSkill;
-            int skillID = skill.SkillID;
-            List<int> _damage = new List<int>();
-            Tools.AddQueue(delegate
+            int id = flag[1];
+            if (RoundManager.instance.NowSkillUsedLingQiSum > 0)
             {
-                RoundManager.instance.NowUseLingQiType = UseLingQiType.释放技能后消耗;
-                if (jsonData.instance.skillJsonData[string.Concat(skillID)]["script"].str == "SkillAttack")
+                GUIPackage.Skill skill = new GUIPackage.Skill(id, 0, 10);
+                bool attackType = "SkillAttack".Equals(_skillJsonData.DataDict[id].script);
+                Tools.AddQueue(delegate
                 {
-                    _damage = skill.PutingSkill(avatar, avatar.OtherAvatar);
-                }
-                else if (jsonData.instance.skillJsonData[string.Concat(skillID)]["script"].str == "SkillSelf")
-                {
-                    _damage = skill.PutingSkill(avatar, avatar);
-                }
-
-                if (avatar.UsedSkills != null)
-                {
-                    avatar.UsedSkills.Add(skillID);
-                }
-
-                if (!instance.seid.Contains(129))
-                {
-                    avatar.spell.onBuffTickByType(8, _damage);
-                }
-
-                RoundManager.instance.NowUseLingQiType = UseLingQiType.None;
-                YSFuncList.Ints.Continue();
-            });
+                    RoundManager.instance.NowUseLingQiType = UseLingQiType.释放技能后消耗;
+                    skill.PutingSkill(avatar, attackType ? avatar.OtherAvatar : avatar, 0);
+                    RoundManager.instance.NowUseLingQiType = UseLingQiType.None;
+                    YSFuncList.Ints.Continue();
+                });
+            }
         }
         //运行next命令
 
@@ -440,7 +421,8 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             {
                 int buffId = buffIds[i];
                 int buffCount = buffCounts[i];
-                int num2 = num * buffCount * buffInfo[1];  // 治疗量 x buff数量 x 目前buff层数
+                int num2 = -num * buffCount * buffInfo[1];  // 治疗量 x buff数量 x 目前buff层数
+                // IsToolsMain.LogInfo($"371, {buffId}, {num2}");
                 avatar.spell.addBuff(buffId, num2);
             }
         }
@@ -448,10 +430,10 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
         private static void ListRealizeSeid372(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         {
             JSONObject seidJson = instance.getSeidJson(seid);
-            int num = flag[0];
+            //int num = flag[0];
             // 目标0
             Avatar targetAvatar = instance.getTargetAvatar(seid, avatar);
-            // X Buff ID
+            // X Buff ID  真伤 目标
             int i = seidJson["value1"].I;    
             // 目标1
             Avatar target1 = avatar;
@@ -459,10 +441,11 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             {
                 target1 = avatar.OtherAvatar;
             }
-            // 目标1的buff数量
-            int buffSum = targetAvatar.buffmag.GetBuffSum(seidJson["value2"].I);
+            // 目标1的buff数量  每拥有x层buff
+            int buffSum = target1.buffmag.GetBuffSum(seidJson["value2"].I);
             int i2 = seidJson["value3"].I;    // 层数
             targetAvatar.spell.addBuff(i, buffSum + i2);
+            // 【剑气】将在触发后被移除，但每次造成剑系技能伤害时，额外使目标受到等同于其【易伤】层数+14点真实伤害。
         }
         // 增加释放技能的属性
         private static void ListRealizeSeid373(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)

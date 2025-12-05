@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
+using SkySwordKill.NextMoreCommand.Custom.RealizeSeid;
 using Spine.Unity;
 using Tab;
 using UnityEngine;
@@ -20,6 +22,22 @@ namespace top.Isteyft.MCS.YouZhou.Patch
                 .GetValue(__instance) as UnityEngine.GameObject;
 
             Transform transform = gameObject.transform.Find("BaseData/心境");
+            transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+            // 将心境坐标往左边移动20像素
+            RectTransform xinjingRect = transform.GetComponent<RectTransform>();
+            xinjingRect.anchoredPosition = new Vector2(xinjingRect.anchoredPosition.x - 50f, xinjingRect.anchoredPosition.y);
+            
+            Transform transform1 = gameObject.transform.Find("BaseData/丹毒");
+            transform1.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+            // 将丹毒坐标往左边移动20像素
+            RectTransform danduRect = transform1.GetComponent<RectTransform>();
+            danduRect.anchoredPosition = new Vector2(danduRect.anchoredPosition.x - 100f, danduRect.anchoredPosition.y);
+            
+            Transform transform2 = gameObject.transform.Find("BaseData/灵感");
+            transform2.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+            // 将灵感坐标往左边移动20像素
+            RectTransform lingganRect = transform2.GetComponent<RectTransform>();
+            lingganRect.anchoredPosition = new Vector2(lingganRect.anchoredPosition.x - 150f, lingganRect.anchoredPosition.y);
 
             if (transform == null) return;
 
@@ -63,67 +81,86 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             skeletonGraphic.AnimationState.SetAnimation(0, "stand by", true);
 
             // 设置动画的位置（在容器内居中）
-            rectTransform.anchoredPosition = new Vector2(0f, 40f); // 向上偏移一点
+            rectTransform.anchoredPosition = new Vector2(0f, -25f); // 向上偏移一点
             rectTransform.sizeDelta = new Vector2(200, 200);
-            rectTransform.localScale = new Vector3(0.1f, 0.1f, 0.1f); // 动画缩放
+            rectTransform.localScale = new Vector3(0.08f, 0.08f, 0.08f); // 动画缩放
+            
+            // 复制灵感，往右边移动50
+            if (transform2 != null)
+            {
+                // 复制灵感对象
+                GameObject copiedLingGan = UnityEngine.Object.Instantiate(transform2.gameObject, parentTransform, false);
+                copiedLingGan.name = "魔念";
+                copiedLingGan.transform.SetAsFirstSibling();
+                
+                // 获取复制后的灵感的RectTransform
+                RectTransform copiedLingGanRect = copiedLingGan.GetComponent<RectTransform>();
+                
+                // 往右边移动50像素
+                copiedLingGanRect.anchoredPosition = new Vector2(
+                    copiedLingGanRect.anchoredPosition.x + 200f,
+                    copiedLingGanRect.anchoredPosition.y
+                );
+                
+                // 将动画挂载到复制的灵感上
+                container.transform.SetParent(copiedLingGan.transform, false);
+                
+                // 调整动画容器位置
+                containerRect.anchoredPosition = new Vector2(0f, 0f); // 相对于复制的灵感居中偏上
+                containerRect.sizeDelta = new Vector2(250, 150); // 容器大小
+                
+                // 查找复制的灵感下的子对象
+                Transform nameTransform = copiedLingGan.transform.Find("Name");
+                Transform valueTransform = copiedLingGan.transform.Find("Value");
+                Transform valueNameTransform = copiedLingGan.transform.Find("ValueName");
+                Transform imageTransform = copiedLingGan.transform.Find("BG");
+                
+                // 将name改成魔念
+                if (nameTransform != null)
+                {
+                    Text nameText = nameTransform.GetComponent<Text>();
+                    if (nameText != null)
+                    {
+                        nameText.text = "魔念：";
+                    }
+                }
+                
+                if (valueNameTransform != null)
+                {
+                    Text valueNameText = valueNameTransform.GetComponent<Text>();
+                    if (valueNameText != null)
+                    {
+                        valueNameText.text = "毫无魔念";
+                    }
+                }
+                
+                // 将value改成1
+                if (valueTransform != null)
+                {
+                    Text valueText = valueTransform.GetComponent<Text>();
+                    if (valueText != null)
+                    {
+                        valueText.text = "0/10";
+                    }
+                }
+                
+                // 删除Image
+                if (imageTransform != null)
+                {
+                    UnityEngine.Object.Destroy(imageTransform.gameObject);
+                }
+            }
 
-            // 设置整个容器的位置（在心境左边100像素）
-            RectTransform xinjingRect = transform.GetComponent<RectTransform>();
-            containerRect.anchoredPosition = new Vector2(
-                xinjingRect.anchoredPosition.x - 200f,
-                xinjingRect.anchoredPosition.y + 80f
-            );
-            containerRect.sizeDelta = new Vector2(250, 150); // 容器大小
-
-            // 设置层级
-            container.transform.SetAsLastSibling();
-
-            // 添加文字"魔念"在容器内（不在动画对象下）
-            GameObject textObject1 = new GameObject("魔念");
-            textObject1.transform.SetParent(container.transform, false);
-            Text text1 = textObject1.AddComponent<Text>();
-            text1.text = "魔念";
-            text1.fontSize = 28; // 增大字号
-            text1.color = Color.white;
-            text1.alignment = TextAnchor.UpperCenter;
-            text1.font = cloudLiBianFont;
-            text1.horizontalOverflow = HorizontalWrapMode.Overflow;
-            text1.verticalOverflow = VerticalWrapMode.Overflow;
-            text1.color = new Color(0, 0, 0);
-
-            RectTransform textRect1 = textObject1.GetComponent<RectTransform>();
-            textRect1.anchoredPosition = new Vector2(0f, 10f); // 在动画下方
-            textRect1.sizeDelta = new Vector2(120, 35);
-            textRect1.localScale = Vector3.one; // 文字不受动画缩放影响
-
-            // 添加数字"1"在"魔念"下方
-            GameObject textObject2 = new GameObject("Value");
-            textObject2.transform.SetParent(container.transform, false);
-            Text text2 = textObject2.AddComponent<Text>();
-            text2.text = "1";
-            text2.fontSize = 32; // 增大字号
-            text2.color = Color.white;
-            text2.alignment = TextAnchor.UpperCenter;
-            text2.font = cloudLiBianFont;
-            text2.horizontalOverflow = HorizontalWrapMode.Overflow;
-            text2.verticalOverflow = VerticalWrapMode.Overflow;
-            text2.color = new Color(0,0,0);
-
-            RectTransform textRect2 = textObject2.GetComponent<RectTransform>();
-            textRect2.anchoredPosition = new Vector2(0f, -20f); // 在魔念下方
-            textRect2.sizeDelta = new Vector2(80, 38);
-            textRect2.localScale = Vector3.one; // 文字不受动画缩放影响
-
-            // 添加Canvas组件确保Text能正确渲染
+            // 添加Canvas组件并设置较低的层级，避免挡住提示框
             Canvas canvas = container.AddComponent<Canvas>();
             canvas.overrideSorting = true;
-            canvas.sortingOrder = 101; // 比动画层级稍高
+            canvas.sortingOrder = 1; // 设置较低的层级，确保不挡住提示框
             container.AddComponent<GraphicRaycaster>();
 
-            // 在动画对象也添加Canvas（可选）
+            // 在动画对象也添加Canvas并设置相同的层级
             Canvas animCanvas = xinmoObject.AddComponent<Canvas>();
             animCanvas.overrideSorting = true;
-            animCanvas.sortingOrder = 100;
+            animCanvas.sortingOrder = 1; // 与容器保持相同的层级
 
             // 重新计算UI布局
             Canvas.ForceUpdateCanvases();

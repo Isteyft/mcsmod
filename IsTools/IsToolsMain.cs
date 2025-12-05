@@ -26,7 +26,7 @@ namespace top.Isteyft.MCS.IsTools
         public const string EffectPath = "/plugins/BaizeAssets/Effect";
         public static Dictionary<string, AssetBundle> EffectAssetBundles = new Dictionary<string, AssetBundle>();
         #region 日志打印
-        public static void Log(string message)
+        public static void Log(object message)
         {
             IsToolsMain.I.Logger.LogInfo("==========[IsTools]==========");
             IsToolsMain.I.Logger.LogInfo("");
@@ -35,7 +35,7 @@ namespace top.Isteyft.MCS.IsTools
             IsToolsMain.I.Logger.LogInfo("==========[IsTools]==========");
         }
 
-        public static void LogInfo(string message)
+        public static void LogInfo(object message)
         {
             IsToolsMain.I.Logger.LogInfo(message);
         }

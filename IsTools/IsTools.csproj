@@ -489,13 +489,14 @@
     <Compile Include="DialogEvent\Task\IS_NextTask.cs" />
     <Compile Include="DialogEvent\Task\IS_SetTaskCompleted.cs" />
     <Compile Include="DialogEvent\Task\IS_SetTaskIndex.cs" />
+    <Compile Include="DialogEvent\UI\ExtendedSayDialog.cs" />
+    <Compile Include="DialogEvent\UI\IS_Say.cs" />
     <Compile Include="DialogEvent\UI\IS_GetMusic.cs" />
     <Compile Include="DialogEvent\UI\IS_OpenTieJian.cs" />
     <Compile Include="IsToolsMain.cs" />
     <Compile Include="ModPatch\EffectPatch.cs" />
     <Compile Include="ModPatch\LianQiNamePatch.cs" />
     <Compile Include="ModPatch\MoreNPCInfoPatch.cs" />
-    <Compile Include="Patch\FightTempValuePatch.cs" />
     <Compile Include="Patch\SkillPatch.cs" />
     <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
     <Compile Include="Util\MusicScanner.cs" />

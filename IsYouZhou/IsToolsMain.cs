@@ -21,7 +21,8 @@ namespace top.Isteyft.MCS.YouZhou
     [BepInDependency("skyswordkill.plugin.NextMoreCommands")]
     [BepInDependency("skyswordkill.plugin.Next")]
     [BepInDependency("MaiJiu.MCS.HH")]
-    //[BepInDependency("top.Isteyft.MCS.IsTools")]
+    [BepInDependency("top.Isteyft.MCS.IsTools")]
+    [BepInDependency("top.Isteyft.MCS.IsMoDaoKuoZhanMain")]
     [BepInPlugin("top.Isteyft.MCS.YouZhou", "幽州", "1.0.0")]
     public class IsToolsMain : BaseUnityPlugin
     {

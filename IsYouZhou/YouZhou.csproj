@@ -468,7 +468,8 @@
     <Compile Include="Patch\NPCMapPatch.cs" />
     <Compile Include="Patch\setMenPaiHaoGanDuPatch.cs" />
     <Compile Include="Patch\StartGamePatch.cs" />
-    <Compile Include="Patch\TabUIPatch.cs" />
+    <Compile Include="Patch\Tab\TabUIPatch.cs" />
+    <Compile Include="Patch\Tab\WuDaoSlotPatch.cs" />
     <Compile Include="Patch\ToolsPatch.cs" />
     <Compile Include="Patch\UIHeadPanelPatch.cs" />
     <Compile Include="Patch\UINPCQingJiaoPatch.cs" />

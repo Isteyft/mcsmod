@@ -114,6 +114,10 @@
       <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\2824349934\BepInEx\core\HarmonyXInterop.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="HH_MaiJiu">
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\3018994631\plugins\HH_MaiJiu.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="IFacebook">
       <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\IFacebook.dll</HintPath>
       <Private>False</Private>
@@ -433,6 +437,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DaoJuData.cs" />
     <Compile Include="Data\MetaData.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByType.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeP.cs" />
@@ -497,6 +502,7 @@
     <Compile Include="ModPatch\EffectPatch.cs" />
     <Compile Include="ModPatch\LianQiNamePatch.cs" />
     <Compile Include="ModPatch\MoreNPCInfoPatch.cs" />
+    <Compile Include="Patch\AddDaoJuPatch.cs" />
     <Compile Include="Patch\SkillPatch.cs" />
     <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
     <Compile Include="Util\MusicScanner.cs" />

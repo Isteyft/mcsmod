@@ -41,18 +41,13 @@ namespace top.Isteyft.MCS.IsTools.Util
         public static bool TryGetJson(string path, out string str)
         {
             str = "";
-            bool flag = File.Exists(path);
             bool result;
-            if (flag)
+            if (File.Exists(path))
             {
                 str = File.ReadAllText(path);
-                result = true;
+                return true;
             }
-            else
-            {
-                result = false;
-            }
-            return result;
+            return false;
         }
     }
 }

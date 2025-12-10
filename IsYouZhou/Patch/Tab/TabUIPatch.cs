@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
+using SkySwordKill.Next.DialogSystem;
 using SkySwordKill.NextMoreCommand.Custom.RealizeSeid;
 using Spine.Unity;
 using Tab;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace top.Isteyft.MCS.YouZhou.Patch
+namespace top.Isteyft.MCS.YouZhou.Patch.Tab
 {
     [HarmonyPatch(typeof(TabShuXingPanel))]
     public class TabUIPatch
@@ -133,14 +134,14 @@ namespace top.Isteyft.MCS.YouZhou.Patch
                         valueNameText.text = "毫无魔念";
                     }
                 }
-                
+                var MoNianValue = DialogAnalysis.GetInt("幽州-魔念");
                 // 将value改成1
                 if (valueTransform != null)
                 {
                     Text valueText = valueTransform.GetComponent<Text>();
                     if (valueText != null)
                     {
-                        valueText.text = "0/10";
+                        valueText.text = $"{MoNianValue}/999";
                     }
                 }
                 

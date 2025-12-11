@@ -1,15 +1,19 @@
-﻿using GUIPackage;
+﻿using Bag;
+using GUIPackage;
 using HarmonyLib;
+using JSONClass;
 using KBEngine;
 using SkySwordKill.Next;
 using SkySwordKill.Next.DialogSystem;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using top.Isteyft.MCS.IsTools.Data;
 using top.Isteyft.MCS.IsTools.Util;
 using UnityEngine.Networking.Types;
 using WXB;
 using XLua;
+using static UltimateSurvival.ItemProperty;
 
 namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
 {
@@ -51,8 +55,30 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 case 368:
                     realizeSeid368(__instance, seid, attaker, damage, receiver);
                     return false;
+                case 379:
+                    realizeSeid379(__instance, seid, attaker, damage, receiver);
+                    return false;
                 default:
                     return true;
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch("CanUse")]
+        public static void CanUse(Entity _attaker, Entity _receiver, GUIPackage.Skill __instance, ref SkillCanUseType __result, bool showError = true, string uuid = "")
+        {
+            foreach (int num in _skillJsonData.DataDict[__instance.skill_ID].seid)
+            { 
+                if (num == 379) {
+                    JSONObject seidJson = __instance.getSeidJson(num);
+                    int i = seidJson["value1"].I;
+                    if (!PlayerEx.Player.hasItem(i))
+                    {
+                        //UIPopTip.Inst.Pop("物品数量不足,无法使用！", PopTipIconType.叹号);
+                        //return false;
+                        __result = SkillCanUseType.超过最多使用次数不能使用;
+                    }
+                }
             }
         }
 
@@ -559,6 +585,21 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             {
                 IsToolsMain.LogInfo("lua返回值出错!");
             }
+        }
+
+        private static void realizeSeid379(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
+        {
+            JSONObject seidJson = __instance.getSeidJson(seid);
+            int itemID = seidJson["value1"].I;
+            _ItemJsonData itemJsonData = _ItemJsonData.DataDict[itemID];
+            if (itemJsonData.type == 5)
+            {
+                BaseItem.Create(itemID, 1, Tools.getUUID(), Tools.CreateItemSeid(itemID)).Use();
+            } else
+            {
+                attaker.removeItem(itemID, 1);
+            }
+            AddDaoJuPatch.RefreshAllItemCountText();
         }
     }
 }

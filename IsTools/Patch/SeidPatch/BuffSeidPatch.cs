@@ -17,6 +17,7 @@ using UnityEngine.Networking.Types;
 using XLua;
 using System.Timers;
 using YSGame;
+using System.Linq;
 
 namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
 {
@@ -400,6 +401,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
 
         }
 
+        // 按照结算伤害获得buff
         private static void ListRealizeSeid370(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         {
             JSONObject seidJson = instance.getSeidJson(seid);
@@ -414,6 +416,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             JSONObject seidJson = instance.getSeidJson(seid);
             List<int> buffIds = seidJson.GetFieldList("value1");    // Buff ID列表
             List<int> buffCounts = seidJson.GetFieldList("value2");    // Buff数量列表
+            int count = seidJson.GetField("value3").I;    // 每多少
             int num = flag[0];      //治疗量
             
             // 遍历buffIds和buffCounts列表，为每个Buff ID添加对应的数量
@@ -421,9 +424,13 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             {
                 int buffId = buffIds[i];
                 int buffCount = buffCounts[i];
-                int num2 = -num * buffCount * buffInfo[1];  // 治疗量 x buff数量 x 目前buff层数
-                // IsToolsMain.LogInfo($"371, {buffId}, {num2}");
-                avatar.spell.addBuff(buffId, num2);
+                int num2 = 0;
+                if (num / count > 1)
+                {
+                    num2 = -(num / count) * buffCount * buffInfo[1];  // 治疗量 x buff数量 x 目前buff层数
+                   // IsToolsMain.LogInfo($"371, {buffId}, {num2}");
+                    avatar.spell.addBuff(buffId, num2);
+                }
             }
         }
         // 神剑诀plus
@@ -450,6 +457,42 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
         // 增加释放技能的属性
         private static void ListRealizeSeid373(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         {
+            JSONObject seidJson = instance.getSeidJson(seid);
+            int buffType = seidJson["value1"].I;
+            var buffLists = avatar.buffmag.GetAllBuffByType(buffType);
+
+            // 提取每个子数组的最后一位数
+            List<int> lastNumbers = buffLists
+                .Where(subList => subList.Count > 0) // 过滤空列表
+                .Select(subList => subList.Last())   // 取最后一个元素
+                .ToList();
+            int i = seidJson["value2"].I;
+            
+            // 定义需要额外触发onBuffTick的buffid数组（移到循环外部，避免重复创建）
+            int[] extraTriggerBuffIds = new int[] { 250000, 250003 };
+            
+            int num;
+            foreach (int i2 in lastNumbers)
+            {
+                num = i * buffInfo[1];
+                for (int j = 0; j < num; j++)
+                {
+                    foreach (List<int> item in avatar.OtherAvatar.buffmag.getBuffByID(i2))
+                    {
+                        avatar.OtherAvatar.spell.onBuffTick(avatar.OtherAvatar.bufflist.IndexOf(item));
+                        // 当i2在extraTriggerBuffIds数组中时，额外触发一次onBuffTick
+                        if (Array.Exists(extraTriggerBuffIds, id => id == i2))
+                        {
+                            avatar.OtherAvatar.spell.onBuffTick(avatar.OtherAvatar.bufflist.IndexOf(item));
+                        }
+                    }
+                }
+            }
+
         }
+        // 增加释放技能的属性
+        //private static void ListRealizeSeid373(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        //{
+        //}
     }
 }

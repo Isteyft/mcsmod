@@ -16,9 +16,10 @@ namespace top.Isteyft.MCS.IsTools.Patch
     public class AddDaoJuPatch
     {
         private static readonly KeyCode[] HomeRowKeys = {
-            KeyCode.None, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F,
-            KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L,
-            KeyCode.Z, KeyCode.X, KeyCode.C
+            KeyCode.None, KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I,
+            KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.M, KeyCode.N, KeyCode.O, KeyCode.P, KeyCode.S, KeyCode.U,
+            KeyCode.V, KeyCode.X, KeyCode.Z, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0, KeyCode.Minus,
+            KeyCode.Equals, KeyCode.LeftBracket, KeyCode.RightBracket, KeyCode.Semicolon, KeyCode.Quote
         };
 
         // 静态字典：保存技能索引和道具ID的对应关系
@@ -33,7 +34,9 @@ namespace top.Isteyft.MCS.IsTools.Patch
                 Tools.instance.monstarMag.FightType == StartFight.FightEnumType.JieYing ||
                 Tools.instance.monstarMag.FightType == StartFight.FightEnumType.HuaShen ||
                 Tools.instance.monstarMag.FightType == StartFight.FightEnumType.无装备无丹药擂台 ||
-                Tools.instance.monstarMag.FightType == StartFight.FightEnumType.天劫秘术领悟)
+                Tools.instance.monstarMag.FightType == StartFight.FightEnumType.天劫秘术领悟 ||
+                Tools.instance.monstarMag.FightType == StartFight.FightEnumType.DuJie ||
+                Tools.instance.monstarMag.FightType == StartFight.FightEnumType.FeiSheng)
             {
                 IsToolsMain.LogInfo("属于筑基，结丹，结婴，化神，无装备无丹药擂台，天劫秘术感悟不加载道具");
                 return;

@@ -113,7 +113,7 @@ namespace top.Isteyft.MCS.IsTools.Util
                 {
                     // 然后微调坐标（例如：x+0.5, y+1, z不变）
                     avatarInstance.transform.position = new UnityEngine.Vector3(
-                        nowPlayer.transform.position.x + 2.5f,
+                        nowPlayer.transform.position.x + 1.5f,
                         nowPlayer.transform.position.y - 0.5f,
                         nowPlayer.transform.position.z + 1
                     );
@@ -121,7 +121,7 @@ namespace top.Isteyft.MCS.IsTools.Util
                 else
                 {
                     avatarInstance.transform.position = new UnityEngine.Vector3(
-                        -nowPlayer.transform.position.x - 2.5f,
+                        -nowPlayer.transform.position.x - 1.5f,
                         nowPlayer.transform.position.y - 0.5f,
                         nowPlayer.transform.position.z + 1
                     );

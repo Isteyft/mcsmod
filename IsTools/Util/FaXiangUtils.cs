@@ -113,17 +113,17 @@ namespace top.Isteyft.MCS.IsTools.Util
                 {
                     // 然后微调坐标（例如：x+0.5, y+1, z不变）
                     avatarInstance.transform.position = new UnityEngine.Vector3(
-                        nowPlayer.transform.position.x + 1.5f,
+                        nowPlayer.transform.position.x + 2f,
                         nowPlayer.transform.position.y - 0.5f,
-                        nowPlayer.transform.position.z + 1
+                        nowPlayer.transform.position.z - 1
                     );
                 }
                 else
                 {
                     avatarInstance.transform.position = new UnityEngine.Vector3(
-                        -nowPlayer.transform.position.x - 1.5f,
+                        -nowPlayer.transform.position.x - 2f,
                         nowPlayer.transform.position.y - 0.5f,
-                        nowPlayer.transform.position.z + 1
+                        nowPlayer.transform.position.z - 1
                     );
                     avatarInstance.transform.rotation = UnityEngine.Quaternion.Euler(
                         nowPlayer.transform.rotation.eulerAngles.x,
@@ -158,7 +158,7 @@ namespace top.Isteyft.MCS.IsTools.Util
                 {
                     IsToolsMain.Error("hero-pro没有找到");
                 }
-                if (mode == 1) avatarInstance.transform.localScale = new UnityEngine.Vector3(0.8f, 0.8f, 0.8f);
+                if (mode == 1) avatarInstance.transform.localScale = new UnityEngine.Vector3(1.0f, 1.0f, 1.0f);
             }
             catch (Exception e)
             {

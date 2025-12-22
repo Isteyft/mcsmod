@@ -131,6 +131,7 @@ namespace top.Isteyft.MCS.IsTools.Util
                         nowPlayer.transform.rotation.eulerAngles.z
                     );
                 }
+                avatarInstance.transform.localScale = new UnityEngine.Vector3(0.35f, 0.35f, 0.35f);
             }
         }
         // 对于玩家模型特殊处理

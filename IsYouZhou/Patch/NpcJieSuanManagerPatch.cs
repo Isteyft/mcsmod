@@ -18,6 +18,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             NpcJieSuanManager.inst.ActionDictionary.Add(70, new Action<int>(WanBaoLouPaiMai.NpcToWanBaoLouPaiMai1));
             NpcJieSuanManager.inst.ActionDictionary.Add(71, new Action<int>(WanBaoLouPaiMai.NpcToWanBaoLouPaiMai2));
             NpcJieSuanManager.inst.ActionDictionary.Add(72, new Action<int>(WanBaoLouPaiMai.NpcToWanBaoLouPaiMai3));
+            IsToolsMain.LogInfo("新增行动70,71,72,万宝楼系列行动");
         }
 
         [HarmonyPatch("getFinallyNpcActionQuanZhongDictionary")]

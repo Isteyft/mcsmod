@@ -296,107 +296,21 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
         private static void ListRealizeSeid369(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         {
             int i = instance.getSeidJson(seid)["value1"].I;
-            string path = $"Effect/Prefab/gameEntity/Avater/Avater{i}/Avater{i}_1";
-            var isAvatarSkl = false;
-            // 查找场景中名为 "Avatar_10" 的 GameObject
-            var isPlayer = false;
-            UnityEngine.GameObject avatar10;
-            if (avatar == Tools.instance.getPlayer())
-            {
-                avatar10 = UnityEngine.GameObject.Find("Avatar_10");
-            }
-            else
-            {
-                avatar10 = UnityEngine.GameObject.Find("Avatar_11");
-                isPlayer = true;
-            }
-
-            if (avatar10 == null)
-            {
-                IsToolsMain.Error("Could not find Avatar_10 in the scene!");
-                return;
-            }
-
-            UnityEngine.GameObject nowPlayer = avatar10.transform.Find("Avater50_1(Clone)")?.gameObject
-                     ?? avatar10.transform.Find("Avater51_1(Clone)")?.gameObject;
-
-            if (nowPlayer == null)
-            {
-                IsToolsMain.Error("没找到玩家骨骼所在位置，检查Avater50_1(Clone)和Avater51_1(Clone)是否存在");
-                return;
-            }
-
-            UnityEngine.GameObject prefab = UnityEngine.Resources.Load<UnityEngine.GameObject>(path);
-            if (prefab == null)
-            {
-                // 获取npc性别
-                var npcSex = i.ToNpcNewId().NPCJson()["SexType"].I;
-                // 骨骼模型
-                int num = (npcSex == 1) ? 50 : 51;
-                // 载入npc预制体
-                prefab = UnityEngine.Resources.Load<UnityEngine.GameObject>(string.Format($"Effect/Prefab/gameEntity/Avater/Avater{num}/Avater{num}_1"));
-                isAvatarSkl = true;
-            }
-
+            bool isPlayer = AvatarUtils.isPlayer(avatar);
+            var isAvatarSkl = FaXiangUtils.isAvatarSkl(i);
+            // 获取当前玩家对象
+            UnityEngine.GameObject avatar10 = FaXiangUtils.GetAvatarSklPosition(isPlayer);
             // 实例化预制体
-            UnityEngine.GameObject avatarInstance = UnityEngine.Object.Instantiate(prefab);
+            UnityEngine.GameObject avatarInstance = UnityEngine.Object.Instantiate(FaXiangUtils.GetFaXiangPrefab(i));
 
             avatarInstance.transform.SetParent(avatar10.transform);
-            // 先复制目标位置
-            avatarInstance.transform.position = nowPlayer.transform.position;
 
-            if (!isPlayer)
-            {
-                // 然后微调坐标（例如：x+0.5, y+1, z不变）
-                avatarInstance.transform.position = new UnityEngine.Vector3(
-                    nowPlayer.transform.position.x - 1,
-                    nowPlayer.transform.position.y + 0.5f,
-                    nowPlayer.transform.position.z
-                );
-            }
-            else
-            {
-                avatarInstance.transform.position = new UnityEngine.Vector3(
-                    -nowPlayer.transform.position.x + 1,
-                    nowPlayer.transform.position.y + 0.5f,
-                    nowPlayer.transform.position.z
-                );
-                avatarInstance.transform.rotation = UnityEngine.Quaternion.Euler(
-                    nowPlayer.transform.rotation.eulerAngles.x,
-                    nowPlayer.transform.rotation.eulerAngles.y + 180,
-                    nowPlayer.transform.rotation.eulerAngles.z
-                );
-            }
+            FaXiangUtils.InitFaXiangPosition(avatarInstance, isPlayer, 0);
 
             avatarInstance.transform.SetAsFirstSibling();
-
-            try
+            if (isAvatarSkl)
             {
-                if (isAvatarSkl)
-                {
-                    UnityEngine.Transform spineTransform = avatarInstance.transform.Find("Spine GameObject (hero-pro)");
-
-                    if (spineTransform != null)
-                    {
-                        PlayerSetRandomFace playerFaceComponent = spineTransform.GetComponentInChildren<PlayerSetRandomFace>(true);
-                        if (playerFaceComponent != null)
-                        {
- 
-                            playerFaceComponent.randomAvatar(i);
-                        }
-                        else
-                        {
-                            IsToolsMain.Error("PlayerSetRandomFace没有找到");
-                        }
-                    }
-                    else
-                    {
-                        IsToolsMain.Error("hero-pro没有找到");
-                    }
-                }
-            }
-            catch(Exception e) {
-                IsToolsMain.Error(e);
+                FaXiangUtils.InitAvatarSklFace(avatarInstance, i);
             }
 
         }

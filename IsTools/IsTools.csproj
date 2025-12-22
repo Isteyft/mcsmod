@@ -465,6 +465,14 @@
     <Compile Include="DialogEnv\Player\IS_HasWuDaoSkills.cs" />
     <Compile Include="DialogEnv\Task\GetTaskIndex.cs" />
     <Compile Include="DialogEvent\Fight\IS_GetSkill.cs" />
+    <Compile Include="DialogEvent\Fight\IS_ActionFaXiangPlus.cs" />
+    <Compile Include="DialogEvent\Fight\IS_ActionFaXiang.cs" />
+    <Compile Include="DialogEvent\Fight\IS_RemoveFaXiangPlus.cs" />
+    <Compile Include="DialogEvent\Fight\IS_InitFaXiang.cs" />
+    <Compile Include="DialogEvent\Fight\IS_UseFaXiangPlus.cs" />
+    <Compile Include="DialogEvent\Fight\IS_UseFaXiang.cs" />
+    <Compile Include="DialogEvent\Fight\IS_UsePFaXiang.cs" />
+    <Compile Include="DialogEvent\Fight\IS_RemoveFaXiang.cs" />
     <Compile Include="DialogEvent\Fight\IS_RemoveBuff.cs" />
     <Compile Include="DialogEvent\Map\IS_NpcWarp.cs" />
     <Compile Include="DialogEvent\Map\IS_PlayerMove.cs" />
@@ -505,6 +513,8 @@
     <Compile Include="Patch\AddDaoJuPatch.cs" />
     <Compile Include="Patch\SkillPatch.cs" />
     <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
+    <Compile Include="Util\AvatarUtils.cs" />
+    <Compile Include="Util\FaXiangUtils.cs" />
     <Compile Include="Util\MusicScanner.cs" />
     <Compile Include="Patch\RoundManagerPatch\LingQiCardPatch.cs" />
     <Compile Include="Patch\SeidPatch\ItemSeidPatch.cs" />

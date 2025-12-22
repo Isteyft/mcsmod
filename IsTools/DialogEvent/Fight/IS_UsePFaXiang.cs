@@ -5,21 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YSGame;
+using top.Isteyft.MCS.IsTools;
+using UnityEngine;
+using SkySwordKill.NextMoreCommand.Utils;
+using top.Isteyft.MCS.IsTools.Util;
 
 namespace top.Isteyft.MCS.IsTools.DialogEvent.Fight
 {
-    [DialogEvent("IS_RemoveBuff")]
-    public class IS_RemoveBuff : IDialogEvent
+    [DialogEvent("IS_UsePFaXiang")]
+    public class IS_UsePFaXiang : IDialogEvent
     {
         public void Execute(DialogCommand command, DialogEnvironment env, Action callback)
         {
-            int buffId = command.GetInt(0, 0);
-            int target = command.GetInt(1, 0);
-            var player = PlayerEx.Player;
-            if (target == 1) {
-                player = player.OtherAvatar;
-            }
-            player.buffmag.RemoveBuff(buffId);
+            int target = command.GetInt(0, 0); // 0: 玩家, 1: NPC
+
+            FaXiangUtils.usePlayer(target == 0 ? true : false);
+
             callback?.Invoke();
         }
     }

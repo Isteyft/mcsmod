@@ -3,19 +3,20 @@ using SkySwordKill.Next.DialogSystem;
 using System;
 using top.Isteyft.MCS.IsTools.Util;
 
-namespace top.Isteyft.MCS.IsTools.DialogEvent.Mod
+namespace top.Isteyft.MCS.IsTools.DialogEvent.Item
 {
-    [DialogEvent("IS_AutoSave")]
-    [DialogEvent("IS_自动存档")]
+    [DialogEvent("IS_ZhiZuoFuLu")]
+    [DialogEvent("制作符箓")]
     public class IS_ZhiZuoFuLu : IDialogEvent
     {
         public void Execute(DialogCommand command, DialogEnvironment env, Action callback)
         {
-            AutoSaveUtils.AutoSave();
-            if (callback != null)
-            {
-                callback();
-            }
+            int fuLuId = command.GetInt(0, 0);
+            int count = command.GetInt(1, 1);
+
+            FuLuUtils.ZhiZuoFuLu(fuLuId, count);
+
+            callback?.Invoke();
         }
 
     }

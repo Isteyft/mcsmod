@@ -92,6 +92,7 @@ namespace top.Isteyft.MCS.IsTools
                     IsToolsMain.UsingMods.Add(directoryInfo);
                     LoadEffectAssetBundles(directoryInfo.FullName + "/plugins/BaizeAssets/Effect");
                     LoadDaoJu(directoryInfo.FullName + "/plugins/BaizeAssets/config/DaoJu.json");
+                    LoadFuLu(directoryInfo.FullName + "/plugins/BaizeAssets/config/FuLuItem.json");
                 }
             }
             DirectoryInfo directoryInfo2 = new DirectoryInfo(Application.dataPath + "/../本地Mod测试");
@@ -103,6 +104,7 @@ namespace top.Isteyft.MCS.IsTools
                     IsToolsMain.AllMods.Add(directoryInfo3);
                     LoadEffectAssetBundles(directoryInfo3.FullName + "/plugins/BaizeAssets/Effect");
                     LoadDaoJu(directoryInfo3.FullName + "/plugins/BaizeAssets/config/DaoJu.json");
+                    LoadFuLu(directoryInfo3.FullName + "/plugins/BaizeAssets/config/FuLuItem.json");
                 }
             }
         }
@@ -115,6 +117,16 @@ namespace top.Isteyft.MCS.IsTools
                 IsToolsMain.LogInfo("加载道具配置:" + path);
                 List<DaoJuData> collection = JsonConvert.DeserializeObject<List<DaoJuData>>(value);
                 DaoJuData.data.AddRange(collection);
+            }
+        }
+        private void LoadFuLu(string path)
+        {
+            string value;
+            if (JsonUtil.TryGetJson(path, out value))
+            {
+                IsToolsMain.LogInfo("加载符箓配置:" + path);
+                List<FuLuItemData> collection = JsonConvert.DeserializeObject<List<FuLuItemData>>(value);
+                FuLuItemData.FuLuData.AddRange(collection);
             }
         }
 

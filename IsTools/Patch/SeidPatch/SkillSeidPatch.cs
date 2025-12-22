@@ -178,6 +178,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 IsToolsMain.Error($"seid 368出错: {e}");
             }
         }
+        // 每拥有X Buff Y层，增伤Z点
         private static void realizeSeid360(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             // 获取seid对应的JSON配置
@@ -240,6 +241,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             // 更新最终伤害值
             damage[0] = totalDamage;
         }
+        // 每拥有X Buff Y层，增伤Z点(消耗buff版)
         private static void realizeSeid361(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             // 获取seid对应的JSON配置
@@ -319,6 +321,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             // 更新最终伤害值
             damage[0] = totalDamage;
         }
+        // 伤害增加X%
         private static void realizeSeid362(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             // 获取技能配置中的value1值
@@ -337,7 +340,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             // 更新伤害值
             damage[0] = totalDamage;
         }
-
+        // Next指令
         private static void realizeSeid363(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             JSONObject seidJson = __instance.getSeidJson(seid);
@@ -360,6 +363,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             }
 
         }
+        // Lua脚本返回true继续后续
         private static void realizeSeid364(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             try
@@ -408,7 +412,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 damage[2] = 1;
             }
         }
-
+        // Lua脚本返回增加的伤害
         private static void realizeSeid365(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             JSONObject seidJson = __instance.getSeidJson(seid);
@@ -457,6 +461,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 IsToolsMain.LogInfo("lua返回值出错!");
             }
         }
+        // 概率触发后续
         private static void realizeSeid366(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             int i = __instance.getSeidJson(seid)["value1"].I;
@@ -472,7 +477,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 }
             }
         }
-
+        // Lua脚本返回增加的伤害
         private static void realizeSeid367(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             JSONObject seidJson = __instance.getSeidJson(seid);
@@ -521,7 +526,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 IsToolsMain.LogInfo("lua返回值出错!");
             }
         }
-
+        // Lua脚本返回多段伤害段数
         private static void realizeSeid368(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             JSONObject seidJson = __instance.getSeidJson(seid);
@@ -586,7 +591,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 IsToolsMain.LogInfo("lua返回值出错!");
             }
         }
-
+        // 消耗物品
         private static void realizeSeid379(GUIPackage.Skill __instance, int seid, Avatar attaker, List<int> damage, Avatar receiver)
         {
             JSONObject seidJson = __instance.getSeidJson(seid);

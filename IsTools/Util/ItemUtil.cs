@@ -38,5 +38,10 @@ namespace top.Isteyft.MCS.IsTools.Util
                 player.addItem(i, 1, null, false);
             }
         }
+        public static string GetItemName(int itemid)
+        {
+            _ItemJsonData itemJsonData = _ItemJsonData.DataDict[itemid];
+            return itemJsonData.name;
+        }
     }
 }

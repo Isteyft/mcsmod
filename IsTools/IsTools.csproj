@@ -437,6 +437,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\FuLuItemData.cs" />
     <Compile Include="Data\DaoJuData.cs" />
     <Compile Include="Data\MetaData.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByType.cs" />
@@ -474,6 +475,7 @@
     <Compile Include="DialogEvent\Fight\IS_UsePFaXiang.cs" />
     <Compile Include="DialogEvent\Fight\IS_RemoveFaXiang.cs" />
     <Compile Include="DialogEvent\Fight\IS_RemoveBuff.cs" />
+    <Compile Include="DialogEvent\Item\IS_ZhiZuoFuLu.cs" />
     <Compile Include="DialogEvent\Map\IS_NpcWarp.cs" />
     <Compile Include="DialogEvent\Map\IS_PlayerMove.cs" />
     <Compile Include="DialogEvent\Map\IS_PlayerWalk.cs" />
@@ -515,6 +517,7 @@
     <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
     <Compile Include="Util\AvatarUtils.cs" />
     <Compile Include="Util\FaXiangUtils.cs" />
+    <Compile Include="Util\FuLuUtils.cs" />
     <Compile Include="Util\MusicScanner.cs" />
     <Compile Include="Patch\RoundManagerPatch\LingQiCardPatch.cs" />
     <Compile Include="Patch\SeidPatch\ItemSeidPatch.cs" />
@@ -546,7 +549,6 @@
     <Compile Include="Util\WarpUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DialogEvent\Item\" />
     <Folder Include="Sences\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

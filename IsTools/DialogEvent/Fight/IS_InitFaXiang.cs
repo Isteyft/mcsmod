@@ -37,7 +37,7 @@ namespace top.Isteyft.MCS.IsTools.DialogEvent.Fight
             avatarInstance.transform.SetAsFirstSibling();
             if (isAvatarSkl)
             {
-                FaXiangUtils.InitAvatarSklFace(avatarInstance, i);
+                FaXiangUtils.InitAvatarSklFace(avatarInstance, i, mode);
             }
 
             callback?.Invoke();

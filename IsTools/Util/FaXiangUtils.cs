@@ -135,7 +135,7 @@ namespace top.Isteyft.MCS.IsTools.Util
             }
         }
         // 对于玩家模型特殊处理
-        public static void InitAvatarSklFace(UnityEngine.GameObject avatarInstance, int i)
+        public static void InitAvatarSklFace(UnityEngine.GameObject avatarInstance, int i, int mode = 0)
         {
             try
             {
@@ -158,7 +158,7 @@ namespace top.Isteyft.MCS.IsTools.Util
                 {
                     IsToolsMain.Error("hero-pro没有找到");
                 }
-                avatarInstance.transform.localScale = new UnityEngine.Vector3(0.8f, 0.8f, 0.8f);
+                if (mode == 1) avatarInstance.transform.localScale = new UnityEngine.Vector3(0.8f, 0.8f, 0.8f);
             }
             catch (Exception e)
             {

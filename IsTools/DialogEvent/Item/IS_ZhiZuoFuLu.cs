@@ -12,9 +12,8 @@ namespace top.Isteyft.MCS.IsTools.DialogEvent.Item
         public void Execute(DialogCommand command, DialogEnvironment env, Action callback)
         {
             int fuLuId = command.GetInt(0, 0);
-            int count = command.GetInt(1, 1);
 
-            FuLuUtils.ZhiZuoFuLu(fuLuId, count);
+            FuLuUtils.ZhiZuoFuLu(fuLuId);
 
             callback?.Invoke();
         }

@@ -466,6 +466,7 @@
     <Compile Include="Patch\NPCExPatch.cs" />
     <Compile Include="Patch\NpcJieSuanManagerPatch.cs" />
     <Compile Include="Patch\NPCMapPatch.cs" />
+    <Compile Include="Patch\SceneButtonPatch.cs" />
     <Compile Include="Patch\setMenPaiHaoGanDuPatch.cs" />
     <Compile Include="Patch\StartGamePatch.cs" />
     <Compile Include="Patch\Tab\TabUIPatch.cs" />

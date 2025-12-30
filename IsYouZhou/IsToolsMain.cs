@@ -9,8 +9,11 @@ using BehaviorDesigner.Runtime.Tasks;
 using BepInEx;
 using HarmonyLib;
 using Newtonsoft.Json;
+using top.Isteyft.MCS.IsTools.ModPatch;
+using top.Isteyft.MCS.IsTools.Util;
 using top.Isteyft.MCS.YouZhou.GameData;
 using top.Isteyft.MCS.YouZhou.GamePlayer;
+using top.Isteyft.MCS.YouZhou.Patch;
 using top.Isteyft.MCS.YouZhou.Scene;
 using top.Isteyft.MCS.YouZhou.UI;
 using UnityEngine;
@@ -102,6 +105,11 @@ namespace top.Isteyft.MCS.YouZhou
             base.gameObject.AddComponent<YZSceneManeger>();
         }
 
+        private void Start()
+        {
+            //Harmony.CreateAndPatchAll(typeof(SceneButtonPatch), null);
+        }
+
         // Add these methods to support asset loading
         private void LoadAssetBundle()
         {
@@ -142,7 +150,7 @@ namespace top.Isteyft.MCS.YouZhou
         // 添加地图配置加载方法
         private void LoadMapMoveConfig()
         {
-            IsToolsMain.Log("开始加载配置1");
+            IsToolsMain.Log("开始加载幽州配置1");
             try
             {
                 if (!File.Exists(mapConfigPath))

@@ -450,6 +450,7 @@
     <Compile Include="DialogEnv\Item\IS_GetRandomItemType.cs" />
     <Compile Include="DialogEnv\Item\IS_GetRandomItemTypeID.cs" />
     <Compile Include="DialogEnv\Map\IS_GetCurAllMapIndex.cs" />
+    <Compile Include="DialogEnv\Map\IS_GetMapType.cs" />
     <Compile Include="DialogEnv\Map\IS_GetCurFubenIndex.cs" />
     <Compile Include="DialogEnv\Map\IS_GetPlaceName.cs" />
     <Compile Include="DialogEnv\MenPai\IS_GetMenPai.cs" />
@@ -513,6 +514,7 @@
     <Compile Include="ModPatch\LianQiNamePatch.cs" />
     <Compile Include="ModPatch\MoreNPCInfoPatch.cs" />
     <Compile Include="Patch\AddDaoJuPatch.cs" />
+    <Compile Include="Patch\SceneButtonPatch.cs" />
     <Compile Include="Patch\SkillPatch.cs" />
     <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
     <Compile Include="Util\AvatarUtils.cs" />
@@ -550,6 +552,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sences\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="D:\SteamLibrary\steamapps\workshop\content\1189490\3018994631\plugins\HH_MaiJiu.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

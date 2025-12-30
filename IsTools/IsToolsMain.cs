@@ -7,6 +7,7 @@ using System.IO;
 using System.Reflection;
 using top.Isteyft.MCS.IsTools.Data;
 using top.Isteyft.MCS.IsTools.ModPatch;
+using top.Isteyft.MCS.IsTools.Patch;
 using top.Isteyft.MCS.IsTools.Util;
 using UnityEngine;
 using WXB;
@@ -75,6 +76,10 @@ namespace top.Isteyft.MCS.IsTools
             {
                 LogInfo("检测到更多NPC信息");
                 Harmony.CreateAndPatchAll(typeof(MoreNPCInfoPatch), null);
+            }
+            if (ModUtil.CheckModActive("3018994631"))
+            {
+                Harmony.CreateAndPatchAll(typeof(SceneButtonPatch), null);
             }
             Harmony.CreateAndPatchAll(typeof(LianQiNamePatch), null);
             Harmony.CreateAndPatchAll(typeof(LianQiLastNamePatch), null);

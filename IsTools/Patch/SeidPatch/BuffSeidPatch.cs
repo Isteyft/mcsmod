@@ -76,6 +76,9 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 case 373:
                     ListRealizeSeid373(seid, avatar, buffInfo, flag, __instance);
                     return false;
+                case 374:
+                    ListRealizeSeid373(seid, avatar, buffInfo, flag, __instance);
+                    return false;
                 default:
                     return true;
             }
@@ -405,7 +408,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
 
         }
         // 增加释放技能的属性
-        //private static void ListRealizeSeid373(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        //private static void ListRealizeSeid374(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         //{
         //}
     }

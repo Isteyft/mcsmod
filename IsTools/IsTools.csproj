@@ -455,6 +455,8 @@
     <Compile Include="DialogEnv\Map\IS_GetPlaceName.cs" />
     <Compile Include="DialogEnv\MenPai\IS_GetMenPai.cs" />
     <Compile Include="DialogEnv\Mod\IS_GetConfig.cs" />
+    <Compile Include="DialogEnv\Mod\IS_GetTMYYear.cs" />
+    <Compile Include="DialogEnv\Mod\IS_GetRand.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcNewId.cs" />
     <Compile Include="DialogEnv\Mod\IS_GetStaticValue.cs" />
     <Compile Include="DialogEnv\Mod\IS_GetBindNpcId.cs" />
@@ -463,6 +465,8 @@
     <Compile Include="DialogEnv\Mod\IS_HasMod.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcStaticSkillLevel.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcWuDaoLevel.cs" />
+    <Compile Include="DialogEnv\Npc\IS_CreateOneNpc.cs" />
+    <Compile Include="DialogEnv\Npc\IS_SearchOneNpc.cs" />
     <Compile Include="DialogEnv\Player\IS_HasKeZhanTime.cs" />
     <Compile Include="DialogEnv\Player\IS_HasWuDaoSkills.cs" />
     <Compile Include="DialogEnv\Task\GetTaskIndex.cs" />
@@ -476,6 +480,7 @@
     <Compile Include="DialogEvent\Fight\IS_UsePFaXiang.cs" />
     <Compile Include="DialogEvent\Fight\IS_RemoveFaXiang.cs" />
     <Compile Include="DialogEvent\Fight\IS_RemoveBuff.cs" />
+    <Compile Include="DialogEvent\Item\IS_GetNpcDrop.cs" />
     <Compile Include="DialogEvent\Item\IS_ZhiZuoFuLu.cs" />
     <Compile Include="DialogEvent\Map\IS_NpcWarp.cs" />
     <Compile Include="DialogEvent\Map\IS_PlayerMove.cs" />
@@ -536,6 +541,7 @@
     <Compile Include="Util\AutoSaveUtils.cs" />
     <Compile Include="Util\ItemUtil.cs" />
     <Compile Include="Util\luaUtil.cs" />
+    <Compile Include="Util\NpcUtil.cs" />
     <Compile Include="Util\WudaoUtil.cs" />
     <Compile Include="Util\JsonObjectUtils.cs" />
     <Compile Include="Util\JsonUtil.cs" />

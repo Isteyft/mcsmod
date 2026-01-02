@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using top.Isteyft.MCS.YouZhou.YZAction;
+using top.Isteyft.MCS.YouZhou.GameData;
+using top.Isteyft.MCS.IsTools.Util;
 
 namespace top.Isteyft.MCS.YouZhou.Patch
 {
@@ -48,38 +51,9 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             NoXunLuoNpc(npcDate, dictionary);
         }
 
+        // 宗门NPC不巡逻
         private static void NoXunLuoNpc(JSONObject npcDate, Dictionary<int, int> dictionary)
         {
-            // 遍历 npcDate 的所有字段并打印
-            //StringBuilder sb = new StringBuilder();
-            //sb.AppendLine($"===== NPC {npcDate["id"]?.I} 属性列表 =====");
-
-            //foreach (string key in npcDate.keys)
-            //{
-            //    // 获取字段值（处理不同类型）
-            //    string valueStr;
-            //    if (npcDate[key].IsNumber)
-            //    {
-            //        valueStr = npcDate[key].I.ToString(); // 数字类型
-            //    }
-            //    else if (npcDate[key].IsBool)
-            //    {
-            //        valueStr = npcDate[key].b.ToString(); // 布尔类型
-            //    }
-            //    else if (npcDate[key].IsString)
-            //    {
-            //        valueStr = npcDate[key].str; // 字符串类型
-            //    }
-            //    else
-            //    {
-            //        valueStr = "[Complex Data]"; // 复杂类型（如数组、嵌套JSON）
-            //    }
-
-            //    sb.AppendLine($"{key}: {valueStr}");
-            //}
-
-            //// 打印完整信息
-            //IsToolsMain.LogInfo(sb.ToString());
             if (npcDate.HasField("Type") && npcDate["Type"].I >= 750 && npcDate["Type"].I <= 760)
             {
                 dictionary[35] = 0;

@@ -430,6 +430,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DialogEnv\YZ_CheckLuDing.cs" />
+    <Compile Include="DialogEnv\YZ_GetNingZhouLiuPai.cs" />
     <Compile Include="DialogEnv\YZ_GetData.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadBZ.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadHZ.cs" />
@@ -448,6 +450,7 @@
     <Compile Include="DialogEvent\LoadBigMap\YZ_LoadZZIndex.cs" />
     <Compile Include="DialogEvent\LoadBigMap\YZ_LoadXJYIndex.cs" />
     <Compile Include="DialogEvent\LoadBigMap\YZ_LoadIndex.cs" />
+    <Compile Include="DialogEvent\YZ_AddLuDing.cs" />
     <Compile Include="DialogEvent\YZ_OpenJiaZu.cs" />
     <Compile Include="DialogEvent\YZ_OpenMap.cs" />
     <Compile Include="DialogEvent\LoadBigMap\YZ_GetRes.cs" />
@@ -465,6 +468,7 @@
     <Compile Include="Patch\BaseMapCompontPatch.cs" />
     <Compile Include="Patch\NPCExPatch.cs" />
     <Compile Include="Patch\NpcJieSuanManagerPatch.cs" />
+    <Compile Include="Patch\NpcJieSuanPatch.cs" />
     <Compile Include="Patch\NPCMapPatch.cs" />
     <Compile Include="Patch\SceneButtonPatch.cs" />
     <Compile Include="Patch\setMenPaiHaoGanDuPatch.cs" />

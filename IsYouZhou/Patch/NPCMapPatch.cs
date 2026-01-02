@@ -23,8 +23,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             {
                 int randomInt = NpcJieSuanManager.inst.getRandomInt(100, 146);
                 NPCMapPatch.AddNpcToFuBen(npcId, "F幽州", randomInt);
-                bool flag2 = isCanJieSha && NPCEx.GetFavor(npcId) < 200;
-                if (flag2)
+                if (isCanJieSha && NPCEx.GetFavor(npcId) < 200)
                 {
                     NpcJieSuanManager.inst.allBigMapNpcList.Add(npcId);
                 }

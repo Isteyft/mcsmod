@@ -72,5 +72,13 @@ namespace top.Isteyft.MCS.IsTools.Util
         {
             return $"{WorkshopTool.GetModDirectory(steamId)?.FullName}/plugins";
         }
+
+        ///   <summary>  
+        ///   返回大于等于min且小于max的随机数
+        ///   </summary>
+        public static int GetRandom(int min, int max)
+        {
+            return new System.Random().Next(min, max);
+        }
     }
 }

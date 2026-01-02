@@ -23,13 +23,13 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             }
             if (!MyUtil.XJYinit)
             {
-                MyUtil.init = true;
+                MyUtil.XJYinit = true;
                 string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/雪剑域.ab";
                 AssetBundle.LoadFromFile(path);
             }
             if (!MyUtil.ZZinit)
             {
-                MyUtil.init = true;
+                MyUtil.ZZinit = true;
                 string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/中州.ab";
                 AssetBundle.LoadFromFile(path);
             }

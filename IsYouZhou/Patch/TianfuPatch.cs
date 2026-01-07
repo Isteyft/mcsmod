@@ -264,7 +264,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             
             // 添加最终的故事文本
             Text text2 = finallyDesc;
-            text2.text += "十六岁那年，你意外捡到了一把满是锈迹的钝剑，无意间唤醒了其中沉睡的老者灵魂。在老者的指引下，长生之途的大门缓缓为你敞开——\n";
+            text2.text += "十六岁那年，在指引下，长生之途的大门缓缓为你敞开——\n";
 
             finallyPage.SetActive(true);
         }

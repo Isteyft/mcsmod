@@ -11,9 +11,6 @@ using UnityEngine;
 
 namespace top.Isteyft.MCS.IsTools.Patch
 {
-    public class testPatch
-    {
-    }
 
     //获取场景信息
     //[HarmonyPatch(typeof(CmdSetBG))]

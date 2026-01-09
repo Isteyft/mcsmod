@@ -466,6 +466,7 @@
     <Compile Include="DialogEnv\Npc\IS_GetNpcStaticSkillLevel.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcWuDaoLevel.cs" />
     <Compile Include="DialogEnv\Npc\IS_CreateOneNpc.cs" />
+    <Compile Include="DialogEnv\Npc\IS_SearchOneNpcByFav.cs" />
     <Compile Include="DialogEnv\Npc\IS_SearchOneNpc.cs" />
     <Compile Include="DialogEnv\Player\IS_HasKeZhanTime.cs" />
     <Compile Include="DialogEnv\Player\IS_HasWuDaoSkills.cs" />

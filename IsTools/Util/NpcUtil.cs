@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUIPackage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,6 +58,28 @@ namespace top.Isteyft.MCS.IsTools.Util
                 list = list.Where(x => x["XingGe"].I > 10).ToList();
             IsToolsMain.LogInfo("搜索到npc的数量" + list.Count);
             return list.Select(x => x["id"].I).ToList();
+        }
+
+        ///   <summary>  
+        ///   按条件筛选npc，不强制要求的参数写成0，结果为id列表，增加好感
+        ///   </summary>  
+        public static List<int> SearchNpc(int haogan = -201)
+        {
+            var result = new List<int>();
+
+            foreach (var key in jsonData.instance.AvatarRandomJsonData.keys)
+            {
+                JSONObject npc = jsonData.instance.AvatarRandomJsonData[key]; // 获取值
+
+                int id = int.Parse(key);
+                if (id < 20000) continue;
+                if (npc["HaoGanDu"].I < haogan) continue;
+
+                result.Add(id);
+            }
+
+            IsToolsMain.LogInfo("搜索到npc的数量" + result.Count);
+            return result;
         }
 
         ///   <summary>  

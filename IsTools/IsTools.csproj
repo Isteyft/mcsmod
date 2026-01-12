@@ -457,6 +457,8 @@
     <Compile Include="DialogEnv\Mod\IS_GetConfig.cs" />
     <Compile Include="DialogEnv\Mod\IS_GetTMYYear.cs" />
     <Compile Include="DialogEnv\Mod\IS_GetRand.cs" />
+    <Compile Include="DialogEnv\Npc\IS_GetNpcTag.cs" />
+    <Compile Include="DialogEnv\Npc\IS_GetNpcXingGe.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcNewId.cs" />
     <Compile Include="DialogEnv\Mod\IS_GetStaticValue.cs" />
     <Compile Include="DialogEnv\Mod\IS_GetBindNpcId.cs" />

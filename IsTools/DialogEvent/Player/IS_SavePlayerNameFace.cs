@@ -22,6 +22,7 @@ namespace top.Isteyft.MCS.IsTools.DialogEvent.Player
             var player = env.player;
             ModConfigUtils.SetConfigProperty($"{name}Face", faceJsonString);
             ModConfigUtils.SetConfigProperty($"{name}Name", player.firstName.Replace(" ", "") + player.lastName.Replace(" ", ""));
+            ModConfigUtils.SetConfigProperty($"{name}Sex", player.Sex);
             callback?.Invoke();
         }
     }

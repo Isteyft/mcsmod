@@ -96,7 +96,7 @@ namespace top.Isteyft.MCS.IsTools.Util
                     {
                         // 生成 1-100 的随机数
                         int randomValue = new System.Random().Next(1, 101);
-                        if (randomValue > (50 - fuLuItem.FuLuLevel * 15 - 15))
+                        if (randomValue > (50 - fuLuItem.FuLuLevel * 15))
                         {
                             UIPopTip.Inst.Pop($"花费{fuLuItem.FuLuTime*selectedNumber}天，{ItemUtil.GetItemName(fuLuItemID)}制作失败。");
                             return;

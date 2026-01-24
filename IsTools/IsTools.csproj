@@ -525,6 +525,7 @@
     <Compile Include="Patch\SceneButtonPatch.cs" />
     <Compile Include="Patch\SkillPatch.cs" />
     <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
+    <Compile Include="Patch\UI\WuDaoUI.cs" />
     <Compile Include="Util\AvatarUtils.cs" />
     <Compile Include="Util\FaXiangUtils.cs" />
     <Compile Include="Util\FuLuUtils.cs" />

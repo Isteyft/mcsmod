@@ -84,6 +84,16 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             }
         }
 
+        [HarmonyPostfix]
+        [HarmonyPatch("ListRealizeSeid56")]
+        public static void seid56_Postfix(int seid, Avatar avatar, List<int> buffInfo, List<int> flag)
+        {
+            if (avatar.HP_Max < avatar.HP)
+            {
+                avatar.setHP(avatar.HP_Max);
+            }
+        }
+
         [HarmonyPrefix]
         [HarmonyPatch("CanRealizeSeid")]
         public static bool CanRealizeSeid_Prefix(ref bool __result, Buff __instance, Avatar _avatar, List<int> flag, int nowSeid, BuffLoopData buffLoopData = null, List<int> buffInfo = null)

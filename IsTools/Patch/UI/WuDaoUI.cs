@@ -105,7 +105,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.UI
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Patch_WuDao_UpdateUI 错误: {ex.Message}");
+                IsToolsMain.Error($"Patch_WuDao_UpdateUI 错误: {ex.Message}");
                 return true;
             }
         }

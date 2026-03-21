@@ -305,7 +305,7 @@ namespace top.Isteyft.MCS.IsTools.Patch
         /// <summary>
         /// 更新热键文本显示
         /// </summary>
-        private static void UpdateHotKeyText(GameObject skillBtn, KeyCode hotKey)
+        public static void UpdateHotKeyText(GameObject skillBtn, KeyCode hotKey)
         {
             var hotKeyText = skillBtn.transform.Find("Slot/LeftUpMask/HotKey")?.GetComponent<Text>();
             if (hotKeyText != null)

@@ -1,0 +1,6 @@
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\NewIndex.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\NewIndex.pdb
+F:\ProjectAll\C#\NewIndex\obj\Debug\NewIndex.csproj.AssemblyReference.cache
+F:\ProjectAll\C#\NewIndex\obj\Debug\NewIndex.csproj.CoreCompileInputs.cache
+F:\ProjectAll\C#\NewIndex\obj\Debug\NewIndex.dll
+F:\ProjectAll\C#\NewIndex\obj\Debug\NewIndex.pdb

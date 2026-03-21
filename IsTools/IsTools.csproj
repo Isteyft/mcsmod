@@ -437,9 +437,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\FightNowSkills.cs" />
+    <Compile Include="Data\LingShouData.cs" />
     <Compile Include="Data\FuLuItemData.cs" />
     <Compile Include="Data\DaoJuData.cs" />
     <Compile Include="Data\MetaData.cs" />
+    <Compile Include="DialogEnv\Fight\IS_GetSkills.cs" />
+    <Compile Include="DialogEnv\Fight\IS_GetCardSum.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByType.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeP.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeSum.cs" />
@@ -473,6 +477,10 @@
     <Compile Include="DialogEnv\Player\IS_HasKeZhanTime.cs" />
     <Compile Include="DialogEnv\Player\IS_HasWuDaoSkills.cs" />
     <Compile Include="DialogEnv\Task\GetTaskIndex.cs" />
+    <Compile Include="DialogEvent\Fight\IS_AddNowSkill.cs" />
+    <Compile Include="DialogEvent\Fight\IS_GetNowSkill.cs" />
+    <Compile Include="DialogEvent\Fight\IS_AddSkill.cs" />
+    <Compile Include="DialogEvent\Fight\IS_ClearSkill.cs" />
     <Compile Include="DialogEvent\Fight\IS_GetSkill.cs" />
     <Compile Include="DialogEvent\Fight\IS_ActionFaXiangPlus.cs" />
     <Compile Include="DialogEvent\Fight\IS_ActionFaXiang.cs" />
@@ -522,10 +530,16 @@
     <Compile Include="ModPatch\LianQiNamePatch.cs" />
     <Compile Include="ModPatch\MoreNPCInfoPatch.cs" />
     <Compile Include="Patch\AddDaoJuPatch.cs" />
+    <Compile Include="Patch\onBuffTickByTypePatch.cs" />
     <Compile Include="Patch\SceneButtonPatch.cs" />
     <Compile Include="Patch\SkillPatch.cs" />
     <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
+    <Compile Include="Patch\UI\BagItemPatch.cs" />
+    <Compile Include="Patch\UI\EquipSlot\EquipItemPatch.cs" />
+    <Compile Include="Patch\UI\EquipSlot\FightEquipSlot.cs" />
+    <Compile Include="Patch\UI\EquipSlot\TabWuPingPanelPatch.cs" />
     <Compile Include="Patch\UI\WuDaoUI.cs" />
+    <Compile Include="Patch\UI\EquipSlot\NewEquipSlots.cs" />
     <Compile Include="Util\AvatarUtils.cs" />
     <Compile Include="Util\FaXiangUtils.cs" />
     <Compile Include="Util\FuLuUtils.cs" />

@@ -1,3 +1,4 @@
 cankao
 MCSCheatPlugin-main
-mod
+./mod
+./mod/**

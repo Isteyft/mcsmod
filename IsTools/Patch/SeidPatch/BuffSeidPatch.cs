@@ -76,8 +76,8 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 case 373:
                     ListRealizeSeid373(seid, avatar, buffInfo, flag, __instance);
                     return false;
-                case 374:
-                    ListRealizeSeid373(seid, avatar, buffInfo, flag, __instance);
+                case 379:
+                    ListRealizeSeid379(seid, avatar, buffInfo, flag, __instance);
                     return false;
                 default:
                     return true;
@@ -102,7 +102,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             switch (nowSeid)
             {
                 case 367:
-                {
+                    {
                         try
                         {
                             JSONObject seidJson = __instance.getSeidJson(nowSeid);
@@ -144,9 +144,10 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                             }
                             return true;
                         }
-                        catch {
+                        catch
+                        {
                             IsToolsMain.LogInfo("lua返回值出错!不继续执行逻辑!");
-                            return false; 
+                            return false;
                         }
                     }
                 default:
@@ -154,9 +155,9 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             }
         }
 
-            // <summary>
-            /// SEID 360 修改实现：随机从buff数组中获得相应的buff数量
-            /// </summary>
+        // <summary>
+        /// SEID 360 修改实现：随机从buff数组中获得相应的buff数量
+        /// </summary>
         private static void ListRealizeSeid360(int seid, Avatar avatar, IReadOnlyList<int> flag, Buff instance)
         {
             // 从配置获取参数
@@ -345,7 +346,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             List<int> buffCounts = seidJson.GetFieldList("value2");    // Buff数量列表
             int count = seidJson.GetField("value3").I;    // 每多少
             int num = flag[0];      //治疗量
-            
+
             // 遍历buffIds和buffCounts列表，为每个Buff ID添加对应的数量
             for (int i = 0; i < buffIds.Count && i < buffCounts.Count; i++)
             {
@@ -355,7 +356,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 if (num / count > 1)
                 {
                     num2 = -(num / count) * buffCount * buffInfo[1];  // 治疗量 x buff数量 x 目前buff层数
-                   // IsToolsMain.LogInfo($"371, {buffId}, {num2}");
+                                                                      // IsToolsMain.LogInfo($"371, {buffId}, {num2}");
                     avatar.spell.addBuff(buffId, num2);
                 }
             }
@@ -368,7 +369,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             // 目标0
             Avatar targetAvatar = instance.getTargetAvatar(seid, avatar);
             // X Buff ID  真伤 目标
-            int i = seidJson["value1"].I;    
+            int i = seidJson["value1"].I;
             // 目标1
             Avatar target1 = avatar;
             if (seidJson["target1"].I != 1)
@@ -394,10 +395,10 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 .Select(subList => subList.Last())   // 取最后一个元素
                 .ToList();
             int i = seidJson["value2"].I;
-            
+
             // 定义需要额外触发onBuffTick的buffid数组（移到循环外部，避免重复创建）
             int[] extraTriggerBuffIds = new int[] { 250000, 250003 };
-            
+
             int num;
             foreach (int i2 in lastNumbers)
             {
@@ -421,5 +422,10 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
         //private static void ListRealizeSeid374(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
         //{
         //}
+
+        //修改触发
+        private static void ListRealizeSeid379(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        {
+        }
     }
 }

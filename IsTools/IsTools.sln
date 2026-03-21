@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XuanDaoZong", "..\IsXuanDao
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouZhou", "..\IsYouZhou\YouZhou.csproj", "{220DD2B2-A8AB-41F2-965B-FDCE9C9FBD7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewIndex", "..\NewIndex\NewIndex.csproj", "{ADE618F0-C9AB-49E1-8F25-E5C0FCCF90E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{220DD2B2-A8AB-41F2-965B-FDCE9C9FBD7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{220DD2B2-A8AB-41F2-965B-FDCE9C9FBD7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{220DD2B2-A8AB-41F2-965B-FDCE9C9FBD7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE618F0-C9AB-49E1-8F25-E5C0FCCF90E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE618F0-C9AB-49E1-8F25-E5C0FCCF90E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE618F0-C9AB-49E1-8F25-E5C0FCCF90E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE618F0-C9AB-49E1-8F25-E5C0FCCF90E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,6 +17,7 @@ namespace top.Isteyft.MCS.IsTools.Data
         public static Dictionary<int, ModSeidMeta> ItemEquipSeidMetas { get; set; }
         public static Dictionary<int, ModSeidMeta> ItemUseSeidMetas { get; set; }
         public static Dictionary<int, ModSeidMeta> StaticSkillSeidMeta { get; set; }
+        public static Dictionary<int, ModSeidMeta> ItemTypeMeta { get; set; }
 
         public static List<ModBuffDataTriggerType> BuffTriggerType { get; set; }
         public static void Init()
@@ -27,6 +28,7 @@ namespace top.Isteyft.MCS.IsTools.Data
             ItemUseSeidMetas = JObject.Parse(File.ReadAllText(Jsonpath + "/Meta/ItemUseSeidMeta.json")).ToObject<Dictionary<int, ModSeidMeta>>();
             StaticSkillSeidMeta = JObject.Parse(File.ReadAllText(Jsonpath + "/Meta/StaticSkillSeidMeta.json")).ToObject<Dictionary<int, ModSeidMeta>>();
             BuffTriggerType = JArray.Parse(File.ReadAllText(Jsonpath + "/Meta/BuffTriggerType.json")).ToObject<List<ModBuffDataTriggerType>>();
+            BuffTriggerType = JArray.Parse(File.ReadAllText(Jsonpath + "/Meta/ItemType.json")).ToObject<List<ModBuffDataTriggerType>>();
         }
         public static string Jsonpath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
     }

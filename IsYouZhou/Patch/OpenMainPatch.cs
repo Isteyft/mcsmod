@@ -4,6 +4,7 @@ using SkySwordKill.Next.Utils;
 using SkySwordKill.NextMoreCommand.Utils;
 using System;
 using System.Collections.Generic;
+using top.Isteyft.MCS.IsTools.Util;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -77,7 +78,14 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             // 复制按钮
             GameObject btnObj = __instance.新主界面.transform.Find("Panel/btn/神仙斗法")
                 .gameObject.CopyGameObject(null, "Next");
-            btnObj.transform.MoveLocal(new Vector3(0f, 172f, 0f));
+            if (ModUtil.CheckModActive("2939918022"))
+            {
+                btnObj.transform.MoveLocal(new Vector3(0f, 258f, 0f));
+            } else
+            {
+                btnObj.transform.MoveLocal(new Vector3(0f, 172f, 0f));
+            }
+            
 
             FpBtn btn = btnObj.GetComponent<FpBtn>();
             btn.mouseUpEvent = new UnityEvent();

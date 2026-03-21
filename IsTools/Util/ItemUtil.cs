@@ -43,5 +43,11 @@ namespace top.Isteyft.MCS.IsTools.Util
             _ItemJsonData itemJsonData = _ItemJsonData.DataDict[itemid];
             return itemJsonData.name;
         }
+
+        public static int GetItemType(int itemid)
+        {
+            _ItemJsonData itemJsonData = _ItemJsonData.DataDict[itemid];
+            return itemJsonData.type;
+        }
     }
 }

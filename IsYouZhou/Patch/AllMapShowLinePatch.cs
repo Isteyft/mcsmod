@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using top.Isteyft.MCS.YouZhou.Utils;
+using SkySwordKill.Next;
 
 namespace top.Isteyft.MCS.YouZhou.Patch
 {
@@ -49,6 +50,87 @@ namespace top.Isteyft.MCS.YouZhou.Patch
                     componentsInChildren[0].commandList = null;
                     gameObject2.GetComponent<MapComponent>().NodeIndex = 750;
                     gameObject2.GetComponent<MapComponent>().NodeGroup = 750;
+                    value.Add(gameObject2.GetComponent<MapComponent>());
+                }
+                if (MapNodeManager.inst.transform.Find("LevelsWorld0/751") == null)
+                {
+                    GameObject gameObject = MapNodeManager.inst.transform.Find("LevelsWorld0/13").gameObject;
+                    GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(gameObject);
+                    gameObject2.name = "751";
+                    gameObject2.transform.parent = MapNodeManager.inst.transform.Find("LevelsWorld0");
+                    gameObject2.transform.localPosition = new Vector3(5f, 12f, 0f);
+                    gameObject2.gameObject.SetActive(true);
+                    gameObject2.GetComponent<MapComponent>().gameObject.SetActive(true);
+                    //gameObject2.transform.localPosition += new Vector3(-1f, 1f, 0f);
+                    List<MapComponent> value = Traverse.Create(__instance).Field("maps").GetValue<List<MapComponent>>();
+                    UnityEngine.Object.Destroy(gameObject2.gameObject.GetComponent<AllMapNodeClick>());
+                    gameObject2.transform.Find("ImageName/Canvas/Text").GetComponent<Text>().text = "中州";
+                    gameObject2.transform.Find("Level1Move").GetComponent<SpriteRenderer>().sprite = IsToolsMain.I.UIManagerHandle.spriteBank["中州.png"];
+                    gameObject2.transform.Find("Level1Move").localScale = new Vector3(1f, 1f, 0f);
+                    gameObject2.transform.Find("Level1Move").localPosition = new Vector3(-0.362f, -2.82f, 0f);
+                    gameObject2.transform.Find("flowchat/enter/Canvas/Button").GetComponent<Button>().onClick.AddListener(delegate ()
+                    {
+                        MyUtil.LoadZZ(301);
+                    });
+                    Block[] componentsInChildren = gameObject2.transform.Find("flowchat").GetComponentsInChildren<Block>();
+                    componentsInChildren[0]._EventHandler = null;
+                    componentsInChildren[0].commandList = null;
+                    gameObject2.GetComponent<MapComponent>().NodeIndex = 751;
+                    gameObject2.GetComponent<MapComponent>().NodeGroup = 751;
+                    value.Add(gameObject2.GetComponent<MapComponent>());
+                }
+                if (MapNodeManager.inst.transform.Find("LevelsWorld0/752") == null)
+                {
+                    GameObject gameObject = MapNodeManager.inst.transform.Find("LevelsWorld0/13").gameObject;
+                    GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(gameObject);
+                    gameObject2.name = "752";
+                    gameObject2.transform.parent = MapNodeManager.inst.transform.Find("LevelsWorld0");
+                    gameObject2.transform.localPosition = new Vector3(-16f, 2f, 0f);
+                    gameObject2.gameObject.SetActive(true);
+                    gameObject2.GetComponent<MapComponent>().gameObject.SetActive(true);
+                    //gameObject2.transform.localPosition += new Vector3(-1f, 1f, 0f);
+                    List<MapComponent> value = Traverse.Create(__instance).Field("maps").GetValue<List<MapComponent>>();
+                    UnityEngine.Object.Destroy(gameObject2.gameObject.GetComponent<AllMapNodeClick>());
+                    gameObject2.transform.Find("ImageName/Canvas/Text").GetComponent<Text>().text = "衡州";
+                    gameObject2.transform.Find("Level1Move").GetComponent<SpriteRenderer>().sprite = IsToolsMain.I.UIManagerHandle.spriteBank["衡州.png"];
+                    gameObject2.transform.Find("Level1Move").localScale = new Vector3(1f, 1f, 0f);
+                    gameObject2.transform.Find("Level1Move").localPosition = new Vector3(-0.362f, -2.82f, 0f);
+                    gameObject2.transform.Find("flowchat/enter/Canvas/Button").GetComponent<Button>().onClick.AddListener(delegate ()
+                    {
+                        MyUtil.LoadHZ(501);
+                    });
+                    Block[] componentsInChildren = gameObject2.transform.Find("flowchat").GetComponentsInChildren<Block>();
+                    componentsInChildren[0]._EventHandler = null;
+                    componentsInChildren[0].commandList = null;
+                    gameObject2.GetComponent<MapComponent>().NodeIndex = 752;
+                    gameObject2.GetComponent<MapComponent>().NodeGroup = 752;
+                    value.Add(gameObject2.GetComponent<MapComponent>());
+                }
+                if (MapNodeManager.inst.transform.Find("LevelsWorld0/753") == null)
+                {
+                    GameObject gameObject = MapNodeManager.inst.transform.Find("LevelsWorld0/13").gameObject;
+                    GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(gameObject);
+                    gameObject2.name = "753";
+                    gameObject2.transform.parent = MapNodeManager.inst.transform.Find("LevelsWorld0");
+                    gameObject2.transform.localPosition = new Vector3(17f, 12f, 0f);
+                    gameObject2.gameObject.SetActive(true);
+                    gameObject2.GetComponent<MapComponent>().gameObject.SetActive(true);
+                    //gameObject2.transform.localPosition += new Vector3(-1f, 1f, 0f);
+                    List<MapComponent> value = Traverse.Create(__instance).Field("maps").GetValue<List<MapComponent>>();
+                    UnityEngine.Object.Destroy(gameObject2.gameObject.GetComponent<AllMapNodeClick>());
+                    gameObject2.transform.Find("ImageName/Canvas/Text").GetComponent<Text>().text = "渝州";
+                    gameObject2.transform.Find("Level1Move").GetComponent<SpriteRenderer>().sprite = IsToolsMain.I.UIManagerHandle.spriteBank["渝州.png"];
+                    gameObject2.transform.Find("Level1Move").localScale = new Vector3(1f, 1f, 0f);
+                    gameObject2.transform.Find("Level1Move").localPosition = new Vector3(-0.362f, -2.82f, 0f);
+                    gameObject2.transform.Find("flowchat/enter/Canvas/Button").GetComponent<Button>().onClick.AddListener(delegate ()
+                    {
+                        MyUtil.LoadYuZhou(1301);
+                    });
+                    Block[] componentsInChildren = gameObject2.transform.Find("flowchat").GetComponentsInChildren<Block>();
+                    componentsInChildren[0]._EventHandler = null;
+                    componentsInChildren[0].commandList = null;
+                    gameObject2.GetComponent<MapComponent>().NodeIndex = 753;
+                    gameObject2.GetComponent<MapComponent>().NodeGroup = 753;
                     value.Add(gameObject2.GetComponent<MapComponent>());
                 }
             };

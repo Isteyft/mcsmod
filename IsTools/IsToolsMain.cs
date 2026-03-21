@@ -98,6 +98,7 @@ namespace top.Isteyft.MCS.IsTools
                     LoadEffectAssetBundles(directoryInfo.FullName + "/plugins/BaizeAssets/Effect");
                     LoadDaoJu(directoryInfo.FullName + "/plugins/BaizeAssets/config/DaoJu.json");
                     LoadFuLu(directoryInfo.FullName + "/plugins/BaizeAssets/config/FuLuItem.json");
+                    LoadLingShou(directoryInfo.FullName + "/plugins/BaizeAssets/config/LingShou.json");
                 }
             }
             DirectoryInfo directoryInfo2 = new DirectoryInfo(Application.dataPath + "/../本地Mod测试");
@@ -110,6 +111,7 @@ namespace top.Isteyft.MCS.IsTools
                     LoadEffectAssetBundles(directoryInfo3.FullName + "/plugins/BaizeAssets/Effect");
                     LoadDaoJu(directoryInfo3.FullName + "/plugins/BaizeAssets/config/DaoJu.json");
                     LoadFuLu(directoryInfo3.FullName + "/plugins/BaizeAssets/config/FuLuItem.json");
+                    LoadLingShou(directoryInfo3.FullName + "/plugins/BaizeAssets/config/LingShou.json");
                 }
             }
         }
@@ -132,6 +134,17 @@ namespace top.Isteyft.MCS.IsTools
                 IsToolsMain.LogInfo("加载符箓配置:" + path);
                 List<FuLuItemData> collection = JsonConvert.DeserializeObject<List<FuLuItemData>>(value);
                 FuLuItemData.FuLuData.AddRange(collection);
+            }
+        }
+
+        private void LoadLingShou(string path)
+        {
+            string value;
+            if (JsonUtil.TryGetJson(path, out value))
+            {
+                IsToolsMain.LogInfo("加载灵兽配置:" + path);
+                List<LingShouData> collection = JsonConvert.DeserializeObject<List<LingShouData>>(value);
+                LingShouData.LSData.AddRange(collection);
             }
         }
 

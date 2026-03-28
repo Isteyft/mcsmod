@@ -25,6 +25,9 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 case 361:
                     RealizeSeid361(__instance, seid, flag, avatar, avatar2, type);
                     return false;
+                case 362:
+                    RealizeSeid362(__instance, seid, flag, avatar, avatar2, type);
+                    return false;
                 default:
                     return true;
             }
@@ -59,6 +62,20 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             if (!attaker.isPlayer())
             {
                 attaker.setHP(attaker.HP + attaker.HP * ((int)__instance.getSeidJson(seid)["value1"].n / 100));
+            }
+        }
+
+        private static void RealizeSeid362(StaticSkill __instance, int seid, List<int> damage, Avatar attaker, Avatar receiver, int type)
+        {
+            JSONObject seidJson = __instance.getSeidJson(seid);
+            JSONObject jSONObject = seidJson["value1"];
+            JSONObject jSONObject2 = seidJson["value2"];
+            if (!attaker.isPlayer())
+            {
+                for (int i = 0; i < jSONObject.Count; i++)
+                {
+                    attaker.spell.addDBuff(jSONObject[i].I, jSONObject2[i].I);
+                }
             }
         }
     }

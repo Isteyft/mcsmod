@@ -86,23 +86,27 @@ namespace top.Isteyft.MCS.IsTools.Util
             {
                 if (isPlayer)
                 {
-                    // 然后微调坐标（例如：x+0.5, y+1, z不变）
-                    avatarInstance.transform.position = new UnityEngine.Vector3(
-                        nowPlayer.transform.position.x - 1,
-                        nowPlayer.transform.position.y + 0.5f,
-                        nowPlayer.transform.position.z
+                    //avatarInstance.transform.position = new UnityEngine.Vector3(
+                    //    nowPlayer.transform.position.x - 1,
+                    //    nowPlayer.transform.position.y + 0.5f,
+                    //    nowPlayer.transform.position.z
+                    //);
+                    avatarInstance.transform.localPosition = new UnityEngine.Vector3(
+                        0f,
+                        0.75f,
+                        -1.5f
                     );
                 }
                 else
                 {
-                    avatarInstance.transform.position = new UnityEngine.Vector3(
-                        -nowPlayer.transform.position.x + 1,
-                        nowPlayer.transform.position.y + 0.5f,
-                        nowPlayer.transform.position.z
+                    avatarInstance.transform.localPosition = new UnityEngine.Vector3(
+                        3f,
+                        0.75f,
+                        -1.5f
                     );
                     avatarInstance.transform.rotation = UnityEngine.Quaternion.Euler(
                         nowPlayer.transform.rotation.eulerAngles.x,
-                        nowPlayer.transform.rotation.eulerAngles.y + 180,
+                        nowPlayer.transform.rotation.eulerAngles.y,
                         nowPlayer.transform.rotation.eulerAngles.z
                     );
                 }
@@ -111,23 +115,22 @@ namespace top.Isteyft.MCS.IsTools.Util
             {
                 if (isPlayer)
                 {
-                    // 然后微调坐标（例如：x+0.5, y+1, z不变）
-                    avatarInstance.transform.position = new UnityEngine.Vector3(
-                        nowPlayer.transform.position.x + 2f,
-                        nowPlayer.transform.position.y - 0.5f,
-                        nowPlayer.transform.position.z - 1
+                    avatarInstance.transform.localPosition = new UnityEngine.Vector3(
+                        1.5f,
+                        -0.75f,
+                        3f
                     );
                 }
                 else
                 {
-                    avatarInstance.transform.position = new UnityEngine.Vector3(
-                        -nowPlayer.transform.position.x - 2f,
-                        nowPlayer.transform.position.y - 0.5f,
-                        nowPlayer.transform.position.z - 1
+                    avatarInstance.transform.localPosition = new UnityEngine.Vector3(
+                        -1.5f,
+                        -0.75f,
+                        3f
                     );
                     avatarInstance.transform.rotation = UnityEngine.Quaternion.Euler(
                         nowPlayer.transform.rotation.eulerAngles.x,
-                        nowPlayer.transform.rotation.eulerAngles.y + 180,
+                        nowPlayer.transform.rotation.eulerAngles.y,
                         nowPlayer.transform.rotation.eulerAngles.z
                     );
                 }
@@ -164,6 +167,71 @@ namespace top.Isteyft.MCS.IsTools.Util
             {
                 IsToolsMain.Error(e);
             }
+        }
+
+        /// <summary>
+        /// 移动指定GameObject的位置
+        /// </summary>
+        /// <param name="target">需要移动的游戏物体</param>
+        /// <param name="x">X轴偏移量 (正值向右)</param>
+        /// <param name="y">Y轴偏移量 (正值向上)</param>
+        /// <param name="z">Z轴偏移量 (正值向前/远离摄像机)</param>
+        public static void MoveGameObjectPosition(UnityEngine.GameObject target, float x, float y, float z)
+        {
+            if (target == null)
+            {
+                IsToolsMain.Error("目标GameObject为空，无法移动位置");
+                return;
+            }
+
+            // 获取当前位置
+            UnityEngine.Vector3 currentPos = target.transform.position;
+
+            // 计算新位置
+            UnityEngine.Vector3 newPos = new UnityEngine.Vector3(
+                currentPos.x + x,
+                currentPos.y + y,
+                currentPos.z + z
+            );
+
+            // 应用新位置
+            target.transform.position = newPos;
+        }
+
+        /// <summary>
+        /// 更新指定GameObject的缩放大小
+        /// </summary>
+        /// <param name="target">需要更新的游戏物体</param>
+        /// <param name="scale">统一缩放值 (例如 1.0f 为原大, 0.5f 为一半)</param>
+        public static void UpdateGameObjectScale(UnityEngine.GameObject target, float scale)
+        {
+            if (target == null)
+            {
+                IsToolsMain.Error("目标GameObject为空，无法更新大小");
+                return;
+            }
+
+            UnityEngine.Vector3 newScale = new UnityEngine.Vector3(scale, scale, scale);
+            target.transform.localScale = newScale;
+        }
+
+        /// <summary>
+        /// 更新指定GameObject的旋转角度
+        /// </summary>
+        /// <param name="target">需要更新的游戏物体</param>
+        /// <param name="x">X轴角度 ( pitch / 俯仰 )</param>
+        /// <param name="y">Y轴角度 ( yaw / 偏航 )</param>
+        /// <param name="z">Z轴角度 ( roll / 翻滚 )</param>
+        public static void UpdateGameObjectRotation(UnityEngine.GameObject target, float x, float y, float z)
+        {
+            if (target == null)
+            {
+                IsToolsMain.Error("目标GameObject为空，无法更新旋转");
+                return;
+            }
+
+            UnityEngine.Vector3 newRotation = new UnityEngine.Vector3(x, y, z);
+            target.transform.rotation = UnityEngine.Quaternion.Euler(newRotation);
         }
     }
 }

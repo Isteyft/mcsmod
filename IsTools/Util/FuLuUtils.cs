@@ -76,37 +76,55 @@ namespace top.Isteyft.MCS.IsTools.Util
                     // 拥有省材时制作
                     RemoveZhiZuoFuLuNum(fuLuItem, selectedNumber);
                     // 制作张数
-                    int num = 1;
+                    int num = 0;
+                    int noSuccessNum = 0;
+                    int successNum = 0;
                     // 额外产出的概率
                     int p0 = 0;
-                    int randomP0 = new System.Random().Next(1, 101);
                     // 凝符增加10%的额外产出1张符箓的概率
                     if (WudaoUtil.HasWuDaoSkill(2321)) p0 += 10;
                     if (WudaoUtil.HasWuDaoSkill(2332)) p0 += 20;
                     if (WudaoUtil.HasWuDaoSkill(2341)) p0 += 30;
-                    if (p0 > 0 && randomP0 <= p0) num += 1;
-
-                    avatar.AddTime(fuLuItem.FuLuTime*selectedNumber, 0, 0);
-
-                    if (WudaoUtil.HasWuDaoSkill(2341))
+                    System.Random random = new System.Random();
+                    for (int i = 0; i < selectedNumber; i++)
                     {
-                        num *= 2;
-                    }
-                    else
-                    {
-                        // 生成 1-100 的随机数
-                        int randomValue = new System.Random().Next(1, 101);
-                        if (randomValue > (50 - fuLuItem.FuLuLevel * 15))
+                        int nowNum = 1;
+                        int randomP0 = random.Next(1, 101);
+                        if (p0 > 0 && randomP0 <= p0) nowNum += 1;
+                        if(WudaoUtil.HasWuDaoSkill(2341))
                         {
-                            UIPopTip.Inst.Pop($"花费{fuLuItem.FuLuTime*selectedNumber}天，{ItemUtil.GetItemName(fuLuItemID)}制作失败。");
-                            return;
+                            nowNum *= 2;
+                            successNum += 1;
+                            num += nowNum;
+                        }
+                        else
+                        {
+                            int randomValue = random.Next(1, 101);
+                            if (randomValue < (50 - fuLuItem.FuLuLevel * 15))
+                            {
+                                successNum += 1;
+                                num += nowNum;
+                            }
+                            else
+                            {
+                                noSuccessNum += 1;
+                            }
                         }
                     }
-                    IsToolsMain.Log($"制作{ItemUtil.GetItemName(fuLuItemID)}符箓：{num}张");
-                    UIPopTip.Inst.Pop($"花费{fuLuItem.FuLuTime * selectedNumber}天，获得{ItemUtil.GetItemName(fuLuItemID)}*{num}", PopTipIconType.包裹);
-                    UIPopTip.Inst.Pop($"获得符道经验{fuLuItem.FuLuExp * selectedNumber}点", PopTipIconType.上箭头);
-                    avatar.addItem(fuLuItemID,num,null,false);
-                    avatar.wuDaoMag.addWuDaoEx(fuLuItem.FuLuExp*selectedNumber, 23);
+
+                    avatar.AddTime(fuLuItem.FuLuTime*selectedNumber, 0, 0);
+                    if (noSuccessNum > 0)
+                    {
+                        UIPopTip.Inst.Pop($"制作失败{ItemUtil.GetItemName(fuLuItemID)}符箓：{noSuccessNum}次。");
+                    }
+                    if (successNum > 0)
+                    {
+                        UIPopTip.Inst.Pop($"花费{fuLuItem.FuLuTime * selectedNumber}天，获得{ItemUtil.GetItemName(fuLuItemID)}*{num}", PopTipIconType.包裹);
+                        IsToolsMain.Log($"制作成功{ItemUtil.GetItemName(fuLuItemID)}符箓：{num}张");
+                        UIPopTip.Inst.Pop($"获得符道经验{fuLuItem.FuLuExp * successNum}点", PopTipIconType.上箭头);
+                        avatar.addItem(fuLuItemID, num, null, false);
+                        avatar.wuDaoMag.addWuDaoEx(fuLuItem.FuLuExp * successNum, 23);
+                    }
                 },
                 Cancel: () =>
                 {

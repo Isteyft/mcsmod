@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽的魔道扩展\plugins\</OutputPath>
+    <OutputPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\九州魔道扩展\plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

@@ -4,11 +4,11 @@ D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\魔心相眷\IsTools.
 D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\魔心相眷\IsTools.pdb
 D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\魔心相眷\plugins\IsTools.dll
 D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\魔心相眷\plugins\IsTools.pdb
+F:\ProjectAll\C#\IsTools\bin\Debug\localcheck\IsTools.dll
+F:\ProjectAll\C#\IsTools\bin\Debug\localcheck\IsTools.pdb
 D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽工具库\plugins\IsTools.dll
 D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽工具库\plugins\IsTools.pdb
 F:\ProjectAll\C#\IsTools\obj\Debug\IsTools.csproj.AssemblyReference.cache
 F:\ProjectAll\C#\IsTools\obj\Debug\IsTools.csproj.CoreCompileInputs.cache
 F:\ProjectAll\C#\IsTools\obj\Debug\IsTools.dll
 F:\ProjectAll\C#\IsTools\obj\Debug\IsTools.pdb
-F:\ProjectAll\C#\IsTools\bin\Debug\localcheck\IsTools.dll
-F:\ProjectAll\C#\IsTools\bin\Debug\localcheck\IsTools.pdb

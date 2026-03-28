@@ -17,11 +17,11 @@ namespace top.Isteyft.MCS.IsTools.Patch.UI
         [HarmonyPatch("GetItemType")]
         public static void Postfix(int type, ref Bag.ItemType __result)
         {
-            // 如果传入的类型是 17 或 18
-            if (type == 17 || type == 18)
+            // 如果传入的类型是 17 或 18、19
+            if (type == 17 || type == 18 || type == 19)
             {
                 // 强制将结果设置为 "其他"
-                __result = Bag.ItemType.其他;
+                __result = Bag.ItemType.法宝;
             }
         }
         [HarmonyPrefix]
@@ -44,14 +44,14 @@ namespace top.Isteyft.MCS.IsTools.Patch.UI
                 __result.Uid = uuid;
                 return false;
             }
-            if (type == 18)
+            if (type == 18 || type == 19)
             {
                 __result = new EquipItem();
                 __result.SetItem(id, count, seid);
                 __result.Uid = uuid;
                 return false;
             }
-            // 17,18以外的按原来那样处理
+            // 17,18,19以外的按原来那样处理
             return true;
         }
     }

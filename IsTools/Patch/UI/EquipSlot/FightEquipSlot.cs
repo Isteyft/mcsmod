@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using YSGame.Fight;
 using top.Isteyft.MCS.IsTools.Data;
 using top.Isteyft.MCS.IsTools.Util;
+using GUIPackage;
 
 namespace top.Isteyft.MCS.IsTools.Patch.UI.EquipSlot
 {
@@ -29,7 +30,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.UI.EquipSlot
             int itemId = -1;
             foreach (KBEngine.ITEM_INFO value in __instance.equipItemList.values)
             {
-                if (ItemUtil.GetItemType(value.itemId) == 18)
+                if (ItemUtil.GetItemType(value.itemId) == 18 || ItemUtil.GetItemType(value.itemId) == 19)
                 {
                     itemId = value.itemId;
                     break;
@@ -54,8 +55,16 @@ namespace top.Isteyft.MCS.IsTools.Patch.UI.EquipSlot
                 __instance.spell.addBuff(skill.LingShouBuff[i], skill.LingShouBuffCount[i]);
             }
 
-            // 再把灵兽神通挂到战斗技能栏
-            AddLingShouFightSkill(__instance, uiFightPanel, skill.LingShouSkill);
+            for (int i = 0; i < skill.LingShouStaticSkill.Length; i++)
+            {
+                new StaticSkill(skill.LingShouStaticSkill[i], 0, 5).Puting(__instance, __instance, 1); ;
+            }
+
+            if (__instance == PlayerEx.Player)
+            {
+                // 再把灵兽神通挂到战斗技能栏
+                AddLingShouFightSkill(__instance, uiFightPanel, skill.LingShouSkill);
+            }
         }
 
         private static void AddLingShouFightSkill(KBEngine.Avatar avatar, UIFightPanel uiFightPanel, int skillId)

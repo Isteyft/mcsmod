@@ -99,6 +99,7 @@ namespace top.Isteyft.MCS.IsTools
                     LoadDaoJu(directoryInfo.FullName + "/plugins/BaizeAssets/config/DaoJu.json");
                     LoadFuLu(directoryInfo.FullName + "/plugins/BaizeAssets/config/FuLuItem.json");
                     LoadLingShou(directoryInfo.FullName + "/plugins/BaizeAssets/config/LingShou.json");
+                    LoadAchievement(directoryInfo.FullName + "/plugins/BaizeAssets/Achievement.json");
                 }
             }
             DirectoryInfo directoryInfo2 = new DirectoryInfo(Application.dataPath + "/../本地Mod测试");
@@ -112,6 +113,7 @@ namespace top.Isteyft.MCS.IsTools
                     LoadDaoJu(directoryInfo3.FullName + "/plugins/BaizeAssets/config/DaoJu.json");
                     LoadFuLu(directoryInfo3.FullName + "/plugins/BaizeAssets/config/FuLuItem.json");
                     LoadLingShou(directoryInfo3.FullName + "/plugins/BaizeAssets/config/LingShou.json");
+                    LoadAchievement(directoryInfo3.FullName + "/plugins/BaizeAssets/Achievement.json");
                 }
             }
         }
@@ -145,6 +147,17 @@ namespace top.Isteyft.MCS.IsTools
                 IsToolsMain.LogInfo("加载灵兽配置:" + path);
                 List<LingShouData> collection = JsonConvert.DeserializeObject<List<LingShouData>>(value);
                 LingShouData.LSData.AddRange(collection);
+            }
+        }
+
+        private void LoadAchievement(string path)
+        {
+            string value;
+            if (JsonUtil.TryGetJson(path, out value))
+            {
+                IsToolsMain.LogInfo("加载成就配置:" + path);
+                List<AchievementData> collection = JsonConvert.DeserializeObject<List<AchievementData>>(value);
+                AchievementData.data.AddRange(collection);
             }
         }
 

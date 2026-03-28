@@ -15,11 +15,14 @@ namespace top.Isteyft.MCS.IsTools.Data
         [JsonProperty("灵兽神通")]
         public int LingShouSkill { get; set; }
 
-        [JsonProperty("灵兽Buuff")]
+        [JsonProperty("灵兽Buff")]
         public int[] LingShouBuff { get; set; }
         
-        [JsonProperty("灵兽Buuff数量")]
+        [JsonProperty("灵兽Buff数量")]
         public int[] LingShouBuffCount { get; set; }
+        
+        [JsonProperty("灵兽功法")]
+        public int[] LingShouStaticSkill { get; set; }
 
         public static List<LingShouData> LSData = new List<LingShouData>();
     }

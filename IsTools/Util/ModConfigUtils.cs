@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace top.Isteyft.MCS.IsTools.Util
 {
@@ -58,7 +59,7 @@ namespace top.Isteyft.MCS.IsTools.Util
 
         // 保存整个配置文件（带锁防止冲突）
         private static readonly object _fileLock = new object();
-        private static void SaveConfig(Dictionary<string, object> config)
+        public static void SaveConfig<T>(Dictionary<string, T> config)
         {
             if (config == null) return;
 
@@ -159,8 +160,12 @@ namespace top.Isteyft.MCS.IsTools.Util
                 }
                 catch
                 {
+                    IsToolsMain.Error($"解析错误");
                     return defaultValue;
                 }
+            } else
+            {
+                IsToolsMain.Error($"没有找到{key}");
             }
             return defaultValue;
         }
@@ -181,6 +186,29 @@ namespace top.Isteyft.MCS.IsTools.Util
                 return true;
             }
             return false;
+        }
+
+        // 将 List<int> 保存为逗号分隔的字符串
+        public static void SetConfigIntList(string key, List<int> value)
+        {
+            if (string.IsNullOrWhiteSpace(key) || value == null) return;
+
+            // 将列表转换为 "1,2,3" 格式的字符串
+            string listAsString = string.Join(",", value);
+            SetConfigProperty(key, listAsString);
+        }
+
+        // 从配置中读取逗号分隔的字符串并转换回 List<int>
+        public static List<int> GetConfigIntList(string key)
+        {
+            // 读取字符串类型的配置项
+            string listAsString = GetConfigProperty(key);
+            if (listAsString == null) return null;
+            List<int> intList = listAsString.Trim(' ', '"')
+                                         .Split(',')
+                                         .Select(s => int.Parse(s.Trim())) // 再次 Trim 确保去除中间的空格
+                                         .ToList();
+            return intList;
         }
     }
 }

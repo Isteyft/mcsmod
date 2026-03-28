@@ -24,7 +24,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.UI.EquipSlot
         {
             //IsToolsMain.LogInfo("EquipItem.SetItem" + __instance.Type);
             // 只处理 type == 18 的物品（灵兽）
-            if (__instance.Type != 18) return;
+            if (__instance.Type != 18 && __instance.Type != 19) return;
 
             try
             {
@@ -69,7 +69,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.UI.EquipSlot
         [HarmonyPatch("GetImgQuality")]
         public static void GetImgQualityPatch(EquipItem __instance, ref int __result)
         {
-            if (__instance.Type == 18)
+            if (__instance.Type == 18 || __instance.Type == 19)
             {
                 __result = __result - 1;
             }
@@ -79,7 +79,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.UI.EquipSlot
         [HarmonyPatch("GetEquipType")]
         public static bool GetEquipTypePatch(EquipItem __instance, EquipType __result)
         {
-            if (__instance.Type == 18)
+            if (__instance.Type == 18 || __instance.Type == 19)
             { 
                 __result = (EquipType)18;
                 return false;
@@ -92,7 +92,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.UI.EquipSlot
         [HarmonyPatch("GetQualityName")]
         public static bool GetQualityNamePatch(EquipItem __instance, ref string __result)
         {
-            if (__instance.Type == 18)
+            if (__instance.Type == 18 || __instance.Type == 19)
             {
                 int qualityValue = Traverse.Create(__instance).Field("Quality").GetValue<int>();
                 __result = qualityValue.ToCNNumber() + "品";

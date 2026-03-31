@@ -203,12 +203,21 @@ namespace top.Isteyft.MCS.IsTools.Util
         {
             // 读取字符串类型的配置项
             string listAsString = GetConfigProperty(key);
-            if (listAsString == null) return null;
-            List<int> intList = listAsString.Trim(' ', '"')
-                                         .Split(',')
-                                         .Select(s => int.Parse(s.Trim())) // 再次 Trim 确保去除中间的空格
-                                         .ToList();
-            return intList;
+            try
+            {
+                List<int> intList = listAsString.Trim(' ', '"')
+                             .Split(',')
+                             .Select(s => int.Parse(s.Trim())) // 再次 Trim 确保去除中间的空格
+                             .ToList();
+
+                return intList;
+            }
+            catch (Exception ex)
+            {
+                IsToolsMain.Error(ex);
+                return new List<int>();
+
+            }
         }
     }
 }

@@ -119,7 +119,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
             stringBuilder.Append("\n\n");
             stringBuilder.Append("#c449491成就描述：#n#s24");
             stringBuilder.Append($"{nowSelectData.AchievementInfo}");
-            stringBuilder.Append("\n\n");
+            stringBuilder.Append("\n\n#n#s34");
             stringBuilder.Append("#c449491成就介绍：#n#s24");
             stringBuilder.Append($"{nowSelectData.AchievementDesc}");
             _HyText.text = stringBuilder.ToString();

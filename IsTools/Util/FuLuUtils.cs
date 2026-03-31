@@ -100,7 +100,9 @@ namespace top.Isteyft.MCS.IsTools.Util
                         else
                         {
                             int randomValue = random.Next(1, 101);
-                            if (randomValue < (50 - fuLuItem.FuLuLevel * 15))
+                            int value = 90 - fuLuItem.FuLuLevel * 20;
+                            if (WudaoUtil.HasWuDaoSkill(2312)) value += 25;
+                            if (randomValue < value)
                             {
                                 successNum += 1;
                                 num += nowNum;

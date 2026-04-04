@@ -447,6 +447,7 @@
     <Compile Include="Data\FuLuItemData.cs" />
     <Compile Include="Data\DaoJuData.cs" />
     <Compile Include="Data\MetaData.cs" />
+    <Compile Include="DialogEnv\Fight\IS_GetFightResult.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetSkills.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetCardSum.cs" />
     <Compile Include="DialogEnv\Fight\IS_GetBuffByType.cs" />

@@ -111,14 +111,17 @@ namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
             if (AchievementData.IsSuccess(nowSelectID))
             {
                 stringBuilder.Append($"#c449491成就名称：#n{nowSelectData.AchievementTitle}");
+                stringBuilder.Append("\n\n");
+                stringBuilder.Append("#c449491成就描述：#n#s24");
+                stringBuilder.Append($"{nowSelectData.AchievementInfo}");
             }
             else
             {
                 stringBuilder.Append($"#c449491成就名称：#n{nowSelectData.AchievementTitle}(未完成)");
+                stringBuilder.Append("\n\n");
+                stringBuilder.Append("#c449491成就描述：#n#s24");
+                stringBuilder.Append($"未知");
             }
-            stringBuilder.Append("\n\n");
-            stringBuilder.Append("#c449491成就描述：#n#s24");
-            stringBuilder.Append($"{nowSelectData.AchievementInfo}");
             stringBuilder.Append("\n\n#n#s34");
             stringBuilder.Append("#c449491成就介绍：#n#s24");
             stringBuilder.Append($"{nowSelectData.AchievementDesc}");

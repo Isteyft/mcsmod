@@ -1,6 +1,12 @@
 D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\NewIndex.dll
 D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\NewIndex.pdb
+F:\ProjectAll\C#\NewIndex\bin\DebugLocal\NewIndex.dll
+F:\ProjectAll\C#\NewIndex\bin\DebugLocal\NewIndex.pdb
+F:\ProjectAll\C#\NewIndex\bin\DebugLocal\UnityEngine.AnimationModule.dll
+F:\ProjectAll\C#\NewIndex\bin\DebugLocal\UnityEngine.AssetBundleModule.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\主界面壁纸前置\plugins\ScreenMain.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\主界面壁纸前置\plugins\ScreenMain.pdb
 F:\ProjectAll\C#\NewIndex\obj\Debug\NewIndex.csproj.AssemblyReference.cache
 F:\ProjectAll\C#\NewIndex\obj\Debug\NewIndex.csproj.CoreCompileInputs.cache
-F:\ProjectAll\C#\NewIndex\obj\Debug\NewIndex.dll
-F:\ProjectAll\C#\NewIndex\obj\Debug\NewIndex.pdb
+F:\ProjectAll\C#\NewIndex\obj\Debug\ScreenMain.dll
+F:\ProjectAll\C#\NewIndex\obj\Debug\ScreenMain.pdb

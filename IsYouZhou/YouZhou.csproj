@@ -492,6 +492,8 @@
     <Compile Include="Scene\LoadingScreenPatch.cs" />
     <Compile Include="Scene\LudianJson.cs" />
     <Compile Include="Scene\MapMoveData.cs" />
+    <Compile Include="Scene\walkMap\WalkMapController.cs" />
+    <Compile Include="Scene\walkMap\WalkMapModeConfig.cs" />
     <Compile Include="Scene\YZMove.cs" />
     <Compile Include="Scene\YZSceneManeger.cs" />
     <Compile Include="UI\JiaZuPanel.cs" />

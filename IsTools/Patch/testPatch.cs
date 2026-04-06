@@ -7,11 +7,24 @@ using System.Threading.Tasks;
 using System.Reflection;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.Video;
 
 
 namespace top.Isteyft.MCS.IsTools.Patch
 {
-
+    //获取场景信息
+    //[HarmonyPatch(typeof(CmdSetBG))]
+    //[HarmonyPatch("OnEnter")]
+    [HarmonyPatch(typeof(MainUIMag), "StartGame")]
+    public class CmdSetBG_OnEnter_Patch
+    {
+        [HarmonyPostfix]
+        static void Prefix()
+        {
+            IsToolsMain.LogInfo("将魂魄数量改为18");
+            MainUIMag.inst.maxNum = 18;
+        }
+    }
     //获取场景信息
     //[HarmonyPatch(typeof(CmdSetBG))]
     //[HarmonyPatch("OnEnter")]

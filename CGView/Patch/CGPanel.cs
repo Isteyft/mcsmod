@@ -1,23 +1,14 @@
-﻿using MaiJiu.MCS.Pet.PetManager;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 using YSGame.TuJian;
-using MaiJiu.MCS.Pet.TuJian;
-using top.Isteyft.MCS.IsTools.Data;
-using MaiJiu.MCS.HH.Tool;
 
-namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
+namespace top.Isteyft.MCS.CGView.Patch
 {
-    /// <summary>
-    /// 成就/图鉴信息面板
-    /// 继承自 InfoPanelBase1，用于处理特定类型（神通/秘术）的图鉴显示逻辑
-    /// </summary>
-    public class AchievementInfoPanel : InfoPanelBase1
+    public class CGPanel : InfoPanelBase1
     {
         /// <summary>
         /// 刷新数据列表
@@ -27,21 +18,21 @@ namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
         {
             base.RefreshDataList();
 
-            //// 强制设置图鉴标签页为索引为 11
-            //TuJianItemTab.Inst.SetDropdown(11, 0);
+            //// 强制设置图鉴标签页为索引为 99
+            //TuJianItemTab.Inst.SetDropdown(99, 0);
 
             // 检查图鉴管理器是否需要刷新列表
             if (TuJianManager.Inst.NeedRefreshDataList)
             {
                 if (TuJianManager.Inst.Searcher.SearchCount == 0)
                 {
-                    TuJianItemTab.Inst.FilterSSV.DataList = TuJianDB.ItemTuJianFilterData[11];
+                    TuJianItemTab.Inst.FilterSSV.DataList = TuJianDB.ItemTuJianFilterData[99];
                 }
                 else
                 {
                     DataList.Clear(); // 清空当前临时列表
                     // 遍历所有原始数据
-                    foreach (Dictionary<int, string> item in TuJianDB.ItemTuJianFilterData[11])
+                    foreach (Dictionary<int, string> item in TuJianDB.ItemTuJianFilterData[99])
                     {
                         int key = item.First().Key;   // 获取物品ID
                         string value = item.First().Value; // 获取物品名称
@@ -105,33 +96,18 @@ namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
                 _HyText.text = "";
                 return;
             }
-            TuJianManager.Inst.NowPageHyperlink = $"1_11_{nowSelectID}";
-            AchievementData nowSelectData = AchievementData.GetAchievementId(nowSelectID);
+            TuJianManager.Inst.NowPageHyperlink = $"1_99_{nowSelectID}";
+            CGData nowSelectData = CGData.GetCGId(nowSelectID);
             StringBuilder stringBuilder = new StringBuilder();
-            if (AchievementData.IsSuccess(nowSelectID))
-            {
-                stringBuilder.Append($"#c449491成就名称：#n{nowSelectData.AchievementTitle}");
-                stringBuilder.Append("\n\n");
-                stringBuilder.Append("#c449491成就描述：#n#s24");
-                stringBuilder.Append($"{nowSelectData.AchievementInfo}");
-            }
-            else
-            {
-                stringBuilder.Append($"#c449491成就名称：#n{nowSelectData.AchievementTitle}(未完成)");
-                stringBuilder.Append("\n\n");
-                stringBuilder.Append("#c449491成就描述：#n#s24");
-                stringBuilder.Append($"未知");
-            }
-            stringBuilder.Append("\n\n#n#s34");
-            stringBuilder.Append("#c449491成就介绍：#n#s24");
-            stringBuilder.Append($"{nowSelectData.AchievementDesc}");
+            stringBuilder.Append($"#c449491 CG名称：#n{nowSelectData.CGName}");
+            stringBuilder.Append("\n\n");
             _HyText.text = stringBuilder.ToString();
-            SetAchievementIcon(nowSelectID);
+            SetCG(nowSelectData.CGId);
         }
 
-        public void SetAchievementIcon(int id)
+        public void SetCG(int id)
         {
-            Sprite sprite = ResManager.inst.LoadSprite($"Achievement Icon/{id}");
+            Sprite sprite = ResManager.inst.LoadSprite($"CG/{id}");
             _ItemIconImage.sprite = sprite;
             _QualityImage.sprite = sprite;
             _QualityUpImage.sprite = sprite;

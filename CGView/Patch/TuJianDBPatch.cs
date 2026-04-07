@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using SkySwordKill.Next;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using top.Isteyft.MCS.IsTools.Data;
 using top.Isteyft.MCS.IsTools.Util;
 using YSGame.TuJian;
 
-namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
+namespace top.Isteyft.MCS.CGView.Patch
 {
     [HarmonyPatch(typeof(TuJianDB))]
     public class TuJianDBPatch
@@ -17,36 +18,17 @@ namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
         [HarmonyPostfix]
         public static void Postfix()
         {
-            IsToolsMain.LogInfo("加载已经完成的成就配置");
-            var success = ModConfigUtils.GetConfigIntList("successAchievement");
+            Main.LogInfo("加载已经完成的成就配置");
+            var success = ModConfigUtils.GetConfigIntList("successCG");
             if (success != null)
             {
-                AchievementData.successData = success;
-            }
-            IsToolsMain.LogInfo("加载已经完成的CG配置");
-            var CGSuccess = ModConfigUtils.GetConfigIntList("successCG");
-            if (CGSuccess != null)
-            {
-                CGData.successData = CGSuccess;
+                CGData.successData = success;
             }
             TujianDBRefresh();
         }
 
         public static void TujianDBRefresh()
         {
-            List<Dictionary<int, string>> AchievementBaseList = new List<Dictionary<int, string>>();
-            foreach (AchievementData item in AchievementData.data)
-            {
-                string title = item.AchievementTitle;
-                if (!AchievementData.IsSuccess(item.Id)) title = title + "(未完成)";
-                AchievementBaseList.Add(new Dictionary<int, string> {
-                {
-                    item.Id,
-                    title
-                } });
-            }
-            TuJianDB.ItemTuJianFilterData[11] = AchievementBaseList;
-
             List<Dictionary<int, string>> CGBaseList = new List<Dictionary<int, string>>();
             foreach (CGData item in CGData.data)
             {
@@ -58,6 +40,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
                     title
                 } });
             }
+
             TuJianDB.ItemTuJianFilterData[99] = CGBaseList;
         }
     }

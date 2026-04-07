@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using top.Isteyft.MCS.YouZhou.GameData;
+using top.Isteyft.MCS.YouZhou.Utils;
 using UnityEngine;
 using YSGame;
 
@@ -79,7 +80,19 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             else if (Tools.instance.CheckHasTianFu(720009))
             {
                 scene = "S27005";
-            } else
+            }
+            else if (Tools.instance.CheckHasTianFu(720090))
+            {
+                if (!MyUtil.YingZhouinit)
+                {
+                    MyUtil.YingZhouinit = true;
+                    string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/颍州.ab";
+                    AssetBundle.LoadFromFile(path);
+                }
+                scene = "F颍州";
+                avatar.fubenContorl["F颍州"].NowIndex = 916;
+            }
+            else
             {
                 IsToolsMain.YouZhouData.Data["IsYouZhouBirth"] = "0";
             }

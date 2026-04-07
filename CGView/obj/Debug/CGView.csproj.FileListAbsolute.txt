@@ -1,0 +1,6 @@
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽工具库\plugins\CGView.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽工具库\plugins\CGView.pdb
+F:\ProjectAll\C#\CGView\obj\Debug\CGView.csproj.AssemblyReference.cache
+F:\ProjectAll\C#\CGView\obj\Debug\CGView.csproj.CoreCompileInputs.cache
+F:\ProjectAll\C#\CGView\obj\Debug\CGView.dll
+F:\ProjectAll\C#\CGView\obj\Debug\CGView.pdb

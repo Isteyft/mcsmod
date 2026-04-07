@@ -100,6 +100,7 @@ namespace top.Isteyft.MCS.IsTools
                     LoadFuLu(directoryInfo.FullName + "/plugins/BaizeAssets/config/FuLuItem.json");
                     LoadLingShou(directoryInfo.FullName + "/plugins/BaizeAssets/config/LingShou.json");
                     LoadAchievement(directoryInfo.FullName + "/plugins/BaizeAssets/Achievement.json");
+                    LoadCG(directoryInfo.FullName + "/plugins/BaizeAssets/config/CG.json");
                 }
             }
             DirectoryInfo directoryInfo2 = new DirectoryInfo(Application.dataPath + "/../本地Mod测试");
@@ -114,10 +115,11 @@ namespace top.Isteyft.MCS.IsTools
                     LoadFuLu(directoryInfo3.FullName + "/plugins/BaizeAssets/config/FuLuItem.json");
                     LoadLingShou(directoryInfo3.FullName + "/plugins/BaizeAssets/config/LingShou.json");
                     LoadAchievement(directoryInfo3.FullName + "/plugins/BaizeAssets/Achievement.json");
+                    LoadCG(directoryInfo3.FullName + "/plugins/BaizeAssets/config/CG.json");
                 }
             }
         }
-
+        #region 加载
         private void LoadDaoJu(string path)
         {
             string value;
@@ -173,6 +175,16 @@ namespace top.Isteyft.MCS.IsTools
                 AssetBundles.Add(fileNameWithoutExtension, value);
             }
         }
+        private void LoadCG(string path)
+        {
+            string value;
+            if (JsonUtil.TryGetJson(path, out value))
+            {
+                Logger.LogInfo("加载CG配置:" + path);
+                List<CGData> collection = JsonConvert.DeserializeObject<List<CGData>>(value);
+                CGData.data.AddRange(collection);
+            }
+        }
 
         private void LoadEffectAssetBundles(string path)
         {
@@ -203,5 +215,6 @@ namespace top.Isteyft.MCS.IsTools
                 }
             }
         }
+        #endregion
     }
 }

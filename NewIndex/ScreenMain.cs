@@ -33,7 +33,7 @@ namespace top.Isteyft.MCS.NewIndex
         private void LoadAllScene()
         {
             List<DirectoryInfo> allModDirectory = WorkshopTool.GetAllModDirectory();
-            string text = "";
+            //string text = "";
             foreach (DirectoryInfo directoryInfo in allModDirectory)
             {
                 if (!WorkshopTool.CheckModIsDisable(directoryInfo.Name))
@@ -58,10 +58,11 @@ namespace top.Isteyft.MCS.NewIndex
             {
                 return;
             }
-            string[] files = Directory.GetFiles(path, "*.MP4"); // 查找MP4文件
-            string[] filesLower = Directory.GetFiles(path, "*.mp4"); // 查找mp4文件
-            var allFiles = files.Concat(filesLower).ToArray();
-            ModMP4Paths.AddRange(allFiles);
+            var mp4Files = Directory.GetFiles(path)
+                .Where(file =>
+                    string.Equals(Path.GetExtension(file), ".mp4", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+            ModMP4Paths.AddRange(mp4Files);
         }
     }
 
@@ -261,7 +262,7 @@ namespace top.Isteyft.MCS.NewIndex
             // --- 原有的按钮创建和逻辑 ---
             GameObject btnObj = __instance.新主界面.transform.Find("Panel/btn/神仙斗法")
                 .gameObject.CopyGameObject(null, "切换");
-            btnObj.transform.MoveLocal(new Vector3(0f, 402f, 0f));
+            btnObj.transform.MoveLocal(new Vector3(0f, 712f, 0f));
 
             FpBtn btn = btnObj.GetComponent<FpBtn>();
             btn.mouseUpEvent = new UnityEvent();
@@ -310,7 +311,7 @@ namespace top.Isteyft.MCS.NewIndex
             // --- 音量开关按钮 ---
             GameObject volumeBtnObj = __instance.新主界面.transform.Find("Panel/btn/神仙斗法")
                 .gameObject.CopyGameObject(null, "音量开关");
-            volumeBtnObj.transform.MoveLocal(new Vector3(86f, 402f, 0f));
+            volumeBtnObj.transform.MoveLocal(new Vector3(86f, 712f, 0f));
 
             FpBtn volumeBtn = volumeBtnObj.GetComponent<FpBtn>();
             volumeBtn.mouseUpEvent = new UnityEvent();

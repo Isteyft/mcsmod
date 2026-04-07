@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{12DD9317-A66E-4286-88C8-978253AB64EF}</ProjectGuid>
+    <ProjectGuid>{339DDB7E-5630-4E18-A010-89851861FDDE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>top.Isteyft.MCS.IsTools</RootNamespace>
-    <AssemblyName>IsTools</AssemblyName>
+    <RootNamespace>top.Isteyft.MCS.CGView</RootNamespace>
+    <AssemblyName>CGView</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,8 +20,7 @@
     <OutputPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽工具库\plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>1</WarningLevel>
-    <PlatformTarget>ARM64</PlatformTarget>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,9 +29,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
@@ -120,6 +115,10 @@
     </Reference>
     <Reference Include="IFacebook">
       <HintPath>D:\SteamLibrary\steamapps\common\觅长生\觅长生_Data\Managed\IFacebook.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IsTools">
+      <HintPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\白泽工具库\plugins\IsTools.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MiniExcel">
@@ -441,174 +440,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\AchievementData.cs" />
-    <Compile Include="Data\CGData.cs" />
-    <Compile Include="Data\FightNowSkills.cs" />
-    <Compile Include="Data\LingShouData.cs" />
-    <Compile Include="Data\FuLuItemData.cs" />
-    <Compile Include="Data\DaoJuData.cs" />
-    <Compile Include="Data\MetaData.cs" />
-    <Compile Include="DialogEnv\Fight\IS_GetFightResult.cs" />
-    <Compile Include="DialogEnv\Fight\IS_GetSkills.cs" />
-    <Compile Include="DialogEnv\Fight\IS_GetCardSum.cs" />
-    <Compile Include="DialogEnv\Fight\IS_GetBuffByType.cs" />
-    <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeP.cs" />
-    <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeSum.cs" />
-    <Compile Include="DialogEnv\Fight\IS_GetBuffSum.cs" />
-    <Compile Include="DialogEnv\Fight\IS_GetUsedSkillsId.cs" />
-    <Compile Include="DialogEnv\Fight\IS_GetBuffByTypeSumP.cs" />
-    <Compile Include="DialogEnv\Item\IS_GetItemNum.cs" />
-    <Compile Include="DialogEnv\Item\IS_GetRandomItemType.cs" />
-    <Compile Include="DialogEnv\Item\IS_GetRandomItemTypeID.cs" />
-    <Compile Include="DialogEnv\Map\IS_GetCurAllMapIndex.cs" />
-    <Compile Include="DialogEnv\Map\IS_GetMapType.cs" />
-    <Compile Include="DialogEnv\Map\IS_GetCurFubenIndex.cs" />
-    <Compile Include="DialogEnv\Map\IS_GetPlaceName.cs" />
-    <Compile Include="DialogEnv\MenPai\IS_GetMenPai.cs" />
-    <Compile Include="DialogEnv\Mod\IS_GetAchievementSuccess.cs" />
-    <Compile Include="DialogEnv\Mod\IS_GetCGSuccess.cs" />
-    <Compile Include="DialogEnv\Mod\IS_GetConfig.cs" />
-    <Compile Include="DialogEnv\Mod\IS_GetTMYYear.cs" />
-    <Compile Include="DialogEnv\Mod\IS_GetRand.cs" />
-    <Compile Include="DialogEnv\Npc\IS_GetNpcTag.cs" />
-    <Compile Include="DialogEnv\Npc\IS_GetNpcXingGe.cs" />
-    <Compile Include="DialogEnv\Npc\IS_GetNpcNewId.cs" />
-    <Compile Include="DialogEnv\Mod\IS_GetStaticValue.cs" />
-    <Compile Include="DialogEnv\Mod\IS_GetBindNpcId.cs" />
-    <Compile Include="DialogEnv\Mod\IS_GetIntVar.cs" />
-    <Compile Include="DialogEnv\Mod\IS_GetVariable.cs" />
-    <Compile Include="DialogEnv\Mod\IS_HasMod.cs" />
-    <Compile Include="DialogEnv\Npc\IS_GetNpcStaticSkillLevel.cs" />
-    <Compile Include="DialogEnv\Npc\IS_GetNpcWuDaoLevel.cs" />
-    <Compile Include="DialogEnv\Npc\IS_CreateOneNpc.cs" />
-    <Compile Include="DialogEnv\Npc\IS_SearchOneNpcByFav.cs" />
-    <Compile Include="DialogEnv\Npc\IS_SearchOneNpc.cs" />
-    <Compile Include="DialogEnv\Player\IS_HasKeZhanTime.cs" />
-    <Compile Include="DialogEnv\Player\IS_HasWuDaoSkills.cs" />
-    <Compile Include="DialogEnv\Task\GetTaskIndex.cs" />
-    <Compile Include="DialogEvent\Fight\IS_AddNowSkill.cs" />
-    <Compile Include="DialogEvent\Fight\IS_GetNowSkill.cs" />
-    <Compile Include="DialogEvent\Fight\IS_AddSkill.cs" />
-    <Compile Include="DialogEvent\Fight\IS_ClearSkill.cs" />
-    <Compile Include="DialogEvent\Fight\IS_UsePFaXiangAnimation.cs" />
-    <Compile Include="DialogEvent\Fight\IS_UseFaXiangAnimation.cs" />
-    <Compile Include="DialogEvent\Fight\IS_UseSkillAnimation.cs" />
-    <Compile Include="DialogEvent\Fight\IS_UseSkill.cs" />
-    <Compile Include="DialogEvent\Fight\IS_GetSkill.cs" />
-    <Compile Include="DialogEvent\Fight\IS_ActionFaXiangPlus.cs" />
-    <Compile Include="DialogEvent\Fight\IS_ActionFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_ScalePFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_ScaleFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_RotationFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_RotationPFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_RemoveFaXiangPlus.cs" />
-    <Compile Include="DialogEvent\Fight\IS_InitFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_MoveFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_UseFaXiangPlus.cs" />
-    <Compile Include="DialogEvent\Fight\IS_UseFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_MovePFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_UsePFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_RemoveFaXiang.cs" />
-    <Compile Include="DialogEvent\Fight\IS_RemoveBuff.cs" />
-    <Compile Include="DialogEvent\Item\IS_GetNpcDrop.cs" />
-    <Compile Include="DialogEvent\Item\IS_ZhiZuoFuLu.cs" />
-    <Compile Include="DialogEvent\Map\IS_NpcWarp.cs" />
-    <Compile Include="DialogEvent\Map\IS_PlayerMove.cs" />
-    <Compile Include="DialogEvent\Map\IS_PlayerWalk.cs" />
-    <Compile Include="DialogEvent\Map\IS_PlayerWarp.cs" />
-    <Compile Include="DialogEvent\MenPai\IS_JoinMenPai.cs" />
-    <Compile Include="DialogEvent\MenPai\IS_SetPlayerChengHaoId.cs" />
-    <Compile Include="DialogEvent\Mod\IS_AutoSave.cs" />
-    <Compile Include="DialogEvent\Mod\IS_CancelCG.cs" />
-    <Compile Include="DialogEvent\Mod\IS_DelConfig.cs" />
-    <Compile Include="DialogEvent\Mod\IS_SaveConfig.cs" />
-    <Compile Include="DialogEvent\Mod\IS_CancelAchievement.cs" />
-    <Compile Include="DialogEvent\Mod\IS_SuccessAchievement.cs" />
-    <Compile Include="DialogEvent\Mod\IS_SetStaticValue.cs" />
-    <Compile Include="DialogEvent\Mod\IS_SuccessCG.cs" />
-    <Compile Include="DialogEvent\Npc\IS_ ShowNPCInfoPanel.cs" />
-    <Compile Include="DialogEvent\Npc\IS_TuPoHuaShen.cs" />
-    <Compile Include="DialogEvent\Npc\IS_TuPoYuanYing.cs" />
-    <Compile Include="DialogEvent\Npc\IS_TuPoZhuJi.cs" />
-    <Compile Include="DialogEvent\Npc\IS_TuPoJinDan.cs" />
-    <Compile Include="DialogEvent\Npc\IS_AddFriend.cs" />
-    <Compile Include="DialogEvent\Npc\IS_AddSceneNpc.cs" />
-    <Compile Include="DialogEvent\Npc\IS_SetNpcChengHaoId.cs" />
-    <Compile Include="DialogEvent\Player\IS_GetId.cs" />
-    <Compile Include="DialogEvent\Player\IS_AddShengPing.cs" />
-    <Compile Include="DialogEvent\Player\IS_AddShengWang.cs" />
-    <Compile Include="DialogEvent\Player\IS_SetPlayerNameFace.cs" />
-    <Compile Include="DialogEvent\Player\IS_SavePlayerNameFace.cs" />
-    <Compile Include="DialogEvent\Player\IS_TuPoToStaticSkillLevel.cs" />
-    <Compile Include="DialogEvent\Task\IS_AddTask.cs" />
-    <Compile Include="DialogEvent\Task\IS_NextTask.cs" />
-    <Compile Include="DialogEvent\Task\IS_SetTaskCompleted.cs" />
-    <Compile Include="DialogEvent\Task\IS_SetTaskIndex.cs" />
-    <Compile Include="DialogEvent\UI\ExtendedSayDialog.cs" />
-    <Compile Include="DialogEvent\UI\IS_Say.cs" />
-    <Compile Include="DialogEvent\UI\IS_GetMusic.cs" />
-    <Compile Include="DialogEvent\UI\IS_OpenTieJian.cs" />
-    <Compile Include="IsToolsMain.cs" />
-    <Compile Include="ModPatch\EffectPatch.cs" />
-    <Compile Include="ModPatch\LianQiNamePatch.cs" />
-    <Compile Include="ModPatch\MoreNPCInfoPatch.cs" />
-    <Compile Include="Patch\AddDaoJuPatch.cs" />
-    <Compile Include="Patch\onBuffTickByTypePatch.cs" />
-    <Compile Include="Patch\RoundManagerPatch\NewRoundPatch.cs" />
-    <Compile Include="Patch\SceneButtonPatch.cs" />
-    <Compile Include="Patch\SkillPatch.cs" />
-    <Compile Include="Patch\SpellPatch.cs" />
-    <Compile Include="Patch\TiggerPatch\UseSkillTiggerPatch.cs" />
-    <Compile Include="Patch\TujianPatch\AchievementInfoPanel.cs" />
-    <Compile Include="Patch\TujianPatch\CGSimpleExpandHandler.cs" />
-    <Compile Include="Patch\TujianPatch\CGPanel.cs" />
-    <Compile Include="Patch\TujianPatch\TuJianDBPatch.cs" />
-    <Compile Include="Patch\TujianPatch\TuJianPatch.cs" />
-    <Compile Include="Patch\UI\BagItemPatch.cs" />
-    <Compile Include="Patch\UI\EquipSlot\EquipItemPatch.cs" />
-    <Compile Include="Patch\UI\EquipSlot\FightEquipSlot.cs" />
-    <Compile Include="Patch\UI\EquipSlot\TabWuPingPanelPatch.cs" />
-    <Compile Include="Patch\UI\WuDaoUI.cs" />
-    <Compile Include="Patch\UI\EquipSlot\NewEquipSlots.cs" />
-    <Compile Include="Util\AvatarUtils.cs" />
-    <Compile Include="Util\FaXiangUtils.cs" />
-    <Compile Include="Util\FuLuUtils.cs" />
-    <Compile Include="Util\MusicScanner.cs" />
-    <Compile Include="Patch\RoundManagerPatch\LingQiCardPatch.cs" />
-    <Compile Include="Patch\SeidPatch\ItemSeidPatch.cs" />
-    <Compile Include="Patch\testPatch.cs" />
-    <Compile Include="Patch\AddBuffPatch.cs" />
-    <Compile Include="Patch\JsonDataPatch.cs" />
-    <Compile Include="Patch\ModEditorManagerPatch.cs" />
-    <Compile Include="Patch\SeidPatch\BuffSeidPatch.cs" />
-    <Compile Include="Patch\SeidPatch\SkillSeidPatch.cs" />
-    <Compile Include="Patch\SeidPatch\StaticSkillSeidPatch.cs" />
+    <Compile Include="CGData.cs" />
+    <Compile Include="CGViewMain.cs" />
+    <Compile Include="DialogEnv\IS_GetCGSuccess.cs" />
+    <Compile Include="DialogEvent\IS_CancelCG.cs" />
+    <Compile Include="DialogEvent\IS_SuccessCG.cs" />
+    <Compile Include="Patch\CGPanel.cs" />
+    <Compile Include="Patch\TuJianDBPatch.cs" />
+    <Compile Include="Patch\TuJianPatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="test.cs" />
-    <Compile Include="UI\BaizeUIManager.cs" />
-    <Compile Include="Util\AutoSaveUtils.cs" />
-    <Compile Include="Util\ItemUtil.cs" />
-    <Compile Include="Util\luaUtil.cs" />
-    <Compile Include="Util\NpcUtil.cs" />
-    <Compile Include="Util\WudaoUtil.cs" />
-    <Compile Include="Util\JsonObjectUtils.cs" />
-    <Compile Include="Util\JsonUtil.cs" />
-    <Compile Include="Util\LogUtils.cs" />
-    <Compile Include="Util\ModConfigUtils.cs" />
-    <Compile Include="Util\ModManagerUtil.cs" />
-    <Compile Include="Util\ModUtil.cs" />
-    <Compile Include="Util\NpcTuPoUtils.cs" />
-    <Compile Include="Util\SettingUtils.cs" />
-    <Compile Include="Util\StaticSkillUtils.cs" />
-    <Compile Include="Util\Task.cs" />
-    <Compile Include="Util\TaskUtils.cs" />
-    <Compile Include="Util\WarpUtils.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Sences\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="D:\SteamLibrary\steamapps\workshop\content\1189490\3018994631\plugins\HH_MaiJiu.dll" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

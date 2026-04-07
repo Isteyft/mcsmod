@@ -103,12 +103,12 @@ namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
             stringBuilder.Append($"#c449491 CG名称：#n{nowSelectData.CGName}");
             stringBuilder.Append("\n\n");
             _HyText.text = stringBuilder.ToString();
-            SetCG(nowSelectData.CGId);
+            SetCG(nowSelectData.CGImage);
         }
 
-        public void SetCG(int id)
+        public void SetCG(string CGImage)
         {
-            Sprite sprite = ResManager.inst.LoadSprite($"CG/{id}");
+            Sprite sprite = ResManager.inst.LoadSprite($"CG/{CGImage}");
             _ItemIconImage.sprite = sprite;
             _QualityImage.sprite = sprite;
             _QualityUpImage.sprite = sprite;

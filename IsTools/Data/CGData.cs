@@ -14,6 +14,9 @@ namespace top.Isteyft.MCS.IsTools.Data
 
         [JsonProperty("CG名字")]
         public string CGName { get; set; }
+        
+        [JsonProperty("CG图片")]
+        public string CGImage { get; set; }
 
         public static List<CGData> data = new List<CGData>();
         public static List<int> successData = new List<int>();

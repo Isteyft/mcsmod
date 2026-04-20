@@ -9,7 +9,7 @@ using Tab;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace top.Isteyft.MCS.YouZhou.Patch.Tab
+namespace top.Isteyft.MCS.JiuZhou.Patch.Tab
 {
     [HarmonyPatch(typeof(TabShuXingPanel))]
     public class TabUIPatch

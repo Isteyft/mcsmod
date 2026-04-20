@@ -8,10 +8,10 @@ using SkySwordKill.Next.DialogSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using top.Isteyft.MCS.YouZhou.Utils;
+using top.Isteyft.MCS.JiuZhou.Utils;
 using SkySwordKill.Next;
 
-namespace top.Isteyft.MCS.YouZhou.Patch
+namespace top.Isteyft.MCS.JiuZhou.Patch
 {
     [HarmonyPatch(typeof(AllMapShowLine), "Start")]
     public class AllMapShowLinePatch

@@ -7,9 +7,9 @@
 //using System.Linq;
 //using System.Text;
 //using System.Threading.Tasks;
-//using top.Isteyft.MCS.YouZhou.Scene;
+//using top.Isteyft.MCS.JiuZhou.Scene;
 
-//namespace top.Isteyft.MCS.YouZhou.Patch.PlayerPatch
+//namespace top.Isteyft.MCS.JiuZhou.Patch.PlayerPatch
 //{
 //    public class CreateNewPlayerFactoryPatch
 //    {

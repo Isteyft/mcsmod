@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace top.Isteyft.MCS.YouZhou.UI
+namespace top.Isteyft.MCS.JiuZhou.UI
 {
     public class YouZhouUIManager : MonoBehaviour
     {

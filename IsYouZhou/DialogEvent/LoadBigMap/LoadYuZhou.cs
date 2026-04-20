@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using top.Isteyft.MCS.YouZhou.Utils;
+using top.Isteyft.MCS.JiuZhou.Utils;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent.LoadBigMap
+namespace top.Isteyft.MCS.JiuZhou.DialogEvent.LoadBigMap
 {
     [DialogEvent("LoadYuZhou")]
-    [DialogEvent("ÓåÖÝ")]
+    [DialogEvent("ï¿½ï¿½ï¿½ï¿½")]
     public class LoadYuZhou : IDialogEvent
     {
         public void Execute(DialogCommand command, DialogEnvironment env, Action callback)

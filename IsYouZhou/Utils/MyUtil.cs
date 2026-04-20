@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using top.Isteyft.MCS.IsTools.Util;
-using top.Isteyft.MCS.YouZhou.Scene;
+using top.Isteyft.MCS.JiuZhou.Scene;
 using UnityEngine;
 
-namespace top.Isteyft.MCS.YouZhou.Utils
+namespace top.Isteyft.MCS.JiuZhou.Utils
 {
     public class MyUtil
     {
@@ -184,7 +184,7 @@ namespace top.Isteyft.MCS.YouZhou.Utils
         }
         
         // 颍州
-        public static void LoadYingZhou(int index = 901)
+        public static void LoadYingZhou(int index = 74012)
         {
             if (!YingZhouinit)
             {

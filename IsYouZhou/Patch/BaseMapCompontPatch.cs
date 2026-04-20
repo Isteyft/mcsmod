@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace top.Isteyft.MCS.YouZhou.Patch
+namespace top.Isteyft.MCS.JiuZhou.Patch
 {
     [HarmonyPatch(typeof(BaseMapCompont), "Awake")]
     public class BaseMapCompontPatch

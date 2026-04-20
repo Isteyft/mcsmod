@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using top.Isteyft.MCS.YouZhou.Utils;
+using top.Isteyft.MCS.JiuZhou.Utils;
 using UnityEngine;
 
-namespace top.Isteyft.MCS.YouZhou.Scene
+namespace top.Isteyft.MCS.JiuZhou.Scene
 {
     [HarmonyPatch(typeof(LoadingScreen))]
     public class LoadingScreenPatch

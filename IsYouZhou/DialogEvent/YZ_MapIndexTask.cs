@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using top.Isteyft.MCS.YouZhou.Scene;
-using top.Isteyft.MCS.YouZhou.Utils;
+using top.Isteyft.MCS.JiuZhou.Scene;
+using top.Isteyft.MCS.JiuZhou.Utils;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent
+namespace top.Isteyft.MCS.JiuZhou.DialogEvent
 {
     [DialogEvent("YZ_MapIndexTask")]
     public class YZ_MapIndexTask : IDialogEvent

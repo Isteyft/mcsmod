@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace top.Isteyft.MCS.YouZhou.YZAction
+namespace top.Isteyft.MCS.JiuZhou.YZAction
 {
     public class WanBaoLouPaiMai
     {

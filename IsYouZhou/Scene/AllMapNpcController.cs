@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace top.Isteyft.MCS.YouZhou.Scene
+namespace top.Isteyft.MCS.JiuZhou.Scene
 {
     /// <summary>
     /// NPC地图控制器，负责管理大地图上NPC的显示、移动和行为

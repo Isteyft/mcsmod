@@ -4,9 +4,9 @@ using SkySwordKill.NextMoreCommand.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using top.Isteyft.MCS.YouZhou.GameData;
+using top.Isteyft.MCS.JiuZhou.GameData;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent
+namespace top.Isteyft.MCS.JiuZhou.DialogEvent
 {
     [DialogEvent("YZ_AddLuDing")]
     public class YZ_AddLuDing : IDialogEvent

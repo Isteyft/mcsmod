@@ -4,7 +4,7 @@ using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace top.Isteyft.MCS.YouZhou.Patch
+namespace top.Isteyft.MCS.JiuZhou.Patch
 {
     [HarmonyPatch(typeof(MainUISelectTianFu))]
     public class TianfuPatch

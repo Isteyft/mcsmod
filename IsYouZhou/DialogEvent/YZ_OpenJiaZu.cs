@@ -1,9 +1,9 @@
 using SkySwordKill.Next.DialogEvent;
 using SkySwordKill.Next.DialogSystem;
 using System;
-using top.Isteyft.MCS.YouZhou.UI;
+using top.Isteyft.MCS.JiuZhou.UI;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent
+namespace top.Isteyft.MCS.JiuZhou.DialogEvent
 {
     [DialogEvent("YZ_OpenJiaZu")]
     public class YZ_OpenJiaZu : IDialogEvent

@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace top.Isteyft.MCS.YouZhou.Patch
+namespace top.Isteyft.MCS.JiuZhou.Patch
 {
     [HarmonyPatch(typeof(MainUIMag), "OpenMain")]
     public class OpenMainPatch
@@ -19,11 +19,11 @@ namespace top.Isteyft.MCS.YouZhou.Patch
         // 懒加载缓存：key = 图片编号，value = Sprite
         private static Dictionary<int, Sprite> spriteCache = new Dictionary<int, Sprite>();
         private static Sprite originalBgSprite = null; // 用于保存原始背景
-        private static int currentBgIndex = 0;         // 初始为 0（幽州1）
+        private static int currentBgIndex = 0;         // 初始为 0（九州1）
 
         private static Sprite LoadYouZhouSprite(int index)
         {
-            // index: 0-based → 对应 幽州1.png 是 index=0
+            // index: 0-based → 对应 九州1.png 是 index=0
             int fileNumber = index + 1;
 
             if (spriteCache.TryGetValue(index, out Sprite cached))
@@ -31,11 +31,11 @@ namespace top.Isteyft.MCS.YouZhou.Patch
                 return cached; // 已缓存，直接返回
             }
 
-            string path = $"Assets/CG/幽州{fileNumber}.png";
+            string path = $"Assets/CG/九州{fileNumber}.png";
             Texture2D tex = Main.Res.LoadAsset<Texture2D>(path);
             if (tex == null)
             {
-                Debug.LogError($"[幽州背景] 无法加载: {path}");
+                Debug.LogError($"[九州背景] 无法加载: {path}");
                 return null;
             }
 
@@ -109,9 +109,9 @@ namespace top.Isteyft.MCS.YouZhou.Patch
             });
 
             // 设置按钮外观（保持不变）
-            Sprite normal = Main.Res.LoadAsset<Texture2D>("Assets/CG/幽州切换.png")?.ToSprite();
-            Sprite down = Main.Res.LoadAsset<Texture2D>("Assets/CG/幽州切换_down.png")?.ToSprite();
-            Sprite enter = Main.Res.LoadAsset<Texture2D>("Assets/CG/幽州切换_enter.png")?.ToSprite();
+            Sprite normal = Main.Res.LoadAsset<Texture2D>("Assets/CG/九州切换.png")?.ToSprite();
+            Sprite down = Main.Res.LoadAsset<Texture2D>("Assets/CG/九州切换_down.png")?.ToSprite();
+            Sprite enter = Main.Res.LoadAsset<Texture2D>("Assets/CG/九州切换_enter.png")?.ToSprite();
 
             if (normal != null)
             {

@@ -9,7 +9,7 @@ using UnityEngine.Events;
 using UnityEngine;
 using YSGame;
 
-namespace top.Isteyft.MCS.YouZhou.Scene
+namespace top.Isteyft.MCS.JiuZhou.Scene
 {
     // 每个路点都有这么一个对象
     public class AllMapComponent : MapComponent
@@ -24,6 +24,8 @@ namespace top.Isteyft.MCS.YouZhou.Scene
         public GameObject shijian;   // 事件标记对象
         public bool showTask = false;    // 是否显示任务
         public bool showShijian = false;  // 是否显示事件
+
+
         public override int getAvatarNowMapIndex()
         {
             // 从玩家副本控制数据中获取当前地图索引
@@ -88,6 +90,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
         }
         public override void AvatarMoveToThis()
         {
+            base.AvatarMoveToThis();
             MapPlayerController playerController = AllMapManage.instance.MapPlayerController;
             bool hasDunShu = playerController.ShowType != MapPlayerShowType.遁术;
 
@@ -367,7 +370,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             this.BaseAddTime();
         }
 
-
+        #region 自定义任务事件
         public void SetTaskVisible(bool visible)
         {
             showTask = visible;
@@ -424,7 +427,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 AllMapBase.RefreshMarksFromStaticData();
                 
                 // 触发任务对话事件
-                DialogAnalysis.StartTestDialogEvent("RunLua*幽州任务#幽州任务点", null);
+                DialogAnalysis.StartTestDialogEvent("RunLua*九州任务#九州任务点", null);
             }
             
             // 检查并触发事件（使用else if避免同时触发）
@@ -439,8 +442,9 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 AllMapBase.RefreshMarksFromStaticData();
                 
                 // 触发事件对话事件
-                DialogAnalysis.StartTestDialogEvent("RunLua*幽州事件#幽州事件点", null);
+                DialogAnalysis.StartTestDialogEvent("RunLua*九州事件#九州事件点", null);
             }
         }
+        #endregion
     }
 }

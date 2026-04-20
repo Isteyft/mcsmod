@@ -4,7 +4,7 @@ using SkySwordKill.NextMoreCommand.Utils;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEnv
+namespace top.Isteyft.MCS.JiuZhou.DialogEnv
 {
     [DialogEnvQuery("YZ_GetData")]
     public class YZ_GetData : IDialogEnvQuery

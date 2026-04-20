@@ -2,7 +2,7 @@
 using Spine.Unity;
 using UnityEngine;
 
-namespace top.Isteyft.MCS.YouZhou.Utils
+namespace top.Isteyft.MCS.JiuZhou.Utils
 {
     // Token: 0x0200000F RID: 15
     public class Task : MonoBehaviour

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace top.Isteyft.MCS.YouZhou.Scene
+namespace top.Isteyft.MCS.JiuZhou.Scene
 {
     /// <summary>
     /// 大地图线路显示控制器，负责显示地图中各路点之间的连接线

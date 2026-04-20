@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace top.Isteyft.MCS.YouZhou.Patch
+namespace top.Isteyft.MCS.JiuZhou.Patch
 {
     [HarmonyPatch(typeof(UIHeadPanel), "OnTieJianBtnClick")]
     public class UIHeadPanelPatch
@@ -16,7 +16,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
         {
             if (__instance.BtnCanClick())
             {
-                DialogAnalysis.StartTestDialogEvent("RunLua*幽州工具#打开铁剑", null);
+                DialogAnalysis.StartTestDialogEvent("RunLua*九州工具#打开铁剑", null);
                 //UIJianLingPanel.OpenPanel();
                 //DialogAnalysis.GetInt();
             }

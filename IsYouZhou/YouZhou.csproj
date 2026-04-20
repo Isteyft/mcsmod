@@ -7,8 +7,8 @@
     <ProjectGuid>{220DD2B2-A8AB-41F2-965B-FDCE9C9FBD7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>top.Isteyft.MCS.YouZhou</RootNamespace>
-    <AssemblyName>YouZhou</AssemblyName>
+    <RootNamespace>top.Isteyft.MCS.JiuZhou</RootNamespace>
+    <AssemblyName>JiuZhou</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\幽州\plugins\</OutputPath>
+    <OutputPath>D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\九州\plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>1</WarningLevel>
@@ -108,7 +108,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="HH_MaiJiu">
-      <HintPath>..\..\..\gameD\觅长生\mod\新建文件夹\埋久工具库\plugins\HH_MaiJiu.dll</HintPath>
+      <HintPath>D:\SteamLibrary\steamapps\workshop\content\1189490\3018994631\plugins\HH_MaiJiu.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="IFacebook">
@@ -488,10 +488,12 @@
     <Compile Include="Scene\AllMapLineShow.cs" />
     <Compile Include="Scene\BtnClick.cs" />
     <Compile Include="Scene\CameraController.cs" />
+    <Compile Include="Scene\sea\EndlessSeaMagPatch.cs" />
     <Compile Include="Scene\GravityAnim.cs" />
     <Compile Include="Scene\LoadingScreenPatch.cs" />
     <Compile Include="Scene\LudianJson.cs" />
     <Compile Include="Scene\MapMoveData.cs" />
+    <Compile Include="Scene\sea\LoadToOtherSea.cs" />
     <Compile Include="Scene\walkMap\WalkMapController.cs" />
     <Compile Include="Scene\walkMap\WalkMapModeConfig.cs" />
     <Compile Include="Scene\YZMove.cs" />

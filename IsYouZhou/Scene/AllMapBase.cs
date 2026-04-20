@@ -1,64 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using GetWay;
+using HarmonyLib;
+using MaiJiu.MCS.HH.Data;
 using MaiJiu.MCS.HH.Scene;
+using MaiJiu.MCS.HH.Tool;
 using Newtonsoft.Json;
 using SkySwordKill.Next.DialogSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using YSGame;
 
 
-namespace top.Isteyft.MCS.YouZhou.Scene
+namespace top.Isteyft.MCS.JiuZhou.Scene
 {
     public class AllMapBase : MonoBehaviour
     {
         // 地图实例
-        public static AllMapBase Inst;
+        public static AllMapBase inst;
         // 大地图数据
         public static AllMapJson MapData;
-        // 怪物
-        public GameObject monster;
         // 地图对象
         public GameObject LevelsWorld0;
+
+
+        // 当前地图名字
+        private string sceneName;
+        // 地图的起始索引
+        public int startIndex;
+        // 地图寻路组件的实例
+        private MapGetWay mapGetWay;
+        // 当前场景对应的 JSON 配置数据
+        public JSONObject sceneJson;
+
         public static List<int> activeTasks = new List<int>();
         public static List<int> activeShijians = new List<int>();
-        public static AllMapJson 幽州
-        {
-            get
-            {
-                if (AllMapBase.MapData == null)
-                {
-                    // 从场景JSON数据中获取幽州地图数据
-                    JSONObject jsonobject = Jsondata.SceneJsonData["幽州"];
-                    // 反序列化为AllMapJson对象
-                    AllMapBase.MapData = JsonConvert.DeserializeObject<AllMapJson>(jsonobject.ToString());
-                }
-                return AllMapBase.MapData;
-            }
-        }
-
-        public static Dictionary<int, List<int>> NPCLIST
-        {
-            get
-            {
-                Dictionary<int, List<int>> dictionary;
-                // 尝试从NPC结算管理器中获取当前场景的NPC字典
-                bool flag = NpcJieSuanManager.inst.npcMap.fuBenNPCDictionary.TryGetValue(Tools.getScreenName(), out dictionary);
-                Dictionary<int, List<int>> result;
-                if (flag)
-                {
-                    result = dictionary;
-                }
-                else
-                {
-                    result = null;
-                }
-                return result;
-            }
-        }
         private void Awake()
         {
             // 设置单例实例
-            AllMapBase.Inst = this;
+            //AllMapBase.Inst = this;
+            //MaiJiu.MCS.HH.Scene.AllMapComponent;
+            //MaiJiu.MCS.HH.Scene.AllMapBase;
 
             // 获取主摄像机并添加必要组件
             GameObject gameObject = base.transform.Find("/Main Camera").gameObject;
@@ -77,21 +59,6 @@ namespace top.Isteyft.MCS.YouZhou.Scene
             this.LevelsWorld0.AddComponent<AllMapLineShow>();
             // 获取当前场景名称
             string nowSceneName = SceneEx.NowSceneName;
-            //             // 如果地图数据未加载，尝试加载
-            // if (AllMapBase.MapData == null)
-            // {
-            //     try
-            //     {
-            //         // 从场景JSON数据中获取当前场景数据
-            //         JSONObject jsonobject = Jsondata.SceneJsonData[nowSceneName];
-            //         // 反序列化为AllMapJson对象
-            //         AllMapBase.MapData = JsonConvert.DeserializeObject<AllMapJson>(jsonobject.ToString());
-            //     }
-            //     catch
-            //     {
-            //         UIPopTip.Inst.Pop("找不到场景数据，停止加载场景！", PopTipIconType.叹号);
-            //     }
-            // 无论MapData是否为null，都重新加载当前场景的数据，确保切换地图时使用正确的数据
             try
             {
                 // 从场景JSON数据中获取当前场景数据
@@ -104,6 +71,36 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 UIPopTip.Inst.Pop("找不到场景数据，停止加载场景！", PopTipIconType.叹号);
             }
             this.InitIndex();
+            this.initMap();
+        }
+
+        private void initMap()
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+            if (!MaiSaveData.Inst.allMapIndex.ContainsKey(sceneName))
+            {
+                MaiSaveData.Inst.allMapIndex[sceneName] = startIndex;
+            }
+
+            MaiSaveData.Inst.allMapIndex["AllMaps"] = PlayerEx.Player.NowMapIndex;
+            // 将玩家当前的地图索引更新为当前场景对应的索引
+            PlayerEx.Player.NowMapIndex = MaiSaveData.Inst.allMapIndex[sceneName];
+
+            // 处理寻路系统
+            if (MapGetWay.Inst != null)
+            {
+                // 创建一个新的 MapGetWay 实例
+                mapGetWay = new MapGetWay();
+                // 使用 Traverse 反射工具，强制将全局单例 _inst 字段替换为新的实例
+                Traverse.Create(typeof(MapGetWay)).Field("_inst").SetValue(mapGetWay);
+            }
+
+            // 加载场景 JSON 配置
+            // 尝试从全局 JSON 数据中获取当前场景的配置信息
+            if (Jsondata.SceneJsonData.TryGetValue(sceneName, out var value))
+            {
+                sceneJson = value;
+            }
         }
 
         private void InitIndex()
@@ -121,7 +118,7 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 // 添加点击组件
                 gameObject.AddComponent<AllMapClick>();
                 // 查找关卡中的"enter"子物体（入口点）
-                Transform transform = gameObject.transform.Find("enter");
+                Transform transform = gameObject.transform.Find("flowchat/enter");
                 // 尝试从地图数据中获取当前关卡的数据
                 LudianJson value;
                 // 检查地图数据是否已加载
@@ -190,6 +187,15 @@ namespace top.Isteyft.MCS.YouZhou.Scene
                 }
             }
         }
+
+        private void OnDestroy()
+        {
+            // 1. 清理寻路单例
+            Traverse.Create(typeof(MapGetWay)).Field("_inst").SetValue(null);
+            // 2. 恢复地图索引
+            PlayerEx.Player.NowMapIndex = MaiSaveData.Inst.allMapIndex["AllMaps"];
+        }
+
         private void Start()
         {
             if (AllMapBase.MapData != null)

@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 using YSGame;
 using System.Collections.Generic;
-using top.Isteyft.MCS.YouZhou.Utils;
+using top.Isteyft.MCS.JiuZhou.Utils;
 using SkySwordKill.Next.DialogSystem;
 
-namespace top.Isteyft.MCS.YouZhou.UI
+namespace top.Isteyft.MCS.JiuZhou.UI
 {
     public class YZMapPanel : MonoBehaviour, IESCClose
     {

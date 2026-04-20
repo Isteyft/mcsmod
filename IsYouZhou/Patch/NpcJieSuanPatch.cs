@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using top.Isteyft.MCS.IsTools.Util;
 
-namespace top.Isteyft.MCS.YouZhou.Patch
+namespace top.Isteyft.MCS.JiuZhou.Patch
 {
     [HarmonyPatch(typeof(NpcJieSuanManager))]
     public class NpcJieSuanPatch

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using top.Isteyft.MCS.YouZhou.Utils;
+using top.Isteyft.MCS.JiuZhou.Utils;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent.LoadBigMap
+namespace top.Isteyft.MCS.JiuZhou.DialogEvent.LoadBigMap
 {
     [DialogEvent("YZ_Load")]
     public class YZ_Load : IDialogEvent

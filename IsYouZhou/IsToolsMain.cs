@@ -11,22 +11,22 @@ using HarmonyLib;
 using Newtonsoft.Json;
 using top.Isteyft.MCS.IsTools.ModPatch;
 using top.Isteyft.MCS.IsTools.Util;
-using top.Isteyft.MCS.YouZhou.GameData;
-using top.Isteyft.MCS.YouZhou.GamePlayer;
-using top.Isteyft.MCS.YouZhou.Patch;
-using top.Isteyft.MCS.YouZhou.Scene;
-using top.Isteyft.MCS.YouZhou.UI;
+using top.Isteyft.MCS.JiuZhou.GameData;
+//using top.Isteyft.MCS.JiuZhou.GamePlayer;
+using top.Isteyft.MCS.JiuZhou.Patch;
+using top.Isteyft.MCS.JiuZhou.Scene;
+using top.Isteyft.MCS.JiuZhou.UI;
 using UnityEngine;
-using YZSceneManeger = top.Isteyft.MCS.YouZhou.Scene.YZSceneManeger;
+using YZSceneManeger = top.Isteyft.MCS.JiuZhou.Scene.YZSceneManeger;
 
-namespace top.Isteyft.MCS.YouZhou
+namespace top.Isteyft.MCS.JiuZhou
 {
     [BepInDependency("skyswordkill.plugin.NextMoreCommands")]
     [BepInDependency("skyswordkill.plugin.Next")]
     [BepInDependency("MaiJiu.MCS.HH")]
     [BepInDependency("top.Isteyft.MCS.IsTools")]
     [BepInDependency("top.Isteyft.MCS.IsMoDaoKuoZhanMain")]
-    [BepInPlugin("top.Isteyft.MCS.YouZhou", "幽州", "1.0.0")]
+    [BepInPlugin("top.Isteyft.MCS.JiuZhou", "九州", "1.0.0")]
     public class IsToolsMain : BaseUnityPlugin
     {
         public static IsToolsMain I;
@@ -50,7 +50,7 @@ namespace top.Isteyft.MCS.YouZhou
             mapConfigPath = Path.Combine(modPath, "BaizeAssets", "MapMoveConfig.json");
         }
         #region 日志
-        public static void Log(string message)
+        public static void Log(object message)
         {
             IsToolsMain.I.Logger.LogInfo("==========[IsTools]==========");
             IsToolsMain.I.Logger.LogInfo("");
@@ -58,7 +58,7 @@ namespace top.Isteyft.MCS.YouZhou
             IsToolsMain.I.Logger.LogInfo("");
             IsToolsMain.I.Logger.LogInfo("==========[IsTools]==========");
         }
-        public static void LogInfo(string message)
+        public static void LogInfo(object message)
         {
             IsToolsMain.I.Logger.LogInfo(message);
         }
@@ -101,7 +101,7 @@ namespace top.Isteyft.MCS.YouZhou
             LoadPicture();
             LoadMapMoveConfig();
             //Log("加载awake");
-            new Harmony("top.Isteyft.MCS.YouZhou.Patch").PatchAll();
+            new Harmony("top.Isteyft.MCS.JiuZhou.Patch").PatchAll();
             base.gameObject.AddComponent<YZSceneManeger>();
         }
 
@@ -150,7 +150,7 @@ namespace top.Isteyft.MCS.YouZhou
         // 添加地图配置加载方法
         private void LoadMapMoveConfig()
         {
-            IsToolsMain.Log("开始加载幽州配置1");
+            IsToolsMain.Log("开始加载九州地图配置1");
             try
             {
                 if (!File.Exists(mapConfigPath))

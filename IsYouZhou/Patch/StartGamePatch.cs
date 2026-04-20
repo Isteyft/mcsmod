@@ -8,12 +8,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using top.Isteyft.MCS.YouZhou.GameData;
-using top.Isteyft.MCS.YouZhou.Utils;
+using top.Isteyft.MCS.JiuZhou.GameData;
+using top.Isteyft.MCS.JiuZhou.Utils;
 using UnityEngine;
 using YSGame;
 
-namespace top.Isteyft.MCS.YouZhou.Patch
+namespace top.Isteyft.MCS.JiuZhou.Patch
 {
     [HarmonyPatch(typeof(MainUICreateAvatar), "CreateFinsh")]
     public class StartGamePatch

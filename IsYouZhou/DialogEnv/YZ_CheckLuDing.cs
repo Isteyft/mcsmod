@@ -2,9 +2,9 @@
 using SkySwordKill.NextMoreCommand.Utils;
 using System.Collections.Generic;
 using System.Linq;
-using top.Isteyft.MCS.YouZhou.GameData;
+using top.Isteyft.MCS.JiuZhou.GameData;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEnv
+namespace top.Isteyft.MCS.JiuZhou.DialogEnv
 {
     [DialogEnvQuery("YZ_CheckLuDing")]
     public class YZ_CheckLuDing : IDialogEnvQuery

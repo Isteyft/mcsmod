@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using top.Isteyft.MCS.IsTools.Util;
 
-namespace top.Isteyft.MCS.YouZhou.Utils
+namespace top.Isteyft.MCS.JiuZhou.Utils
 {
     public class DataUtils
     {

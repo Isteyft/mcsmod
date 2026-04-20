@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using top.Isteyft.MCS.YouZhou.Scene;
-using top.Isteyft.MCS.YouZhou.Utils;
+using top.Isteyft.MCS.JiuZhou.Scene;
+using top.Isteyft.MCS.JiuZhou.Utils;
 using UnityEngine.SceneManagement;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent
+namespace top.Isteyft.MCS.JiuZhou.DialogEvent
 {
     [DialogEvent("YZ_MoveTo")]
     public class YZ_MoveTo : IDialogEvent

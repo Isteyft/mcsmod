@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tab;
 
-namespace top.Isteyft.MCS.YouZhou.Patch.Tab
+namespace top.Isteyft.MCS.JiuZhou.Patch.Tab
 {
     [HarmonyPatch(typeof(WuDaoSlot))]
     public class WuDaoSlotPatch

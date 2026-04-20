@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using top.Isteyft.MCS.YouZhou.Scene;
+using top.Isteyft.MCS.JiuZhou.Scene;
 
-namespace top.Isteyft.MCS.YouZhou.DialogEvent
+namespace top.Isteyft.MCS.JiuZhou.DialogEvent
 {
     /// <summary>
     /// 刷新地图事件：清空旧事件，随机生成3个新事件

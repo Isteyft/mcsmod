@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using top.Isteyft.MCS.IsTools.Util;
-using top.Isteyft.MCS.YouZhou.GameData;
-using top.Isteyft.MCS.YouZhou.Scene;
+using top.Isteyft.MCS.JiuZhou.GameData;
+using top.Isteyft.MCS.JiuZhou.Scene;
 
-namespace top.Isteyft.MCS.YouZhou.Patch
+namespace top.Isteyft.MCS.JiuZhou.Patch
 {
     [HarmonyPatch(typeof(YSNewSaveSystem))]
     public class YSNewSavePatch
@@ -53,12 +53,12 @@ namespace top.Isteyft.MCS.YouZhou.Patch
 
                 try
                 {
-                    DataManager.SaveData(IsToolsMain.YouZhouData.Data, "/YZData.json", Formatting.Indented);
+                    DataManager.SaveData(IsToolsMain.YouZhouData.Data, "/JZData.json", Formatting.Indented);
                 } catch (Exception e)
                 {
                     IsToolsMain.Error(e);
                 }
-                IsToolsMain.LogInfo("保存幽州存档");
+                IsToolsMain.LogInfo("保存九州存档");
             }
         }
 
@@ -66,7 +66,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
         [HarmonyPostfix]
         public static void AfterLoad()
         {
-            string jsonString = JsonUtil.GetJsonString(YSNewSaveSystemPatch.GetNowSavePath + "/YZData.json");
+            string jsonString = JsonUtil.GetJsonString(YSNewSaveSystemPatch.GetNowSavePath + "/JZData.json");
             if (jsonString != "")
             {
                 IsToolsMain.YouZhouData.Data = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
@@ -104,7 +104,7 @@ namespace top.Isteyft.MCS.YouZhou.Patch
                     }
                 }
 
-                IsToolsMain.LogInfo("读取新幽州存档");
+                IsToolsMain.LogInfo("读取新九州存档");
             }
         }
     }

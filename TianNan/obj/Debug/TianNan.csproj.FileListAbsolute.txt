@@ -1,0 +1,6 @@
+F:\ProjectAll\C#\TianNan\obj\Debug\TianNan.csproj.AssemblyReference.cache
+F:\ProjectAll\C#\TianNan\obj\Debug\TianNan.csproj.CoreCompileInputs.cache
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\天南\plugins\TianNan.dll
+D:\SteamLibrary\steamapps\common\觅长生\本地Mod测试\天南\plugins\TianNan.pdb
+F:\ProjectAll\C#\TianNan\obj\Debug\TianNan.dll
+F:\ProjectAll\C#\TianNan\obj\Debug\TianNan.pdb

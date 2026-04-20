@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace top.Isteyft.MCS.YouZhou.Scene.walkMap
+namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
 {
     /// <summary>
     /// WalkMap模式开关配置。

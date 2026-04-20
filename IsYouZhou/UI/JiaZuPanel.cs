@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using YSGame;
 
-namespace top.Isteyft.MCS.YouZhou.UI
+namespace top.Isteyft.MCS.JiuZhou.UI
 {
     /// <summary>
     /// 家族UI面板管理类

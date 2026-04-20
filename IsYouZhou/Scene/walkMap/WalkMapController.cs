@@ -1,7 +1,7 @@
 ﻿using SkySwordKill.Next.DialogSystem;
 using UnityEngine;
 
-namespace top.Isteyft.MCS.YouZhou.Scene.walkMap
+namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
 {
     /// <summary>
     /// WalkMap模式：WASD移动玩家，并根据距离显示入口点。

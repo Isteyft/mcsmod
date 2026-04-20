@@ -19,8 +19,7 @@ namespace top.Isteyft.MCS.IsTools.Patch.TujianPatch
         {
             base.RefreshDataList();
 
-            //// 强制设置图鉴标签页为索引为 99
-            //TuJianItemTab.Inst.SetDropdown(99, 0);
+            TuJianItemTab.Inst.SetDropdown(0, 0);
 
             // 检查图鉴管理器是否需要刷新列表
             if (TuJianManager.Inst.NeedRefreshDataList)

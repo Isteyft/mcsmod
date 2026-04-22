@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using UnityEngine.Events;
 using UnityEngine;
 using YSGame;
+using GetWay;
+using System.Collections;
 
 namespace top.Isteyft.MCS.JiuZhou.Scene
 {
@@ -25,6 +27,16 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
         public bool showTask = false;    // 是否显示任务
         public bool showShijian = false;  // 是否显示事件
 
+        protected override void Start()
+        {
+            base.Start();
+            MapMoveData currentMapData = null;
+            IsToolsMain.MapMoveDatas.TryGetValue(this.NodeIndex, out currentMapData);
+            if (currentMapData != null && currentMapData.canmoveIndex != null)
+            {
+                this.nextIndex = currentMapData.canmoveIndex;
+            }
+        }
 
         public override int getAvatarNowMapIndex()
         {
@@ -33,6 +45,7 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
         }
         public override void CloseLuDian()
         {
+            //base.CloseLuDian();
             UnityEngine.GameObject gameObject = this.enter;
             if (gameObject != null)
             {
@@ -41,6 +54,7 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
         }
         public override void showLuDian()
         {
+            //base.showLuDian();
             if (this.enter != null)
             {
                 // 如果有路点，则显示它
@@ -75,6 +89,7 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
             Tools.instance.fubenLastIndex = this.ComAvatar.fubenContorl[Tools.getScreenName()].NowIndex;
             // 更新当前地图索引为这个节点的索引
             this.ComAvatar.fubenContorl[Tools.getScreenName()].NowIndex = this.NodeIndex;
+            this.ComAvatar.NowMapIndex = this.NodeIndex;
         }
         public void setAvatarNowMapIndex(int nodeIndex)
         {
@@ -82,28 +97,56 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
             Tools.instance.fubenLastIndex = this.ComAvatar.fubenContorl[Tools.getScreenName()].NowIndex;
             // 更新当前地图索引为指定的节点索引
             this.ComAvatar.fubenContorl[Tools.getScreenName()].NowIndex = nodeIndex;
+            this.ComAvatar.NowMapIndex = this.NodeIndex;
         }
         public new bool CanClick()
         {
             // 当玩家正在移动，或者玩家当前就在这个节点，或者有事件正在运行时，不能点击
             return AllMapManage.instance.isPlayMove || this.getAvatarNowMapIndex() == this.NodeIndex || DialogAnalysis.IsRunningEvent;
         }
+
+        public override void EventRandom()
+        {
+            // 移动到这个节点
+            this.AvatarMoveToThis();
+            // 增加时间
+            this.BaseAddTime();
+        }
+        
         public override void AvatarMoveToThis()
         {
-            base.AvatarMoveToThis();
             MapPlayerController playerController = AllMapManage.instance.MapPlayerController;
-            bool hasDunShu = playerController.ShowType != MapPlayerShowType.遁术;
+            bool isDunShu = playerController.ShowType == MapPlayerShowType.遁术;
 
             // 获取当前地图数据
             MapMoveData currentMapData = null;
             IsToolsMain.MapMoveDatas.TryGetValue(this.NodeIndex, out currentMapData);
 
-            if (hasDunShu)
+            // 获取当前所在节点
+            int avatarNowMapIndex = getAvatarNowMapIndex();
+
+            if (!isDunShu)
             {
+                // 非遁术状态
                 if (currentMapData != null && currentMapData.canmove)
                 {
-                    // 可以普通移动，计算路径
-                    MoveToNode(this.NodeIndex, false);
+                    IsToolsMain.LogInfo(ComAvatar.NowMapIndex);
+                    IsToolsMain.LogInfo(NodeIndex);
+                    AllMapManage.instance.mapIndex[avatarNowMapIndex].CloseLuDian();
+                    
+                    // 检查是否是相邻节点，如果是则使用 MapMoveNode 路径移动
+                    if (IsAdjacentNode(avatarNowMapIndex, this.NodeIndex))
+                    {
+                        StartCoroutine(MoveToAdjacentNode(avatarNowMapIndex, this.NodeIndex, playerController));
+                    }
+                    else
+                    {
+                        // 非相邻节点，使用路径查找
+                        MoveToNode(this.NodeIndex, false);
+                    }
+                    
+                    AllMapBase.RefreshMarksFromStaticData();
+                    OnArriveAtNode(this.NodeIndex);
                 }
                 else
                 {
@@ -113,11 +156,70 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
             }
             else
             {
-                // 使用遁术移动
-                MoveToNode(this.NodeIndex, true);
+                // 遁术状态
+                if (currentMapData != null && currentMapData.flyAny)
+                {
+                    // 使用遁术移动
+                    MoveToNode(this.NodeIndex, true);
+                }
+                else
+                {
+                    // 可以普通移动，计算路径
+                    MoveToNode(this.NodeIndex, false);
+                }
             }
         }
 
+        /// <summary>
+        /// 检查两个节点是否相邻（可以直接通过 MapMoveNode 到达）
+        /// </summary>
+        private bool IsAdjacentNode(int fromIndex, int toIndex)
+        {
+            // 查找 MapMoveNode 根对象
+            UnityEngine.GameObject mapMoveNodeRoot = UnityEngine.GameObject.Find("MapMoveNode");
+            if (mapMoveNodeRoot == null)
+            {
+                return false;
+            }
+
+            // 获取所有 MapMoveNode
+            MapMoveNode[] allMoveNodes = mapMoveNodeRoot.GetComponentsInChildren<MapMoveNode>();
+            
+            // 查找连接两个节点的 MapMoveNode
+            foreach (MapMoveNode moveNode in allMoveNodes)
+            {
+                if ((moveNode.StartNode == fromIndex && moveNode.EndNode == toIndex) ||
+                    (moveNode.EndNode == fromIndex && moveNode.StartNode == toIndex))
+                {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
+        /// <summary>
+        /// 移动到相邻节点 - 使用 MapMoveNode 路径
+        /// </summary>
+        private System.Collections.IEnumerator MoveToAdjacentNode(int fromIndex, int toIndex, MapPlayerController playerController)
+        {
+            AllMapManage.instance.isPlayMove = true;
+            
+            yield return StartCoroutine(MoveAlongMapMoveNodes(fromIndex, toIndex, playerController));
+            
+            // 更新当前位置
+            setAvatarNowMapIndex(toIndex);
+            playerController.SetSpeed(0);
+            AllMapManage.instance.isPlayMove = false;
+            this.showLuDian();
+            
+            // 到达路点后触发任务和事件检查
+            OnArriveAtNode(toIndex);
+        }
+
+
+
+        #region
         /// <summary>
         /// 移动到指定节点
         /// </summary>
@@ -147,7 +249,6 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
                     UIPopTip.Inst.Pop("无法找到前往目标地点的路径。", PopTipIconType.叹号);
                     return;
                 }
-
                 StartCoroutine(MoveAlongPath(path, playerController, nowComp));
                 AllMapBase.RefreshMarksFromStaticData();
             }
@@ -202,6 +303,210 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
                 AllMapBase.RefreshMarksFromStaticData();
             }
         }
+        // 路径查找方法 - 使用广度优先搜索
+        private List<int> FindPath(int startIndex, int targetIndex)
+        {
+            if (startIndex == targetIndex) return new List<int>() { startIndex };
+
+            // 记录已访问的节点
+            HashSet<int> visited = new HashSet<int>();
+            // 记录路径的队列
+            Queue<List<int>> queue = new Queue<List<int>>();
+
+            // 从起点开始
+            queue.Enqueue(new List<int>() { startIndex });
+            visited.Add(startIndex);
+
+            while (queue.Count > 0)
+            {
+                List<int> currentPath = queue.Dequeue();
+                int lastNode = currentPath.Last();
+
+                // 检查是否到达目标
+                if (lastNode == targetIndex)
+                {
+                    return currentPath;
+                }
+
+                // 获取当前节点的可移动目标
+                MapMoveData nodeData;
+                if (IsToolsMain.MapMoveDatas.TryGetValue(lastNode, out nodeData))
+                {
+                    foreach (int neighbor in nodeData.canmoveIndex)
+                    {
+                        if (!visited.Contains(neighbor))
+                        {
+                            visited.Add(neighbor);
+                            List<int> newPath = new List<int>(currentPath);
+                            newPath.Add(neighbor);
+                            queue.Enqueue(newPath);
+                        }
+                    }
+                }
+            }
+
+            // 没有找到路径
+            return null;
+        }
+        // 沿路径移动的协程 - 使用 MapMoveNode 路径点
+        private System.Collections.IEnumerator MoveAlongPath(List<int> path, MapPlayerController playerController, BaseMapCompont startComp)
+        {
+            KBEngine.Avatar player = PlayerEx.Player;
+
+            // 关闭起点路点
+            startComp.CloseLuDian();
+
+            // 遍历路径中的每个节点（除了起点）
+            for (int i = 1; i < path.Count; i++)
+            {
+                int fromIndex = path[i - 1];
+                int targetIndex = path[i];
+                BaseMapCompont targetComp = AllMapManage.instance.mapIndex[targetIndex];
+
+                // 使用 MapMoveNode 路径点进行移动
+                yield return StartCoroutine(MoveAlongMapMoveNodes(fromIndex, targetIndex, playerController));
+
+                // 更新当前地图索引
+                this.NodeIndex = targetIndex;
+                this.setAvatarNowMapIndex();
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+
+            // 移动完成
+            playerController.SetSpeed(0);
+            AllMapManage.instance.isPlayMove = false;
+            this.showLuDian();
+
+            // 到达最终目标路点后触发任务和事件检查
+            OnArriveAtNode(path[path.Count - 1]);
+        }
+
+        /// <summary>
+        /// 沿着 MapMoveNode 路径点移动 - 原游戏寻路方式
+        /// </summary>
+        private System.Collections.IEnumerator MoveAlongMapMoveNodes(int fromIndex, int toIndex, MapPlayerController playerController)
+        {
+            KBEngine.Avatar player = PlayerEx.Player;
+
+            // 查找 MapMoveNode 根对象
+            UnityEngine.GameObject mapMoveNodeRoot = UnityEngine.GameObject.Find("MapMoveNode");
+            if (mapMoveNodeRoot == null)
+            {
+                // 如果没有 MapMoveNode，直接直线移动
+                yield return StartCoroutine(MoveDirectly(toIndex, playerController));
+                yield break;
+            }
+
+            // 获取所有 MapMoveNode
+            MapMoveNode[] allMoveNodes = mapMoveNodeRoot.GetComponentsInChildren<MapMoveNode>();
+            List<UnityEngine.GameObject> pathNodes = new List<UnityEngine.GameObject>();
+            
+            // 添加玩家当前位置作为起点
+            pathNodes.Add(playerController.gameObject);
+            List<UnityEngine.GameObject> movePathNodes = new List<UnityEngine.GameObject>();
+
+            // 查找连接 fromIndex 和 toIndex 的 MapMoveNode
+            foreach (MapMoveNode moveNode in allMoveNodes)
+            {
+                if ((moveNode.StartNode == fromIndex && moveNode.EndNode == toIndex) ||
+                    (moveNode.EndNode == fromIndex && moveNode.StartNode == toIndex))
+                {
+                    movePathNodes.Add(moveNode.gameObject);
+                }
+            }
+
+            // 如果当前位置是路径终点，反转路径方向
+            if (movePathNodes.Count > 0 && fromIndex == movePathNodes[0].GetComponent<MapMoveNode>().EndNode)
+            {
+                movePathNodes.Reverse();
+            }
+
+            // 添加路径节点
+            foreach (UnityEngine.GameObject node in movePathNodes)
+            {
+                pathNodes.Add(node);
+            }
+
+            // 添加目标位置
+            BaseMapCompont targetComp = AllMapManage.instance.mapIndex[toIndex];
+            Transform playerPosTransform = targetComp.transform.Find("PlayerPosition");
+            pathNodes.Add((playerPosTransform != null) ? playerPosTransform.gameObject : targetComp.gameObject);
+
+            // 沿着路径节点移动
+            for (int j = 1; j < pathNodes.Count; j++)
+            {
+                int nodeIndex = j;
+                
+                // 计算两点间距离
+                float distance = Vector2.Distance(pathNodes[nodeIndex - 1].transform.position, pathNodes[nodeIndex].transform.position);
+                
+                // 根据玩家遁速计算移动速度
+                float speed = (player.dunSu > 100) ? 
+                    (MoveBaseSpeedMin + MoveBaseSpeed) : 
+                    (MoveBaseSpeedMin + MoveBaseSpeed * ((float)player.dunSu / 100f));
+                
+                // 遁术状态下速度翻倍
+                if (playerController.ShowType == MapPlayerShowType.遁术)
+                {
+                    speed *= 2f;
+                }
+
+                // 计算移动时间
+                float duration = distance / speed;
+
+                // 开始移动
+                playerController.SetSpeed(1);
+                iTween.MoveTo(playerController.gameObject, iTween.Hash(
+                    "x", pathNodes[nodeIndex].transform.position.x,
+                    "y", pathNodes[nodeIndex].transform.position.y,
+                    "z", playerController.transform.position.z,
+                    "time", duration,
+                    "islocal", false,
+                    "EaseType", "linear"
+                ));
+
+                WASDMove.waitTime = duration;
+                WASDMove.needWait = true;
+
+                // 等待移动完成
+                yield return new WaitForSeconds(duration);
+            }
+        }
+
+        /// <summary>
+        /// 直接移动到目标节点（当没有 MapMoveNode 时使用）
+        /// </summary>
+        private System.Collections.IEnumerator MoveDirectly(int targetIndex, MapPlayerController playerController)
+        {
+            KBEngine.Avatar player = PlayerEx.Player;
+            BaseMapCompont targetComp = AllMapManage.instance.mapIndex[targetIndex];
+
+            // 计算移动参数
+            float distance = Vector2.Distance(playerController.transform.position, targetComp.transform.position);
+            float speed = (player.dunSu > 200) ?
+                ((MoveBaseSpeedMin + MoveBaseSpeed) * 2f) :
+                (MoveBaseSpeedMin + MoveBaseSpeed * ((float)player.dunSu / 100f));
+            speed *= 2f;
+            float duration = distance / speed;
+
+            // 开始移动
+            playerController.SetSpeed(1);
+            iTween.MoveTo(playerController.gameObject, iTween.Hash(
+                "x", targetComp.transform.position.x,
+                "y", targetComp.transform.position.y - 0.08f,
+                "z", playerController.transform.position.z,
+                "time", duration,
+                "islocal", false,
+                "EaseType", "linear"
+            ));
+
+            WASDMove.waitTime = duration;
+            WASDMove.needWait = true;
+
+            // 等待移动完成
+            yield return new WaitForSeconds(duration);
+        }
+        #endregion
 
         /// <summary>
         /// 静态方法：通过命令移动到指定节点
@@ -263,111 +568,6 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
 
             // 更新当前地图索引为指定的节点索引
             player.fubenContorl[screenName].NowIndex = nodeIndex;
-        }
-        // 路径查找方法 - 使用广度优先搜索
-        private List<int> FindPath(int startIndex, int targetIndex)
-        {
-            if (startIndex == targetIndex) return new List<int>() { startIndex };
-
-            // 记录已访问的节点
-            HashSet<int> visited = new HashSet<int>();
-            // 记录路径的队列
-            Queue<List<int>> queue = new Queue<List<int>>();
-
-            // 从起点开始
-            queue.Enqueue(new List<int>() { startIndex });
-            visited.Add(startIndex);
-
-            while (queue.Count > 0)
-            {
-                List<int> currentPath = queue.Dequeue();
-                int lastNode = currentPath.Last();
-
-                // 检查是否到达目标
-                if (lastNode == targetIndex)
-                {
-                    return currentPath;
-                }
-
-                // 获取当前节点的可移动目标
-                MapMoveData nodeData;
-                if (IsToolsMain.MapMoveDatas.TryGetValue(lastNode, out nodeData))
-                {
-                    foreach (int neighbor in nodeData.canmoveIndex)
-                    {
-                        if (!visited.Contains(neighbor))
-                        {
-                            visited.Add(neighbor);
-                            List<int> newPath = new List<int>(currentPath);
-                            newPath.Add(neighbor);
-                            queue.Enqueue(newPath);
-                        }
-                    }
-                }
-            }
-
-            // 没有找到路径
-            return null;
-        }
-        // 沿路径移动的协程
-        private System.Collections.IEnumerator MoveAlongPath(List<int> path, MapPlayerController playerController, BaseMapCompont startComp)
-        {
-            KBEngine.Avatar player = PlayerEx.Player;
-
-            // 关闭起点路点
-            startComp.CloseLuDian();
-
-            // 遍历路径中的每个节点（除了起点）
-            for (int i = 1; i < path.Count; i++)
-            {
-                int targetIndex = path[i];
-                BaseMapCompont targetComp = AllMapManage.instance.mapIndex[targetIndex];
-
-                // 计算移动参数
-                float distance = Vector2.Distance(playerController.transform.position, targetComp.transform.position);
-                float speed = (player.dunSu > 200) ?
-                    ((MoveBaseSpeedMin + MoveBaseSpeed) * 2f) :
-                    (MoveBaseSpeedMin + MoveBaseSpeed * ((float)player.dunSu / 100f));
-                speed *= 2f;
-                float duration = distance / speed;
-
-                // 开始移动
-                playerController.SetSpeed(1);
-                iTween.MoveTo(playerController.gameObject, iTween.Hash(
-                    "x", targetComp.transform.position.x,
-                    "y", targetComp.transform.position.y - 0.08f,
-                    "z", playerController.transform.position.z,
-                    "time", duration,
-                    "islocal", false,
-                    "EaseType", "linear"
-                ));
-
-                WASDMove.waitTime = duration;
-                WASDMove.needWait = true;
-
-                // 等待移动完成
-                yield return new WaitForSeconds(duration);
-
-                // 更新当前地图索引
-                this.NodeIndex = targetIndex;
-                this.setAvatarNowMapIndex();
-                AllMapBase.RefreshMarksFromStaticData();
-            }
-
-            // 移动完成
-            playerController.SetSpeed(0);
-            AllMapManage.instance.isPlayMove = false;
-            this.showLuDian();
-            
-            // 到达最终目标路点后触发任务和事件检查
-            OnArriveAtNode(path[path.Count - 1]);
-        }
-        public override void EventRandom()
-        {
-            // 移动到这个节点
-            this.AvatarMoveToThis();
-            // 增加时间
-            this.BaseAddTime();
         }
 
         #region 自定义任务事件

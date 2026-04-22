@@ -7,6 +7,7 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
     public class MapMoveData
     {
         public bool canmove;
+        public bool flyAny;
         public List<int> canmoveIndex;
 
         public MapMoveData()

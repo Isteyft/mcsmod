@@ -433,6 +433,7 @@
     <Compile Include="DialogEnv\YZ_CheckLuDing.cs" />
     <Compile Include="DialogEnv\YZ_GetNingZhouLiuPai.cs" />
     <Compile Include="DialogEnv\YZ_GetData.cs" />
+    <Compile Include="DialogEvent\JZ_GetNodes.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadBZ.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadHZ.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadJZ.cs" />
@@ -488,6 +489,7 @@
     <Compile Include="Scene\AllMapLineShow.cs" />
     <Compile Include="Scene\BtnClick.cs" />
     <Compile Include="Scene\CameraController.cs" />
+    <Compile Include="Scene\MapGetWayPatch.cs" />
     <Compile Include="Scene\sea\EndlessSeaMagPatch.cs" />
     <Compile Include="Scene\GravityAnim.cs" />
     <Compile Include="Scene\LoadingScreenPatch.cs" />

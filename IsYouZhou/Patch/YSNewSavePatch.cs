@@ -29,7 +29,7 @@ namespace top.Isteyft.MCS.JiuZhou.Patch
         [HarmonyPostfix]
         public static void AfterSave()
         {
-            if (AllMapBase.Inst != null)
+            if (AllMapBase.inst != null)
             {
                 IsToolsMain.YouZhouData.Data["ActiveTasks"] = string.Join(",", AllMapBase.activeTasks);
                 IsToolsMain.YouZhouData.Data["ActiveShijians"] = string.Join(",", AllMapBase.activeShijians);

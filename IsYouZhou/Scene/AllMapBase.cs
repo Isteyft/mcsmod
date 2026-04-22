@@ -37,14 +37,16 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
         public static List<int> activeShijians = new List<int>();
         private void Awake()
         {
+            // 获取当前场景名称
+            string nowSceneName = SceneEx.NowSceneName;
+            this.initMap();
             // 设置单例实例
             //AllMapBase.Inst = this;
             //MaiJiu.MCS.HH.Scene.AllMapComponent;
             //MaiJiu.MCS.HH.Scene.AllMapBase;
 
-            // 获取主摄像机并添加必要组件
             GameObject gameObject = base.transform.Find("/Main Camera").gameObject;
-            gameObject.AddComponent<AllMapManage>();      // 地图管理组件，玩家加载
+            if (nowSceneName != "F颍州") gameObject.AddComponent<AllMapManage>(); // 地图管理组件，玩家加载
             gameObject.AddComponent<DialogProcess>();     // 对话处理组件
             //gameObject.AddComponent<CameraController>();  // 摄像机控制组件
             if (gameObject.GetComponent<CamaraFollow>() == null)
@@ -53,12 +55,11 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
                 camaraFollow.levo = base.transform.Find("/dian1").GetComponent<Transform>();
                 camaraFollow.desno = base.transform.Find("/dian2").GetComponent<Transform>();
             }
-            // 获取大地图根节点并添加线路显示组件
+
+            //// 获取大地图根节点并添加线路显示组件
             this.LevelsWorld0 = base.transform.Find("/AllMap/LevelsWorld0").gameObject;
-            // 连线
+            //// 连线
             this.LevelsWorld0.AddComponent<AllMapLineShow>();
-            // 获取当前场景名称
-            string nowSceneName = SceneEx.NowSceneName;
             try
             {
                 // 从场景JSON数据中获取当前场景数据
@@ -71,11 +72,11 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
                 UIPopTip.Inst.Pop("找不到场景数据，停止加载场景！", PopTipIconType.叹号);
             }
             this.InitIndex();
-            this.initMap();
         }
 
         private void initMap()
         {
+            IsToolsMain.LogInfo($"开始加载九州地图{SceneManager.GetActiveScene().name}");
             sceneName = SceneManager.GetActiveScene().name;
             if (!MaiSaveData.Inst.allMapIndex.ContainsKey(sceneName))
             {
@@ -119,6 +120,7 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
                 gameObject.AddComponent<AllMapClick>();
                 // 查找关卡中的"enter"子物体（入口点）
                 Transform transform = gameObject.transform.Find("flowchat/enter");
+                if (transform != null) transform = gameObject.transform.Find("enter");
                 // 尝试从地图数据中获取当前关卡的数据
                 LudianJson value;
                 // 检查地图数据是否已加载

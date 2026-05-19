@@ -76,6 +76,9 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
                 case 373:
                     ListRealizeSeid373(seid, avatar, buffInfo, flag, __instance);
                     return false;
+                case 374:
+                    ListRealizeSeid374(seid, avatar, buffInfo, flag, __instance);
+                    return false;
                 case 379:
                     ListRealizeSeid379(seid, avatar, buffInfo, flag, __instance);
                     return false;
@@ -418,10 +421,67 @@ namespace top.Isteyft.MCS.IsTools.Patch.SeidPatch
             }
 
         }
-        // 增加释放技能的属性
-        //private static void ListRealizeSeid374(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
-        //{
-        //}
+        // 随机buff
+        private static void ListRealizeSeid374(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)
+        {
+            var random = new Random();
+            JSONObject seidJson = instance.getSeidJson(seid);
+            // 总共数量
+            int allBuffNumber = seidJson["value1"].I * buffInfo[1];
+            // BUFF类型
+            int buffType = seidJson["value2"].I;
+
+            List<JSONObject> list = new List<JSONObject>();
+            foreach (KeyValuePair<string, JSONObject> buffJsonDatum in jsonData.instance.BuffJsonData)
+            {
+                if (buffJsonDatum.Value["bufftype"].I == buffType)
+                {
+                    list.Add(buffJsonDatum.Value);
+                }
+            }
+
+            // 多少种debuff
+            int buffsNumber = list.Count;
+
+            int maxPossibleTypes = UnityEngine.Mathf.Min(buffsNumber, allBuffNumber);
+            // 总共给多少种buff
+            int buffCounts = random.Next(1, maxPossibleTypes + 1);
+
+            // 随机的buff index
+            List<int> selectBuff = new List<int>();
+            // 随机buff 数量
+            List<int> selectBuffNum = new List<int>();
+
+            for (int i = 0; i < buffCounts; i++)
+            {
+                selectBuff.Add(random.Next(0, buffsNumber));
+            }
+
+            if (selectBuff.Count == 1)
+            {
+                selectBuffNum.Add(allBuffNumber);
+            }
+            else
+            {
+                int remaining = allBuffNumber;
+                for (int i = 0; i < selectBuff.Count - 1; i++)
+                {
+                    // 计算最多能分配多少个buff
+                    int maxCount = remaining - (selectBuff.Count - i - 1);
+                    int count = random.Next(1, maxCount + 1);
+                    selectBuffNum.Add(count);
+                    remaining -= count;
+                }
+
+                selectBuffNum.Add(remaining);
+            }
+
+            // 给与buff
+            for (int i = 0; i < selectBuff.Count; i++)
+            {
+                avatar.spell.addBuff(list[selectBuff[i]]["buffid"].I, selectBuffNum[i]);
+            }
+        }
 
         //修改触发
         private static void ListRealizeSeid379(int seid, Avatar avatar, List<int> buffInfo, IReadOnlyList<int> flag, Buff instance)

@@ -72,6 +72,14 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
             {
                 CreateMapManagerForScene(scene);
             }
+            else if (name == "S74000")
+            {
+                CreateMapManagerForScene(scene);
+            }
+            else if (name == "S74200")
+            {
+                CreateMapManagerForScene(scene);
+            }
         }
 
     }

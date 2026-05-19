@@ -80,5 +80,75 @@ namespace top.Isteyft.MCS.IsTools.Util
         {
             return new System.Random().Next(min, max);
         }
+
+
+        // --- 这里是手写的 XxHash32 算法核心代码 ---
+        private static uint XXH32(byte[] input, int seed = 0)
+        {
+            if (input == null || input.Length == 0)
+                return 0;
+
+            const uint prime32 = 0x1000193; // 808530493
+            const uint init32 = 0x9E3779B1; // 2654435761
+
+            uint length = (uint)input.Length;
+            uint hash = (uint)(init32 + length + seed);
+
+            int i = 0;
+            // 处理 4 字节块
+            while (i <= input.Length - 4)
+            {
+                uint k = (uint)(input[i] | input[i + 1] << 8 | input[i + 2] << 16 | input[i + 3] << 24);
+                k *= prime32;
+                k = RotateLeft(k, 13);
+                k *= prime32;
+                hash ^= k;
+                hash = RotateLeft(hash, 17);
+                hash = hash * prime32 + prime32;
+                i += 4;
+            }
+
+            // 处理剩余字节
+            switch (length % 4)
+            {
+                case 3: hash ^= (uint)(input[i + 2] << 16); goto case 1;
+                case 2: hash ^= (uint)(input[i + 1] << 8); goto case 1;
+                case 1: hash ^= input[i]; hash *= prime32; break;
+            }
+
+            hash ^= hash >> 15;
+            hash *= prime32;
+            hash ^= hash >> 17;
+
+            return hash;
+        }
+
+        private static uint RotateLeft(uint value, int count)
+        {
+            return (value << count) | (value >> (32 - count));
+        }
+
+        /// <summary>
+        /// 使用哈希映射法获取固定随机数结果（防SL）
+        /// </summary>
+        /// <param name="seed">开局生成的固定种子</param>
+        /// <param name="count">当前已经触发的次数（第几次）</param>
+        /// <param name="prv">成功率（0-100的整数，例如1代表1%）</param>
+        /// <returns>是否成功触发</returns>
+        public static bool GetSeedRandom(int seed, int count, int prv)
+        {
+            // 1. 拼接输入数据
+            string uniqueInput = $"{seed}_{count}_{prv}";
+            byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(uniqueInput);
+
+            // 2. 使用手写的 XXH32 进行哈希运算
+            uint hashValue = XXH32(inputBytes, 0);
+
+            // 3. 映射到 0-99
+            int result = (int)(hashValue % 100);
+
+            // 4. 判定
+            return result < prv;
+        }
     }
 }

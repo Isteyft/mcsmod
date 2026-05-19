@@ -134,7 +134,7 @@ namespace top.Isteyft.MCS.JiuZhou.Patch.Tab
                         valueNameText.text = "毫无魔念";
                     }
                 }
-                var MoNianValue = DialogAnalysis.GetInt("幽州-魔念");
+                var MoNianValue = DialogAnalysis.GetInt("九州-魔念");
                 // 将value改成1
                 if (valueTransform != null)
                 {
@@ -150,6 +150,24 @@ namespace top.Isteyft.MCS.JiuZhou.Patch.Tab
                 {
                     UnityEngine.Object.Destroy(imageTransform.gameObject);
                 }
+
+                var tipObj = gameObject.transform.Find("BaseData/BaseDataTips");
+                var listener = copiedLingGan.gameObject.AddComponent<UIListener>();
+                BaseDataTips dataTips = new BaseDataTips(tipObj.gameObject);
+                listener.mouseEnterEvent.AddListener(() =>
+                {
+                    // 直接写死你要显示的文本
+                    string myTipText = "<color=#4B0082>魔念</color>:藏匿于人心中的恶念。";
+
+                    // 调用提示框的 Show 方法
+                    // 第一个参数是文字，第二个参数是显示在哪个位置
+                    dataTips.Show(myTipText, copiedLingGan.transform.position);
+                });
+
+                listener.mouseOutEvent.AddListener(() =>
+                {
+                    dataTips.Hide();
+                });
             }
 
             // 添加Canvas组件并设置较低的层级，避免挡住提示框

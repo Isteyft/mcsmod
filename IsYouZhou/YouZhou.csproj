@@ -430,9 +430,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DialogEnv\YZ_CheckLuDing.cs" />
-    <Compile Include="DialogEnv\YZ_GetNingZhouLiuPai.cs" />
-    <Compile Include="DialogEnv\YZ_GetData.cs" />
+    <Compile Include="DialogEnv\JZ_CheckLuDing.cs" />
+    <Compile Include="DialogEnv\JZ_GetNingZhouLiuPai.cs" />
+    <Compile Include="DialogEnv\JZ_GetData.cs" />
     <Compile Include="DialogEvent\JZ_GetNodes.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadBZ.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadHZ.cs" />
@@ -442,24 +442,27 @@
     <Compile Include="DialogEvent\LoadBigMap\LoadYuZhou.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadZZ.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadXJY.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_LoadBZIndex.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_LoadHZIndex.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_LoadJZIndex.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_LoadYingZhouIndex.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_LoadYongZhouIndex.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_LoadYuZhouIndex.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_LoadZZIndex.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_LoadXJYIndex.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_LoadIndex.cs" />
-    <Compile Include="DialogEvent\YZ_AddLuDing.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_LoadBZIndex.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_LoadHZIndex.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_LoadJZIndex.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_LoadYingZhouIndex.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_LoadYongZhouIndex.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_LoadYuZhouIndex.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_LoadZZIndex.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_LoadXJYIndex.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_LoadIndex.cs" />
+    <Compile Include="DialogEvent\JZ_AddLuDing.cs" />
+    <Compile Include="DialogEvent\LoadOneMap\LoadS74200.cs" />
+    <Compile Include="DialogEvent\LoadOneMap\LoadS74000.cs" />
+    <Compile Include="DialogEvent\YZ_MapIndexTaskRemove.cs" />
     <Compile Include="DialogEvent\YZ_OpenJiaZu.cs" />
     <Compile Include="DialogEvent\YZ_OpenMap.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_GetRes.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_GetRes.cs" />
     <Compile Include="DialogEvent\YZ_MapIndexShiJian.cs" />
     <Compile Include="DialogEvent\YZ_MapIndexTask.cs" />
-    <Compile Include="DialogEvent\LoadBigMap\YZ_Load.cs" />
+    <Compile Include="DialogEvent\LoadBigMap\JZ_Load.cs" />
     <Compile Include="DialogEvent\YZ_NpcTo.cs" />
-    <Compile Include="DialogEvent\YZMove.cs" />
+    <Compile Include="DialogEvent\JZMove.cs" />
     <Compile Include="DialogEvent\LoadBigMap\LoadYZ.cs" />
     <Compile Include="DialogEvent\YZ_RefreshMapShijians.cs" />
     <Compile Include="GameData\YZData.cs" />
@@ -472,6 +475,7 @@
     <Compile Include="Patch\NpcJieSuanPatch.cs" />
     <Compile Include="Patch\NPCMapPatch.cs" />
     <Compile Include="Patch\OpenMainPatch.cs" />
+    <Compile Include="Patch\SceneButtonPatch.cs" />
     <Compile Include="Patch\StartGamePatch.cs" />
     <Compile Include="Patch\Tab\TabUIPatch.cs" />
     <Compile Include="Patch\Tab\WuDaoSlotPatch.cs" />
@@ -496,6 +500,7 @@
     <Compile Include="Scene\LudianJson.cs" />
     <Compile Include="Scene\MapMoveData.cs" />
     <Compile Include="Scene\sea\LoadToOtherSea.cs" />
+    <Compile Include="Scene\walkMap\CamaraFollow.cs" />
     <Compile Include="Scene\walkMap\WalkMapController.cs" />
     <Compile Include="Scene\walkMap\WalkMapModeConfig.cs" />
     <Compile Include="Scene\YZMove.cs" />

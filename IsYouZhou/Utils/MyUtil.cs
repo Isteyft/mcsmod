@@ -24,12 +24,28 @@ namespace top.Isteyft.MCS.JiuZhou.Utils
         public static bool JZinit = false;
         public static bool YuZhouinit = false;
         public static bool YongZhouinit = false;
+        public static Dictionary<string, bool> MapInit = new Dictionary<string, bool>
+        {
+            { "幽州初始化", false },
+            { "雪剑域初始化", false },
+            { "中州初始化", false },
+            { "衡州初始化", false },
+            { "灞州初始化", false },
+            { "颍州初始化", false },
+            { "靖州初始化", false },
+            { "渝州初始化", false },
+            { "雍州初始化", false },
+            { "灵颖城初始化", false },
+            { "绯妖林初始化", false },
+        };
         public static bool HasMod(string steamId)
         {
             return (from directory in WorkshopTool.GetAllModDirectory()
                     where directory.Name.Equals(steamId)
                     select directory).Any((DirectoryInfo directory) => !WorkshopTool.CheckModIsDisable(steamId));
         }
+
+        #region 九州进入
         public static void LoadYouZhou(int index = 1)
         {
             if (!init)
@@ -306,6 +322,73 @@ namespace top.Isteyft.MCS.JiuZhou.Utils
             LoadFuBen.loadfuben("F雍州", index);
             AllMapBase.RefreshMarksFromStaticData();
         }
+        #endregion
+
+        #region 一级地图进入
+        public static void LoadS74000(int index = 740006)
+        {
+            if (!MapInit["灵颖城初始化"])
+            {
+                MapInit["灵颖城初始化"] = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/s74000.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("S74000"))
+            {
+                Tools.instance.loadMapScenes("S74000", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("S74000", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+
+        public static void LoadS74000NoMapScenes(int index = 740006)
+        {
+            if (!MapInit["灵颖城初始化"])
+            {
+                MapInit["灵颖城初始化"] = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/s74000.ab";
+                IsToolsMain.LogInfo(path);
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("S74000", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
+        
+        public static void LoadS74200(int index = 742102)
+        {
+            if (!MapInit["绯妖林初始化"])
+            {
+                MapInit["绯妖林初始化"] = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/s74200.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (PlayerEx.Player.FuBen.HasField("S74200"))
+            {
+                Tools.instance.loadMapScenes("S74200", false);
+            }
+            else
+            {
+                LoadFuBen.loadfuben("S74200", index);
+                AllMapBase.RefreshMarksFromStaticData();
+            }
+        }
+
+        public static void LoadS74200NoMapScenes(int index = 742102)
+        {
+            if (!MapInit["绯妖林初始化"])
+            {
+                MapInit["绯妖林初始化"] = true;
+                string path = IsToolsMain.dll + "/BaizeAssets/AssetBundle/Scene/s74200.ab";
+                IsToolsMain.LogInfo(path);
+                AssetBundle.LoadFromFile(path);
+            }
+            LoadFuBen.loadfuben("S74200", index);
+            AllMapBase.RefreshMarksFromStaticData();
+        }
+        #endregion
     }
 
 }

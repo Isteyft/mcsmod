@@ -81,7 +81,7 @@ namespace top.Isteyft.MCS.JiuZhou.Patch
             {
                 scene = "S27005";
             }
-            else if (Tools.instance.CheckHasTianFu(720090))
+            else if (Tools.instance.CheckHasTianFu(740000))
             {
                 if (!MyUtil.YingZhouinit)
                 {

@@ -14,7 +14,8 @@ namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
         /// </summary>
         private static readonly HashSet<string> EnabledSceneNames = new HashSet<string>
         {
-            "F雪剑域"
+            "F雪剑域",
+            "S74000"
         };
 
         public static bool IsWalkMapScene(string sceneName)

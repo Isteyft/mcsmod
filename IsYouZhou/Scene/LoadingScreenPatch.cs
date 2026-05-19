@@ -69,6 +69,18 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
                 string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/雍州.ab";
                 AssetBundle.LoadFromFile(path);
             }
+            if (!MyUtil.MapInit["灵颖城初始化"])
+            {
+                MyUtil.MapInit["灵颖城初始化"] = true;
+                string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/s74000.ab";
+                AssetBundle.LoadFromFile(path);
+            }
+            if (!MyUtil.MapInit["绯妖林初始化"])
+            {
+                MyUtil.MapInit["绯妖林初始化"] = true;
+                string path = IsToolsMain.modPath + "/BaizeAssets/AssetBundle/Scene/s74200.ab";
+                AssetBundle.LoadFromFile(path);
+            }
         }
     }
 }

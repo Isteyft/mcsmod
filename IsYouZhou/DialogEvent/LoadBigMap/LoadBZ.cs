@@ -11,7 +11,7 @@ namespace top.Isteyft.MCS.JiuZhou.DialogEvent.LoadBigMap
 {
     [DialogEvent("LoadBZ")]
     [DialogEvent("���")]
-    public class LoadBZ : IDialogEvent
+    public class LoadS74000 : IDialogEvent
     {
         public void Execute(DialogCommand command, DialogEnvironment env, Action callback)
         {

@@ -470,6 +470,9 @@
     <Compile Include="DialogEnv\Mod\IS_GetConfig.cs" />
     <Compile Include="DialogEnv\Mod\IS_GetTMYYear.cs" />
     <Compile Include="DialogEnv\Mod\IS_GetRand.cs" />
+    <Compile Include="DialogEnv\Npc\IS_PlayerSayNpcName.cs" />
+    <Compile Include="DialogEnv\Npc\IS_NpcSayNameFirstName.cs" />
+    <Compile Include="DialogEnv\Npc\IS_NpcSayName.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcTag.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcXingGe.cs" />
     <Compile Include="DialogEnv\Npc\IS_GetNpcNewId.cs" />

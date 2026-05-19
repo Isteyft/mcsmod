@@ -25,6 +25,9 @@ namespace top.Isteyft.MCS.JiuZhou.Patch
                 return getNowSavePath + str;
             }
         }
+
+        public static string CurrentSeed = "00000";
+
         [HarmonyPatch("SaveAvatar")]
         [HarmonyPostfix]
         public static void AfterSave()
@@ -34,6 +37,9 @@ namespace top.Isteyft.MCS.JiuZhou.Patch
                 IsToolsMain.YouZhouData.Data["ActiveTasks"] = string.Join(",", AllMapBase.activeTasks);
                 IsToolsMain.YouZhouData.Data["ActiveShijians"] = string.Join(",", AllMapBase.activeShijians);
             }
+
+            // 保存seed
+            IsToolsMain.YouZhouData.Data["Seed"] = CurrentSeed;
 
             // 保存LuDing数组数据
             if (IsToolsMain.YouZhouData != null)
@@ -101,6 +107,13 @@ namespace top.Isteyft.MCS.JiuZhou.Patch
                     {
                         var luDing = JsonConvert.DeserializeObject<List<Dictionary<string, int>>>(luDingStr);
                         // 可以在这里将数据存储到全局变量中供其他地方使用
+                    }
+
+                    // 加载种子数据
+                    if (IsToolsMain.YouZhouData.Data.TryGetValue("Seed", out string loadedSeed) && !string.IsNullOrEmpty(loadedSeed))
+                    {
+                        CurrentSeed = loadedSeed;
+                        IsToolsMain.LogInfo($"成功读取 Seed: {loadedSeed}");
                     }
                 }
 

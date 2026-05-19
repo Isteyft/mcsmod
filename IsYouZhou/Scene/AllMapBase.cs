@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GetWay;
 using HarmonyLib;
 using MaiJiu.MCS.HH.Data;
@@ -16,6 +17,14 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
 {
     public class AllMapBase : MonoBehaviour
     {
+
+        private static readonly HashSet<string> NewMap = new HashSet<string>
+        {
+            "F颍州",
+            "S74000",
+            "S74200",
+        };
+
         // 地图实例
         public static AllMapBase inst;
         // 大地图数据
@@ -46,7 +55,7 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
             //MaiJiu.MCS.HH.Scene.AllMapBase;
 
             GameObject gameObject = base.transform.Find("/Main Camera").gameObject;
-            if (nowSceneName != "F颍州") gameObject.AddComponent<AllMapManage>(); // 地图管理组件，玩家加载
+            if (!NewMap.Contains(nowSceneName)) gameObject.AddComponent<AllMapManage>(); // 地图管理组件，玩家加载
             gameObject.AddComponent<DialogProcess>();     // 对话处理组件
             //gameObject.AddComponent<CameraController>();  // 摄像机控制组件
             if (gameObject.GetComponent<CamaraFollow>() == null)
@@ -120,7 +129,7 @@ namespace top.Isteyft.MCS.JiuZhou.Scene
                 gameObject.AddComponent<AllMapClick>();
                 // 查找关卡中的"enter"子物体（入口点）
                 Transform transform = gameObject.transform.Find("flowchat/enter");
-                if (transform != null) transform = gameObject.transform.Find("enter");
+                if (transform == null) transform = gameObject.transform.Find("enter");
                 // 尝试从地图数据中获取当前关卡的数据
                 LudianJson value;
                 // 检查地图数据是否已加载

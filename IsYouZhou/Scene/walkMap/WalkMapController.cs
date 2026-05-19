@@ -11,17 +11,14 @@ namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
         private const float MoveSpeed = 3.5f;
         private const float RevealDistance = 0.9f;
         private const float MoveEdgePadding = 0.8f;
-        private const float CameraEdgePadding = 1.2f;
-        private const float MinCameraOrthographicSize = 2.5f;
 
         private bool initialized;
         private float minX;
         private float maxX;
         private float minY;
         private float maxY;
-        private Bounds mapLandBounds;
-        private bool hasMapLandBounds;
         private Camera mainCamera;
+        private CamaraFollow camaraFollow;
 
         private void Update()
         {
@@ -49,7 +46,20 @@ namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
                 return;
             }
 
-            ClampCameraToMapLand();
+            if (camaraFollow != null && mainCamera != null && AllMapManage.instance?.MapPlayerController != null)
+            {
+                if (!Input.GetMouseButton(0))
+                {
+                    Vector3 playerPos = AllMapManage.instance.MapPlayerController.transform.position;
+                    Vector3 camPos = mainCamera.transform.position;
+                    camPos.x = playerPos.x;
+                    camPos.y = playerPos.y;
+                    Vector2 limited = camaraFollow.LimitPos(new Vector2(camPos.x, camPos.y));
+                    camPos.x = limited.x;
+                    camPos.y = limited.y;
+                    mainCamera.transform.position = camPos;
+                }
+            }
         }
 
         private bool EnsureInitialized()
@@ -122,8 +132,6 @@ namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
             if (renderer != null)
             {
                 Bounds b = renderer.bounds;
-                mapLandBounds = b;
-                hasMapLandBounds = true;
                 minX = b.min.x + MoveEdgePadding;
                 maxX = b.max.x - MoveEdgePadding;
                 minY = b.min.y + MoveEdgePadding;
@@ -135,8 +143,6 @@ namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
             if (collider2D != null)
             {
                 Bounds b = collider2D.bounds;
-                mapLandBounds = b;
-                hasMapLandBounds = true;
                 minX = b.min.x + MoveEdgePadding;
                 maxX = b.max.x - MoveEdgePadding;
                 minY = b.min.y + MoveEdgePadding;
@@ -149,8 +155,6 @@ namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
             {
                 Vector3[] corners = new Vector3[4];
                 rect.GetWorldCorners(corners);
-                mapLandBounds = new Bounds((corners[0] + corners[2]) * 0.5f, corners[2] - corners[0]);
-                hasMapLandBounds = true;
                 minX = corners[0].x + MoveEdgePadding;
                 maxX = corners[2].x - MoveEdgePadding;
                 minY = corners[0].y + MoveEdgePadding;
@@ -173,54 +177,12 @@ namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
                 }
             }
 
-            if (mainCamera == null || !mainCamera.orthographic || !hasMapLandBounds)
+            if (mainCamera == null)
             {
                 return;
             }
 
-            float allowedHalfHeight = Mathf.Max(MinCameraOrthographicSize, mapLandBounds.extents.y - CameraEdgePadding);
-            float allowedHalfWidthAsHeight = Mathf.Max(
-                MinCameraOrthographicSize,
-                (mapLandBounds.extents.x - CameraEdgePadding) / Mathf.Max(0.01f, mainCamera.aspect));
-
-            float targetSize = Mathf.Min(allowedHalfHeight, allowedHalfWidthAsHeight);
-            mainCamera.orthographicSize = Mathf.Max(MinCameraOrthographicSize, targetSize);
-            ClampCameraToMapLand();
-        }
-
-        private void ClampCameraToMapLand()
-        {
-            if (mainCamera == null || !mainCamera.orthographic || !hasMapLandBounds)
-            {
-                return;
-            }
-
-            float cameraHalfHeight = mainCamera.orthographicSize;
-            float cameraHalfWidth = cameraHalfHeight * mainCamera.aspect;
-
-            float minCameraX = mapLandBounds.min.x + CameraEdgePadding + cameraHalfWidth;
-            float maxCameraX = mapLandBounds.max.x - CameraEdgePadding - cameraHalfWidth;
-            float minCameraY = mapLandBounds.min.y + CameraEdgePadding + cameraHalfHeight;
-            float maxCameraY = mapLandBounds.max.y - CameraEdgePadding - cameraHalfHeight;
-
-            if (minCameraX > maxCameraX)
-            {
-                float centerX = mapLandBounds.center.x;
-                minCameraX = centerX;
-                maxCameraX = centerX;
-            }
-
-            if (minCameraY > maxCameraY)
-            {
-                float centerY = mapLandBounds.center.y;
-                minCameraY = centerY;
-                maxCameraY = centerY;
-            }
-
-            Vector3 pos = mainCamera.transform.position;
-            pos.x = Mathf.Clamp(pos.x, minCameraX, maxCameraX);
-            pos.y = Mathf.Clamp(pos.y, minCameraY, maxCameraY);
-            mainCamera.transform.position = pos;
+            camaraFollow = mainCamera.GetComponent<CamaraFollow>();
         }
 
         private void HideAllEnters()
@@ -249,6 +211,7 @@ namespace top.Isteyft.MCS.JiuZhou.Scene.walkMap
 
         private void MoveByKeyboard()
         {
+            if (AllMapManage.instance.MapPlayerController.ShowType != MapPlayerShowType.遁术) return;
             float h = 0f;
             float v = 0f;
 

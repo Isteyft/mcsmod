@@ -10,7 +10,7 @@ using top.Isteyft.MCS.JiuZhou.Utils;
 namespace top.Isteyft.MCS.JiuZhou.DialogEvent.LoadBigMap
 {
     [DialogEvent("LoadYingZhou")]
-    [DialogEvent("���")]
+    [DialogEvent("颍州进入")]
     public class LoadYingZhou : IDialogEvent
     {
         public void Execute(DialogCommand command, DialogEnvironment env, Action callback)
